@@ -245,7 +245,7 @@
   </div> <!-- end row -->
 
   {{-- last 5 orders --}}
-  <div class="row">
+  {{-- <div class="row">
     <div class="col-lg-12">
       <div class="card">
         <div class="card-body">
@@ -294,11 +294,11 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
   <!-- end row -->
 
   {{-- chart2  --}}
-  <div class="row">
+  {{-- <div class="row">
     <div class="col-xl-6">
       <div class="card">
         <div class="card-body">
@@ -332,7 +332,7 @@
         </div>
       </div>
     </div> <!-- end col -->
-  </div> <!-- end row -->
+  </div> <!-- end row --> --}}
 
 
   {{-- most 10 saled product --}}

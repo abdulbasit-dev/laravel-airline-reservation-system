@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Exports\GeneralExport;
 use App\Http\Requests\SupplierRequest;
@@ -12,7 +12,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use DataTables;
 
 
-class SupplierController extends Controller
+class SupplierController
 {
     /**
      * Display a listing of the resource.
@@ -45,7 +45,7 @@ class SupplierController extends Controller
                 ->make(true);
         }
 
-        return view('suppliers.index');
+        return view('admin.suppliers.index');
     }
 
     /**
@@ -58,7 +58,7 @@ class SupplierController extends Controller
         //check permission
         $this->authorize("supplier_add");
 
-        return view('suppliers.create');
+        return view('admin.suppliers.create');
     }
 
     /**
@@ -99,7 +99,7 @@ class SupplierController extends Controller
         //check permission
         $this->authorize("supplier_edit");
 
-        return view('suppliers.edit', compact('supplier'));
+        return view('admin.suppliers.edit', compact('supplier'));
     }
 
     /**

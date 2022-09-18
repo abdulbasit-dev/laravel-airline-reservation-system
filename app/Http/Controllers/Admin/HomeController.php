@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\CarExpense;
 use App\Models\Client;
 use App\Models\Order;
@@ -36,7 +37,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         if (view()->exists('template.' . $request->path())) {
-            return view('template.' . $request->path());
+            return view('admin.template.' . $request->path());
         }
         return abort(404);
     }
@@ -201,7 +202,7 @@ class HomeController extends Controller
             "expenseChart" => $expenseChart ?? NULL,
             "systemUserChart" => $syetemUserChart,
         ];
-        return view('index', compact('data'));
+        return view('admin.index', compact('data'));
     }
 
     public function storeTempFile(Request $request)
