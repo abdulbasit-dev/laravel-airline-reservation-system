@@ -1,0 +1,110 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ namespacedModel }};
+use {{ rootNamespace }}Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
+
+class {{ class }} extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //check permission
+        $this->authorize("{{ modelVariable }}_view");
+
+        ${{ modelVariable }}s = {{ model }}::all();
+        
+        return $this->josnResponse(true, __('api.all_resource', ['resource' => __('attributes.{{ modelVariable }}')]), Response::HTTP_OK, ${{ modelVariable }}s);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //check permission
+        $this->authorize("{{ modelVariable }}_add");
+
+        //validation
+        $validator = Validator::make($request->all(),[
+            ""=>['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return $this->josnResponse(false,  __('api.invalid_inputs'), Response::HTTP_UNPROCESSABLE_ENTITY, null, $validator->errors()->all());
+        }
+
+        //{{ model }}::create([
+        //    ""=>$request->
+        //]);
+
+        return $this->josnResponse(true, __('api.create_resource', ['resource' => __('attributes.{{ modelVariable }}')]), Response::HTTP_CREATED);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \{{ namespacedModel }}  ${{ modelVariable }}
+     * @return \Illuminate\Http\Response
+     */
+    public function show({{ model }} ${{ modelVariable }})
+    {
+        //check permission
+        $this->authorize("{{ modelVariable }}_view");
+        return $this->josnResponse(true, __('api.show_resource_info', ['resource' => __('attributes.{{ modelVariable }}')]), Response::HTTP_OK, ${{ modelVariable }});
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \{{ namespacedModel }}  ${{ modelVariable }}
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, {{ model }} ${{ modelVariable }})
+    {
+        //check permission
+        $this->authorize("{{ modelVariable }}_edit");
+
+        //validation
+        $validator = Validator::make($request->all(),[
+            ""=>[]
+        ]);
+
+        if ($validator->fails()) {
+            return $this->josnResponse(false,  __('api.invalid_inputs'), Response::HTTP_UNPROCESSABLE_ENTITY, null, $validator->errors()->all());
+        }
+
+        //${{ modelVariable }}->update([
+        //    ""=>$request->''
+        //]);
+
+        return $this->josnResponse(true, __('api.update_resource', ['resource' => __('attributes.{{ modelVariable }}')]), Response::HTTP_OK);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \{{ namespacedModel }}  ${{ modelVariable }}
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy({{ model }} ${{ modelVariable }})
+    {
+        //check permission
+        $this->authorize("{{ modelVariable }}_delete");
+
+        ${{ modelVariable }}->delete();
+        return $this->josnResponse(true,  __('api.delete_resource', ['resource' => __('attributes.{{ modelVariable }}')]), Response::HTTP_OK);
+    }
+}

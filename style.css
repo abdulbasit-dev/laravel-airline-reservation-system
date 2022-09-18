@@ -1,0 +1,51 @@
+@import url(//fonts.googleapis.com/css?family=Montserrat:300,400,500);
+.team1 {
+  font-family: "Montserrat", sans-serif;
+  color: #8d97ad;
+  font-weight: 300;
+}
+
+.team1 h1, .team1 h2, .team1 h3, .team1 h4, .team1 h5, .team1 h6 {
+  color: #3e4555;
+}
+
+.team1 .font-weight-medium {
+  font-weight: 500;
+}
+
+.team1 .bg-light {
+    background-color: #f4f8fa !important;
+}
+
+.team1 .subtitle {
+    color: #8d97ad;
+    line-height: 24px;
+}
+
+.team1 .pro-pic {
+  min-height: 200px;
+}
+
+.team1 .pro-pic .card-img-overlay {
+  background: rgba(26, 139, 243, 0.87);
+  display: none;
+}
+
+.team1 .pro-pic .card-img-overlay ul {
+  top: 50%;
+}
+
+.team1 .pro-pic .card-img-overlay ul li a {
+  -webkit-transition: 0.1s ease-in;
+  -o-transition: 0.1s ease-in;
+  transition: 0.1s ease-in;
+}
+
+.team1 .pro-pic .card-img-overlay ul li a:hover {
+  -webkit-transform: translate3d(0px, -5px, 0px);
+  transform: translate3d(0px, -5px, 0px);
+}
+
+.team1 .pro-pic:hover .card-img-overlay {
+  display: block;
+}

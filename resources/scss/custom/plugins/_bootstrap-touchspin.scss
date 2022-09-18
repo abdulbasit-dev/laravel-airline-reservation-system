@@ -1,0 +1,50 @@
+//
+// Bootstrap touchspin
+//
+
+.bootstrap-touchspin {
+  &.input-group {
+    &>.input-group-prepend {
+
+      &>.btn,
+      &>.input-group-text {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+  }
+
+  &.input-group {
+    &>.input-group-append {
+
+      &>.btn,
+      &>.input-group-text {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+  }
+
+  .input-group-btn-vertical {
+    right: 0;
+
+    .btn {
+      right: 0 !important;
+      left: 100% !important;
+    }
+
+    .bootstrap-touchspin-up {
+      border-top-right-radius: 4px !important;
+      border-bottom-right-radius: 0 !important;
+      border-top-left-radius: 0 !important;
+      border-bottom-left-radius: 0 !important;
+    }
+
+    .bootstrap-touchspin-down {
+      border-top-right-radius: 0 !important;
+      border-bottom-right-radius: 4px !important;
+      border-top-left-radius: 0 !important;
+      border-bottom-left-radius: 0 !important;
+    }
+  }
+}

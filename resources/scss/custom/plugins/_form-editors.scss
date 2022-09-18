@@ -1,0 +1,166 @@
+//
+// Form editors.scss
+//
+
+// Tinymce
+
+.tox-tinymce {
+    border: 1px solid $input-border-color !important;
+}
+
+.tox {
+    .tox-collection__item {
+        color: $dropdown-link-color !important;
+    }
+
+    .tox-menu.tox-collection.tox-collection--list.tox-selected-menu,
+    .tox-collection--toolbar.tox-collection--toolbar-lg.tox-selected-menu,
+    .tox-swatches-menu.tox-selected-menu {
+        box-shadow: $box-shadow-sm !important;
+        animation-name: DropDownSlide !important;
+        animation-duration: 0.3s !important;
+        animation-fill-mode: both !important;
+        margin: 0 !important;
+        position: absolute !important;
+        z-index: 1000 !important;
+        padding: 0.5rem 0 !important;
+        background-color: $dropdown-bg !important;
+        border: $dropdown-border-width solid $dropdown-border-color !important;
+        border-radius: 0.25rem !important;
+    }
+
+    .tox-collection--list .tox-collection__group {
+        border-color: $border-color !important;
+    }
+
+    .tox-collection--list {
+        .tox-collection__item--active {
+            color: $dropdown-link-hover-color !important;
+            background-color: $dropdown-link-hover-bg !important;
+        }
+    }
+
+    .tox-collection__group-heading {
+        color: $dropdown-link-hover-color !important;
+        background-color: $dropdown-link-hover-bg !important;
+    }
+
+    .tox-statusbar {
+        border-top: 1px solid $light !important;
+    }
+
+    .tox-menubar,
+    .tox-edit-area__iframe,
+    .tox-statusbar {
+        background-color: $card-bg !important;
+        background: none !important;
+    }
+
+    .tox-mbtn {
+        color: $gray-700 !important;
+
+        &:hover:not(:disabled):not(.tox-mbtn--active) {
+            background-color: $light !important;
+        }
+    }
+
+    .tox-tbtn {
+        &:hover {
+            background-color: transparent !important;
+        }
+    }
+
+    .tox-toolbar,
+    .tox-toolbar__overflow,
+    .tox-toolbar__primary {
+        background: $light !important;
+    }
+
+    .tox-toolbar__primary {
+        border-top-color: $light !important;
+    }
+    .tox-tbtn--enabled {
+        background: transparent !important;
+    }
+    tox-split-button:focus {
+        background: transparent !important;
+    }
+    .tox-tbtn {
+        color: transparent !important;
+
+        svg {
+            fill: $gray-700 !important;
+        }
+    }
+
+    .tox-edit-area__iframe {
+        background-color: $card-bg !important;
+    }
+
+    .tox-statusbar a,
+    .tox-statusbar__path-item,
+    .tox-statusbar__wordcount {
+        color: $gray-700 !important;
+    }
+
+    &:not([dir="rtl"]) .tox-toolbar__group:not(:last-of-type) {
+        border-right: 1px solid darken($light, 5%) !important;
+    }
+
+    .tox-dialog {
+        background-color: $card-bg !important;
+    }
+    .tox-button {
+        &:hover {
+            background-color: $primary !important;
+            background-image: none !important;
+            border-color: $primary !important;
+            box-shadow: none !important;
+        }
+    }
+
+    .tox-collection--toolbar {
+        .tox-collection__item--active {
+            background-color: $gray-300 !important;
+        }
+    }
+
+    .tox-dialog__header {
+        background-color: $card-bg !important;
+    }
+    .tox-dialog__footer {
+        background-color: $card-bg !important;
+    }
+    .tox-icon {
+        color: $dark !important;
+    }
+    .tox-dialog__title {
+        color: $card-title-desc !important;
+    }
+    .tox-dialog__body-nav-item {
+        color: $card-title-desc !important;
+    }
+    .tox-label {
+        color: $card-title-desc !important;
+    }
+    .tox-textfield {
+        background-color: $input-bg !important;
+        color: $input-color !important;
+    }
+}
+
+// x editable
+
+.editable-input {
+    .form-control {
+        display: inline-block;
+    }
+}
+
+.editable-buttons {
+    margin-left: 7px;
+
+    .editable-cancel {
+        margin-left: 7px;
+    }
+}
