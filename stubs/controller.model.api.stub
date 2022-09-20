@@ -10,11 +10,6 @@ use Illuminate\Support\Facades\Validator;
 
 class {{ class }} extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         //check permission
@@ -25,12 +20,6 @@ class {{ class }} extends Controller
         return $this->josnResponse(true, __('api.all_resource', ['resource' => __('attributes.{{ modelVariable }}')]), Response::HTTP_OK, ${{ modelVariable }}s);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //check permission
@@ -52,12 +41,6 @@ class {{ class }} extends Controller
         return $this->josnResponse(true, __('api.create_resource', ['resource' => __('attributes.{{ modelVariable }}')]), Response::HTTP_CREATED);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \{{ namespacedModel }}  ${{ modelVariable }}
-     * @return \Illuminate\Http\Response
-     */
     public function show({{ model }} ${{ modelVariable }})
     {
         //check permission
@@ -65,13 +48,6 @@ class {{ class }} extends Controller
         return $this->josnResponse(true, __('api.show_resource_info', ['resource' => __('attributes.{{ modelVariable }}')]), Response::HTTP_OK, ${{ modelVariable }});
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \{{ namespacedModel }}  ${{ modelVariable }}
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, {{ model }} ${{ modelVariable }})
     {
         //check permission
@@ -93,12 +69,6 @@ class {{ class }} extends Controller
         return $this->josnResponse(true, __('api.update_resource', ['resource' => __('attributes.{{ modelVariable }}')]), Response::HTTP_OK);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \{{ namespacedModel }}  ${{ modelVariable }}
-     * @return \Illuminate\Http\Response
-     */
     public function destroy({{ model }} ${{ modelVariable }})
     {
         //check permission
