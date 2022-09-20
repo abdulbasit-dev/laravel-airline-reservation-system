@@ -17,15 +17,17 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->boolean('is_admin')->default(false);
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('password');
+            $table->string('address');
             $table->string('phone')->unique();
             $table->string('phone_alt')->unique()->nullable();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('address')->nullable();
+            $table->boolean('is_accepted')->default(false);
+            $table->timestamp('email_verified_at')->nullable();
             $table->text('fcm_token')->nullable();
-            $table->boolean('is_working')->default(0);
+            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

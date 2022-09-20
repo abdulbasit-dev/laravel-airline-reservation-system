@@ -10,6 +10,8 @@ return new class extends Migration
     {
         Schema::create('planes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('airline_id')->nullable()->constrained()->nullOnDelete();
+            $table->string('number');
             $table->timestamps();
         });
     }

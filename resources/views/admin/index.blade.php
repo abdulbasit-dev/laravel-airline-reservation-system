@@ -200,7 +200,7 @@
   <!-- end row -->
 
   {{-- chart1 --}}
-  <div class="row">
+  {{-- <div class="row">
     <div class="col-xl-6">
       <div class="card">
         <div class="card-body">
@@ -242,7 +242,7 @@
         </div>
       </div>
     </div> <!-- end col -->
-  </div> <!-- end row -->
+  </div> <!-- end row --> --}}
 
   {{-- last 5 orders --}}
   {{-- <div class="row">
@@ -336,7 +336,7 @@
 
 
   {{-- most 10 saled product --}}
-  <div class="row">
+  {{-- <div class="row">
     <div class="col-lg-12">
       <div class="card">
         <div class="card-body">
@@ -388,7 +388,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
   <!-- end row -->
 
 @endsection
@@ -398,12 +398,12 @@
   <!-- Magnific Popup-->
   <script src="{{ URL::asset('/assets/libs/magnific-popup/magnific-popup.min.js') }}"></script>
 
-
+{{-- 
   @if ($data['expenseChart'])
     {!! $data['expenseChart']->renderJs() !!}
-  @endif
+  @endif --}}
 
-  <script>
+  {{-- <script>
     // light box init
     $(".productImageLightBox").magnificPopup({
       type: "image",
@@ -546,5 +546,5 @@
 
       window.jQuery.ChartJs.init();
     }();
-  </script>
+  </script> --}}
 @endsection

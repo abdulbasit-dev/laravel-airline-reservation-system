@@ -10,6 +10,16 @@ return new class extends Migration
     {
         Schema::create('flights', function (Blueprint $table) {
             $table->id();
+            $table->string('flight_number');
+            $table->foreignId("airline_id")->constrained()->cascadeOnDelete();
+            $table->foreignId("plane_id")->nullable()->constrained()->nullOnDelete();
+            $table->foreignId("origin_id")->constrained("airports")->cascadeOnDelete();
+            $table->foreignId("destination_id")->constrained("airports")->cascadeOnDelete();
+            $table->dateTime("departure");
+            $table->dateTime("arrival");
+            $table->integer("seats");
+            $table->integer("remain_seats");
+            $table->double("price", 6, 2)->comment('in USD');
             $table->timestamps();
         });
     }
