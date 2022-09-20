@@ -9,15 +9,11 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^9.0",
-        "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
         "laraveldaily/laravel-charts": "^0.1.29",
-        "maatwebsite/excel": "^3.1",
         "psr/simple-cache": "^2.0",
-        "pusher/pusher-php-server": "^7.0",
         "spatie/laravel-medialibrary": "^10.0.0",
-        "spatie/laravel-permission": "^5.5",
         "yajra/laravel-datatables": "^9.0"
     },
     "require-dev": {
