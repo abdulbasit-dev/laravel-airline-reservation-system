@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\{
     HomeController,
-    SupplierController
+    SupplierController,
+    AirlineController
 };
 
 /*
@@ -38,6 +39,9 @@ Route::group(["prefix" => 'dashboard'], function () {
         Route::get('suppliers/export', [SupplierController::class, 'export'])->name('suppliers.export');
         Route::post('suppliers/import', [SupplierController::class, 'import'])->name('suppliers.import');
         Route::resource("suppliers", SupplierController::class)->except(['show']);
+
+        //airlines;
+        Route::resource("airlines", AirlineController::class);
 
         //Language Translation
         Route::get('index/{locale}', [HomeController::class, 'lang']);

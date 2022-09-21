@@ -12,4 +12,9 @@ class Airline extends Model implements HasMedia
     use InteractsWithMedia;
     
     protected $guarded = [];
+
+    public function planes()
+    {
+        return $this->hasMany(Plane::class);
+    }
 }

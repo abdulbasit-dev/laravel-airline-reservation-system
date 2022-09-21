@@ -54,7 +54,7 @@
                                             @csrf
                                             <div class="mb-3">
                                                 <label for="username" class="form-label">Email</label>
-                                                <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', 'admin@nawand.com') }}" id="username" placeholder="Enter Email" autocomplete="email" autofocus>
+                                                <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', 'admin@airline.com') }}" id="username" placeholder="Enter Email" autocomplete="email" autofocus>
                                                 @error('email')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>

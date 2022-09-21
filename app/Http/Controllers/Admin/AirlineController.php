@@ -15,30 +15,35 @@ class AirlineController extends Controller
     public function index(Request $request)
     {
         //check permission
-        $this->authorize("airline_view");
+        // $this->authorize("airline_view");
+
+        $data = Airline::query()
+            ->get();
+
+        // return $data;
 
         if ($request->ajax()) {
             $data = Airline::query()
                 ->get();
             return Datatables::of($data)->addIndexColumn()
-            ->addColumn('action', function ($row) {
-                $td = '<td>';
-                $td .= '<div class="d-flex">';
-                     $td .= '<a href="' . route('airlines.show', $row->id) . '" type="button" class="btn btn-sm btn-primary waves-effect waves-light me-1">' . __('buttons.view') . '</a>';
-                     $td .= '<a href="' . route('airlines.edit', $row->id) . '" type="button" class="btn btn-sm btn-info waves-effect waves-light me-1">' . __('buttons.edit') . '</a>';
-                    $td .= '<a href="javascript:void(0)" data-id="' . $row->id . '" data-url="' . route('airlines.destroy', $row->id). '"  class="btn btn-sm btn-danger delete-btn">' . __('buttons.delete') . '</a>';
-                $td .= "</div>";
-                $td .= "</td>";
-                return $td;
-            })
-            // ->editColumn('created_at', function ($row) {
-            //     return formatDate($row->created_at);
-            // })
-            ->rawColumns(['action'])
-            ->make(true);
+                ->addColumn('action', function ($row) {
+                    $td = '<td>';
+                    $td .= '<div class="d-flex">';
+                    $td .= '<a href="' . route('airlines.show', $row->id) . '" type="button" class="btn btn-sm btn-rounded btn-primary waves-effect waves-light me-1">' . __('buttons.view') . '</a>';
+                    $td .= '<a href="' . route('airlines.edit', $row->id) . '" type="button" class="btn btn-sm btn-rounded btn-info waves-effect waves-light me-1">' . __('buttons.edit') . '</a>';
+                    $td .= '<a href="javascript:void(0)" data-id="' . $row->id . '" data-url="' . route('airlines.destroy', $row->id) . '"  class="btn btn-sm btn-rounded btn-danger delete-btn">' . __('buttons.delete') . '</a>';
+                    $td .= "</div>";
+                    $td .= "</td>";
+                    return $td;
+                })
+                ->editColumn('created_at', function ($row) {
+                    return formatDateWithTimezone($row->created_at);
+                })
+                ->rawColumns(['action'])
+                ->make(true);
         }
 
-        return view('airlines.index');
+        return view('admin.airlines.index');
     }
 
     public function create()
@@ -82,7 +87,7 @@ class AirlineController extends Controller
     {
         //check permission
         $this->authorize("airline_edit");
-        
+
         return view('airlines.edit', compact("airline"));
     }
 
@@ -106,7 +111,7 @@ class AirlineController extends Controller
             ]);
         }
     }
-    
+
     public function destroy(Airline $airline)
     {
         //check permission

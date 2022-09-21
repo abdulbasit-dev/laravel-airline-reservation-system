@@ -9,9 +9,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('planes', function (Blueprint $table) {
-            $table->id();
+            $table->id(); 
             $table->foreignId('airline_id')->nullable()->constrained()->nullOnDelete();
-            $table->string('number');
+            $table->string('name');
+            $table->string('code');
+            $table->integer('capacity');
             $table->timestamps();
         });
     }

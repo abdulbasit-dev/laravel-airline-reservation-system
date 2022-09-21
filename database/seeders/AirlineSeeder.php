@@ -1,8 +1,10 @@
 <?php
+
 namespace Database\Seeders;
 
 use App\Models\Airline;
 use Illuminate\Database\Seeder;
+
 class AirlineSeeder extends Seeder
 {
     public function run()
@@ -37,7 +39,18 @@ class AirlineSeeder extends Seeder
 
             $path = "/images/Airline logos/" . $item['logo'];
             $airline->addMedia(public_path() . $path)->preservingOriginal()->usingName($airline->name)->toMediaCollection();
+
+            // PlaneSeeder
+            $planes = [];
+            foreach (range(1, rand(1, 4)) as $key => $value) {
+                $planes[] = [
+                    'name' => "Boeing 737-" . rand(100, 900),
+                    'code' => "B" . rand(730, 739),
+                    'capacity' => rand(150, 200),
+                ];
+            }
+
+            $airline->planes()->createMany($planes);
         }
     }
-
 }

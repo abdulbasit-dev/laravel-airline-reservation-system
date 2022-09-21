@@ -82,7 +82,6 @@ class CitySeeder extends Seeder
         foreach ($cities as $city) {
             City::create([
                 'name' => $city,
-                'country_id' => null,
             ]);
         }
     }

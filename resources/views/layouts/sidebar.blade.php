@@ -17,7 +17,26 @@
 
         <li class="menu-title" key="t-menu">@lang('sidebar.title.products')</li>
 
-       
+        {{-- <li>
+          <a href="javascript: void(0);" class="has-arrow waves-effect">
+            <i class="bx bx-car"></i>
+            <span key="t-ecommerce">@lang('sidebar.car')</span>
+          </a>
+          <ul class="sub-menu" aria-expanded="false">
+            <li><a href="{{ route('cars.index') }}" key="t-car">@lang('sidebar.car_list')</a></li>
+            <li><a href="{{ route('cars.create') }}" key="t-car">@lang('sidebar.add_car')</a></li>
+          </ul>
+        </li> --}}
+
+        <li>
+          <a href="{{ route('airlines.index') }}" class="waves-effect">
+            <i class="bx bx-gas-pump"></i>
+            <span key="t-contact">@lang('sidebar.airlines')</span>
+          </a>
+        </li>
+
+
+
 
         {{-- car --}}
         {{-- @can('car_view')
