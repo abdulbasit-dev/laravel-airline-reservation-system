@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{
     HomeController,
     SupplierController,
-    AirlineController
+    AirlineController,
+    PlaneController,
 };
 
 /*
@@ -20,6 +21,7 @@ use App\Http\Controllers\Admin\{
 |
 */
 
+Route::get('{any}', [HomeController::class, 'index'])->name('index');
 
 /* ================== ADMIN ROUTES ================== */
 Route::group(["prefix" => 'dashboard'], function () {
@@ -42,12 +44,14 @@ Route::group(["prefix" => 'dashboard'], function () {
 
         //airlines;
         Route::resource("airlines", AirlineController::class);
+        
+        //planes
+        Route::resource("planes", PlaneController::class);
 
         //Language Translation
         Route::get('index/{locale}', [HomeController::class, 'lang']);
 
         //render files inside views/template folder
-        Route::get('{any}', [HomeController::class, 'index'])->name('index');
     });
 });
 

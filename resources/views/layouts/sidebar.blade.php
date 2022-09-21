@@ -30,45 +30,17 @@
 
         <li>
           <a href="{{ route('airlines.index') }}" class="waves-effect">
-            <i class="bx bx-gas-pump"></i>
+            <i class="bx bx-planet"></i>
             <span key="t-contact">@lang('sidebar.airlines')</span>
           </a>
         </li>
 
-
-
-
-        {{-- car --}}
-        {{-- @can('car_view')
-          <li>
-            <a href="javascript: void(0);" class="has-arrow waves-effect">
-              <i class="bx bx-car"></i>
-              <span key="t-ecommerce">@lang('sidebar.car')</span>
-            </a>
-            <ul class="sub-menu" aria-expanded="false">
-              <li><a href="{{ route('cars.index') }}" key="t-car">@lang('sidebar.car_list')</a></li>
-              @can('car_add')
-                <li><a href="{{ route('cars.create') }}" key="t-car">@lang('sidebar.add_car')</a></li>
-              @endcan
-            </ul>
-          </li>
-        @endcan --}}
-
-        {{-- car expenses --}}
-        {{-- @can('carExpense_view')
-          <li>
-            <a href="{{ route('car-expenses.index') }}" class="waves-effect">
-              <i class="bx bx-gas-pump"></i>
-              <span key="t-contact">@lang('sidebar.car_expense_list')</span>
-            </a>
-          </li>
-        @endcan --}}
-
-
-
-
-
-
+        <li>
+          <a href="{{ route('planes.index') }}" class="waves-effect">
+            <i class="bx bx-planet"></i>
+            <span key="t-contact">@lang('sidebar.planes')</span>
+          </a>
+        </li>
 
         {{-- @if (true) --}}
         @if (config('app.env') == 'dev')

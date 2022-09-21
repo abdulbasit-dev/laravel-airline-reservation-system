@@ -37,7 +37,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         if (view()->exists('template.' . $request->path())) {
-            return view('admin.template.' . $request->path());
+            return view('template.' . $request->path());
         }
         return abort(404);
     }
