@@ -20,7 +20,6 @@ class CreateUsersTable extends Migration
             $table->boolean('is_admin')->default(false);
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('address');
             $table->string('phone')->unique();
             $table->string('phone_alt')->unique()->nullable();
             $table->string('address')->nullable();
