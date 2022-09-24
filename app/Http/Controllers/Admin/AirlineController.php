@@ -24,8 +24,10 @@ class AirlineController extends Controller
 
         if ($request->ajax()) {
             $data = Airline::query()
+                ->withCount('planes')
                 ->get();
             return Datatables::of($data)->addIndexColumn()
+                ->setRowClass(fn ($row) => 'align-middle')
                 ->addColumn('action', function ($row) {
                     $td = '<td>';
                     $td .= '<div class="d-flex">';
@@ -36,10 +38,20 @@ class AirlineController extends Controller
                     $td .= "</td>";
                     return $td;
                 })
-                ->editColumn('created_at', function ($row) {
-                    return formatDateWithTimezone($row->created_at);
+                ->addColumn('image', function ($row) {
+                    $td = '<td>';
+                    $td .= '<div class="d-flex align-items-center">';
+                    $td .= '<img src="' . getFile($row) . '" class="img-thumbnail avatar-md">';
+                    $td .= '<span class="ms-2">' . $row->name . '</span>';
+                    $td .= "</div>";
+                    $td .= "</td>";
+                    return $td;
                 })
-                ->rawColumns(['action'])
+                ->editColumn('planes_count', function ($row) {
+                    return '<span class="badge badge-pill badge-soft-info font-size-13">' . $row->planes_count . '</span>';
+                })
+                ->editColumn('created_at', fn ($row) => formatDate($row->created_at))
+                ->rawColumns(['action', 'image', 'planes_count'])
                 ->make(true);
         }
 

@@ -15,30 +15,29 @@ class AirportController extends Controller
     public function index(Request $request)
     {
         //check permission
-        $this->authorize("airport_view");
+        // $this->authorize("airport_view");
 
         if ($request->ajax()) {
             $data = Airport::query()
                 ->get();
             return Datatables::of($data)->addIndexColumn()
-            ->addColumn('action', function ($row) {
-                $td = '<td>';
-                $td .= '<div class="d-flex">';
-                     $td .= '<a href="' . route('airports.show', $row->id) . '" type="button" class="btn btn-sm btn-primary waves-effect waves-light me-1">' . __('buttons.view') . '</a>';
-                     $td .= '<a href="' . route('airports.edit', $row->id) . '" type="button" class="btn btn-sm btn-info waves-effect waves-light me-1">' . __('buttons.edit') . '</a>';
-                    $td .= '<a href="javascript:void(0)" data-id="' . $row->id . '" data-url="' . route('airports.destroy', $row->id). '"  class="btn btn-sm btn-danger delete-btn">' . __('buttons.delete') . '</a>';
-                $td .= "</div>";
-                $td .= "</td>";
-                return $td;
-            })
-            // ->editColumn('created_at', function ($row) {
-            //     return formatDate($row->created_at);
-            // })
-            ->rawColumns(['action'])
-            ->make(true);
+                ->setRowClass(fn ($row) => 'align-middle')
+                ->addColumn('action', function ($row) {
+                    $td = '<td>';
+                    $td .= '<div class="d-flex">';
+                    $td .= '<a href="' . route('airports.show', $row->id) . '" type="button" class="btn btn-sm btn-rounded btn-primary waves-effect waves-light me-1">' . __('buttons.view') . '</a>';
+                    $td .= '<a href="' . route('airports.edit', $row->id) . '" type="button" class="btn btn-sm btn-rounded btn-info waves-effect waves-light me-1">' . __('buttons.edit') . '</a>';
+                    $td .= '<a href="javascript:void(0)" data-id="' . $row->id . '" data-url="' . route('airports.destroy', $row->id) . '"  class="btn btn-sm btn-rounded btn-danger delete-btn">' . __('buttons.delete') . '</a>';
+                    $td .= "</div>";
+                    $td .= "</td>";
+                    return $td;
+                })
+                ->editColumn('created_at', fn ($row) => formatDate($row->created_at))
+                ->rawColumns(['action'])
+                ->make(true);
         }
 
-        return view('airports.index');
+        return view('admin.airports.index');
     }
 
     public function create()
@@ -46,7 +45,7 @@ class AirportController extends Controller
         //check permission
         $this->authorize("airport_add");
 
-        return view('airports.create');
+        return view('admin.airports.create');
     }
 
     public function store(AirportRequest $request)
@@ -75,15 +74,15 @@ class AirportController extends Controller
         //check permission
         $this->authorize("airport_view");
 
-        return view('airports.show', compact("airport"));
+        return view('admin.airports.show', compact("airport"));
     }
 
     public function edit(Airport $airport)
     {
         //check permission
         $this->authorize("airport_edit");
-        
-        return view('airports.edit', compact("airport"));
+
+        return view('admin.airports.edit', compact("airport"));
     }
 
     public function update(AirportRequest $request, Airport $airport)
@@ -106,7 +105,7 @@ class AirportController extends Controller
             ]);
         }
     }
-    
+
     public function destroy(Airport $airport)
     {
         //check permission

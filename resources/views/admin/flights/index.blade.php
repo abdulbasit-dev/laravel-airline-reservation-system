@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-  @lang('translation.airline.airline')
+  @lang('translation.flight.flight')
 @endsection
 
 @section('css')
@@ -12,13 +12,13 @@
 @section('content')
   @component('components.breadcrumb')
     @slot('li_1')
-      @lang('translation.airline.airline')
+      @lang('translation.flight.flight')
     @endslot
     @slot('li_2')
-      {{ route('airlines.index') }}
+      {{ route('flights.index') }}
     @endslot
     @slot('title')
-      @lang('translation.airline.airline_list')
+      @lang('translation.flight.flight_list')
     @endslot
   @endcomponent
 
@@ -27,19 +27,23 @@
       <div class="card">
         <div class="card-body">
           <div class="d-flex justify-content-end mb-4" id="action_btns">
-
-            <a href="{{ route('airlines.create') }}" class="btn btn-rounded btn-success waves-effect waves-light ms-2"><i class="bx bx-plus font-size-16 me-2 align-middle"></i>@lang('translation.airline.add_airline')</a>
+            <a href="{{ route('flights.create') }}" class="btn btn-rounded btn-success waves-effect waves-light ms-2"><i class="bx bx-plus font-size-16 me-2 align-middle"></i>@lang('translation.flight.add_flight')</a>
 
           </div>
           <table id="datatable" class="table-hover table-bordered nowrap w-100 table">
             <thead class="table-light">
               <tr>
                 <th>#</th>
-                <th> @lang('translation.plane.name')</th>
-                <th> @lang('translation.plane.airline')</th>
-                <th> @lang('translation.plane.code')</th>
-                <th> @lang('translation.plane.capacity')</th>
-                <th> @lang('translation.created_at')</th>
+                <th> @lang('translation.flight.flight_number')</th>
+                <th> @lang('translation.flight.airline')</th>
+                <th> @lang('translation.flight.plane')</th>
+                <th> @lang('translation.flight.origin')</th>
+                <th> @lang('translation.flight.departure')</th>
+                <th> @lang('translation.flight.arrival')</th>
+                <th> @lang('translation.flight.seats')</th>
+                <th> @lang('translation.flight.remain_seats')</th>
+                <th> @lang('translation.flight.status')</th>
+                <th> @lang('translation.flight.price')</th>
                 <th> @lang('translation.actions')</th>
               </tr>
             </thead>
@@ -82,25 +86,40 @@
             "previous": "@lang('translation.paginatePrevious')"
           },
         },
-        ajax: "{{ route('planes.index') }}",
+        ajax: "{{ route('flights.index') }}",
 
         columns: [{
             data: 'id'
           },
           {
-            data: 'name'
+            data: 'flight_number'
           },
           {
-            data: 'name'
+            data: 'airline.name'
           },
           {
-            data: 'code'
+            data: 'plane.code'
           },
           {
-            data: 'capacity'
+            data: 'route'
           },
           {
-            data: 'created_at',
+            data: 'departure'
+          },
+          {
+            data: 'arrival'
+          },
+          {
+            data: 'seats'
+          },
+          {
+            data: 'remain_seats'
+          },
+          {
+            data: 'status'
+          },
+          {
+            data: 'price'
           },
           {
             data: 'action',

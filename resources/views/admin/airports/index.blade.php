@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-  @lang('translation.airline.airline')
+  @lang('translation.airport.airport')
 @endsection
 
 @section('css')
@@ -12,13 +12,13 @@
 @section('content')
   @component('components.breadcrumb')
     @slot('li_1')
-      @lang('translation.airline.airline')
+      @lang('translation.airport.airport')
     @endslot
     @slot('li_2')
-      {{ route('airlines.index') }}
+      {{ route('airports.index') }}
     @endslot
     @slot('title')
-      @lang('translation.airline.airline_list')
+      @lang('translation.airport.airport_list')
     @endslot
   @endcomponent
 
@@ -28,17 +28,15 @@
         <div class="card-body">
           <div class="d-flex justify-content-end mb-4" id="action_btns">
 
-            <a href="{{ route('airlines.create') }}" class="btn btn-rounded btn-success waves-effect waves-light ms-2"><i class="bx bx-plus font-size-16 me-2 align-middle"></i>@lang('translation.airline.add_airline')</a>
+            <a href="{{ route('airports.create') }}" class="btn btn-rounded btn-success waves-effect waves-light ms-2"><i class="bx bx-plus font-size-16 me-2 align-middle"></i>@lang('translation.airport.add_airport')</a>
 
           </div>
           <table id="datatable" class="table-hover table-bordered nowrap w-100 table">
             <thead class="table-light">
               <tr>
                 <th>#</th>
-                <th> @lang('translation.plane.name')</th>
-                <th> @lang('translation.plane.airline')</th>
-                <th> @lang('translation.plane.code')</th>
-                <th> @lang('translation.plane.capacity')</th>
+                <th> @lang('translation.airport.name')</th>
+                <th> @lang('translation.airport.city')</th>
                 <th> @lang('translation.created_at')</th>
                 <th> @lang('translation.actions')</th>
               </tr>
@@ -82,7 +80,7 @@
             "previous": "@lang('translation.paginatePrevious')"
           },
         },
-        ajax: "{{ route('planes.index') }}",
+        ajax: "{{ route('airports.index') }}",
 
         columns: [{
             data: 'id'
@@ -91,13 +89,7 @@
             data: 'name'
           },
           {
-            data: 'name'
-          },
-          {
-            data: 'code'
-          },
-          {
-            data: 'capacity'
+            data: 'city.name'
           },
           {
             data: 'created_at',

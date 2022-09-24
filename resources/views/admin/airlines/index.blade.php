@@ -37,6 +37,7 @@
                 <th>#</th>
                 <th> @lang('translation.airline.name')</th>
                 <th> @lang('translation.airline.code')</th>
+                <th> @lang('translation.airline.no_of_planes')</th>
                 <th> @lang('translation.created_at')</th>
                 <th> @lang('translation.actions')</th>
               </tr>
@@ -86,10 +87,13 @@
             data: 'id'
           },
           {
-            data: 'name'
+            data: 'image'
           },
           {
             data: 'code'
+          },
+          {
+            data: 'planes_count'
           },
           {
             data: 'created_at',

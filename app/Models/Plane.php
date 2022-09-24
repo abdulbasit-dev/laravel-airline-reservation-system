@@ -9,6 +9,8 @@ class Plane extends Model
 {
     protected $guarded = [];
 
+    protected $with = ['airline:id,name'];
+
     public function flights()
     {
         return $this->hasMany(Flight::class);
@@ -18,5 +20,4 @@ class Plane extends Model
     {
         return $this->belongsTo(Airline::class);
     }
-    
 }

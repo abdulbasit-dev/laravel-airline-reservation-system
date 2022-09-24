@@ -6,6 +6,8 @@ return [
     "airline_list"              => "Airline List",
     "add_airline"               => "Add Airline",
     "planes"                    => "Planes",
+    "airports"                  => "Airports",
+    "flights"                   => "Flights",
 
     "title"=>[
         "orders"                 => "Orders",

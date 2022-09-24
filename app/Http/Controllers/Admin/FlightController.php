@@ -15,30 +15,45 @@ class FlightController extends Controller
     public function index(Request $request)
     {
         //check permission
-        $this->authorize("flight_view");
+        // $this->authorize("flight_view");
 
         if ($request->ajax()) {
             $data = Flight::query()
                 ->get();
             return Datatables::of($data)->addIndexColumn()
-            ->addColumn('action', function ($row) {
-                $td = '<td>';
-                $td .= '<div class="d-flex">';
-                     $td .= '<a href="' . route('flights.show', $row->id) . '" type="button" class="btn btn-sm btn-primary waves-effect waves-light me-1">' . __('buttons.view') . '</a>';
-                     $td .= '<a href="' . route('flights.edit', $row->id) . '" type="button" class="btn btn-sm btn-info waves-effect waves-light me-1">' . __('buttons.edit') . '</a>';
-                    $td .= '<a href="javascript:void(0)" data-id="' . $row->id . '" data-url="' . route('flights.destroy', $row->id). '"  class="btn btn-sm btn-danger delete-btn">' . __('buttons.delete') . '</a>';
-                $td .= "</div>";
-                $td .= "</td>";
-                return $td;
-            })
-            // ->editColumn('created_at', function ($row) {
-            //     return formatDate($row->created_at);
-            // })
-            ->rawColumns(['action'])
-            ->make(true);
+                ->setRowClass(fn ($row) => 'align-middle')
+                ->addColumn('action', function ($row) {
+                    $td = '<td>';
+                    $td .= '<div class="d-flex">';
+                    $td .= '<a href="' . route('flights.show', $row->id) . '" type="button" class="btn btn-sm btn-primary waves-effect waves-light me-1">' . __('buttons.view') . '</a>';
+                    $td .= '<a href="' . route('flights.edit', $row->id) . '" type="button" class="btn btn-sm btn-info waves-effect waves-light me-1">' . __('buttons.edit') . '</a>';
+                    $td .= '<a href="javascript:void(0)" data-id="' . $row->id . '" data-url="' . route('flights.destroy', $row->id) . '"  class="btn btn-sm btn-danger delete-btn">' . __('buttons.delete') . '</a>';
+                    $td .= "</div>";
+                    $td .= "</td>";
+                    return $td;
+                })
+                ->editColumn('flight_number', function ($row) {
+                    return '<span class="badge badge-pill badge-soft-primary font-size-13">' . $row->flight_number . '</span>';
+                })
+                ->editColumn('plane.code', function ($row) {
+                    return '<span class="badge badge-pill badge-soft-primary font-size-13">' . $row->plane->code . '</span>';
+                })
+                ->editColumn('route', function ($row) {
+                    $td = '<td>';
+                    $td .= '<div class="">';
+                    $td .= '<p class="">' . __('translation.flight.origin') . ': ' . airportName($row->origin->name) . '</p>';
+                    $td .= '<p class="">' . __('translation.flight.destination') . ': ' . airportName($row->origin->name) . '</p>';
+                    $td .= "</div>";
+                    $td .= "</td>";
+                    return $td;
+                })
+                ->editColumn('departure', fn ($row) => formatDateWithTimezone($row->created_at))
+                ->editColumn('arrival', fn ($row) => formatDateWithTimezone($row->created_at))
+                ->rawColumns(['action', 'flight_number', 'plane.code',  'route'])
+                ->make(true);
         }
 
-        return view('flights.index');
+        return view('admin.flights.index');
     }
 
     public function create()
@@ -82,7 +97,7 @@ class FlightController extends Controller
     {
         //check permission
         $this->authorize("flight_edit");
-        
+
         return view('flights.edit', compact("flight"));
     }
 
@@ -106,7 +121,7 @@ class FlightController extends Controller
             ]);
         }
     }
-    
+
     public function destroy(Flight $flight)
     {
         //check permission

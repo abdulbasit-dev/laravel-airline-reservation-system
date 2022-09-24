@@ -9,6 +9,8 @@ class Flight extends Model
 {
     protected $guarded = [];
 
+    protected $with = ['airline:id,name', "plane:id,code", 'origin:id,name', 'destination:id,name'];
+
     public function airline()
     {
         return $this->belongsTo(Airline::class);
@@ -16,7 +18,7 @@ class Flight extends Model
 
     public function plane()
     {
-        return $this->belongsTo(Plane::class)->withTrashed();
+        return $this->belongsTo(Plane::class, 'plane_id');
     }
 
     public function origin()

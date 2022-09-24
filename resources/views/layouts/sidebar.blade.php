@@ -15,19 +15,6 @@
           </a>
         </li>
 
-        <li class="menu-title" key="t-menu">@lang('sidebar.title.products')</li>
-
-        {{-- <li>
-          <a href="javascript: void(0);" class="has-arrow waves-effect">
-            <i class="bx bx-car"></i>
-            <span key="t-ecommerce">@lang('sidebar.car')</span>
-          </a>
-          <ul class="sub-menu" aria-expanded="false">
-            <li><a href="{{ route('cars.index') }}" key="t-car">@lang('sidebar.car_list')</a></li>
-            <li><a href="{{ route('cars.create') }}" key="t-car">@lang('sidebar.add_car')</a></li>
-          </ul>
-        </li> --}}
-
         <li>
           <a href="{{ route('airlines.index') }}" class="waves-effect">
             <i class="bx bx-planet"></i>
@@ -42,8 +29,22 @@
           </a>
         </li>
 
-        {{-- @if (true) --}}
-        @if (config('app.env') == 'dev')
+        <li>
+          <a href="{{ route('airports.index') }}" class="waves-effect">
+            <i class="bx bx-planet"></i>
+            <span key="t-contact">@lang('sidebar.airports')</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="{{ route('flights.index') }}" class="waves-effect">
+            <i class="bx bx-planet"></i>
+            <span key="t-contact">@lang('sidebar.flights')</span>
+          </a>
+        </li>
+
+        @if (true)
+        {{-- @if (config('app.env') == 'dev') --}}
           @include('layouts.template-sidebar')
         @endif
 

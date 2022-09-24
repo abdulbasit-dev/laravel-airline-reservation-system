@@ -19,9 +19,9 @@ class PlaneController extends Controller
 
         if ($request->ajax()) {
             $data = Plane::query()
-                ->with('airline')
                 ->get();
             return Datatables::of($data)->addIndexColumn()
+                ->setRowClass(fn ($row) => 'align-middle')
                 ->addColumn('action', function ($row) {
                     $td = '<td>';
                     $td .= '<div class="d-flex">';
@@ -35,7 +35,13 @@ class PlaneController extends Controller
                 ->editColumn('created_at', function ($row) {
                     return formatDate($row->created_at);
                 })
-                ->rawColumns(['action'])
+                ->editColumn('code', function ($row) {
+                    return '<span class="badge badge-pill badge-soft-info font-size-13">' . $row->code . '</span>';
+                })
+                ->editColumn('capacity', function ($row) {
+                    return '<span class="badge badge-pill badge-soft-info font-size-13">' . $row->capacity . '</span>';
+                })
+                ->rawColumns(['action', 'code', 'capacity'])
                 ->make(true);
         }
 

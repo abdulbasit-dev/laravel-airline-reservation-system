@@ -11,6 +11,16 @@ if (!function_exists("singular")) {
     }
 }
 
+if (!function_exists("airportName")) {
+    //make airport name bold
+    function airportName(string $airport)
+    {
+        $preFix = substr($airport, 0, -7);
+        $postFix = substr($airport, -7);
+        return '<span class="fw-bold text-primary">' . $preFix . '</span>' . $postFix;
+    }
+}
+
 if (!function_exists("getFile")) {
     function getFile($model)
     {
@@ -47,14 +57,14 @@ if (!function_exists("formatPrice")) {
 if (!function_exists("formatDate")) {
     function formatDate($date)
     {
-        return Carbon::parse($date)->format("M d, Y - h:i a");
+        return Carbon::parse($date)->format("M d, Y");
     }
 }
 
 if (!function_exists("formatDateWithTimezone")) {
     function formatDateWithTimezone($date)
     {
-        return Carbon::parse($date)->format("M d, Y");
+        return Carbon::parse($date)->format("M d, Y - h:i a");
     }
 }
 

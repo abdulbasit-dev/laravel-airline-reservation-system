@@ -5,9 +5,10 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\{
     HomeController,
-    SupplierController,
     AirlineController,
+    AirportController,
     PlaneController,
+    FlightController,
 };
 
 /*
@@ -20,8 +21,6 @@ use App\Http\Controllers\Admin\{
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('{any}', [HomeController::class, 'index'])->name('index');
 
 /* ================== ADMIN ROUTES ================== */
 Route::group(["prefix" => 'dashboard'], function () {
@@ -36,22 +35,20 @@ Route::group(["prefix" => 'dashboard'], function () {
         Route::post('/store-temp-file', [HomeController::class, 'storeTempFile'])->name('storeTempFile');
         Route::post('/delete-temp-file', [HomeController::class, 'deleteTempFile'])->name('deleteTempFile');
 
-
-        //suppliers
-        Route::get('suppliers/export', [SupplierController::class, 'export'])->name('suppliers.export');
-        Route::post('suppliers/import', [SupplierController::class, 'import'])->name('suppliers.import');
-        Route::resource("suppliers", SupplierController::class)->except(['show']);
-
         //airlines;
         Route::resource("airlines", AirlineController::class);
-        
+
         //planes
         Route::resource("planes", PlaneController::class);
 
+        //airports
+        Route::resource("airports", AirportController::class);
+
+        //flights
+        Route::resource("flights", FlightController::class);
+
         //Language Translation
         Route::get('index/{locale}', [HomeController::class, 'lang']);
-
-        //render files inside views/template folder
     });
 });
 
@@ -59,3 +56,6 @@ Route::group(["prefix" => 'dashboard'], function () {
 Route::get('/', function () {
     return view('welcome');
 });
+
+//render files inside views/template folder
+Route::get('{any}', [HomeController::class, 'index'])->name('index');

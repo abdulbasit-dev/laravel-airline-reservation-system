@@ -3,25 +3,59 @@
 return [
 
     "airline" => [
-        "airline"                  => "Airline",
-        "airline_list"             => "Airline List",
-        "add_airline"              => "Add Airline",
-        'edit_airline'             => 'Edit Airline',
+        "airline"                       => "Airline",
+        "airline_list"                  => "Airline List",
+        "add_airline"                   => "Add Airline",
+        'edit_airline'                  => 'Edit Airline',
 
         //fields
-        "name"                      => "Name",
-        "code"                      => "Company Name",
-       
+        "name"                          => "Name",
+        "code"                          => "Code",
+        "no_of_planes"                  => "No of Planes",
     ],
 
-    "category" => [
-        "category"                  => "Category",
-        "category_list"             => "Category List",
-        "add_category"              => "Add Category",
-        'edit_category'             => 'Edit Category',
+    "plane" => [
+        "plane"                         => "Plane",
+        "plane_list"                    => "Plane List",
+        "add_plane"                     => "Add Plane",
+        'edit_plane'                    => 'Edit Plane',
 
         //fields
-        "name"                      => "Name",
+        "name"                          => "Name",
+        "airline"                       => "Airline",
+        "code"                          => "Code",
+        "capacity"                      => "Capacity",
+    ],
+
+    "airport" => [
+        "airport"                       => "Airport",
+        "airport_list"                  => "Airport List",
+        "add_airport"                   => "Add Airport",
+        'edit_airport'                  => 'Edit Plane',
+
+        //fields
+        "name"                          => "Name",
+        "city"                          => "City",
+    ],
+
+    "flight" => [
+        "flight"                        => "Flight",
+        "flight_list"                   => "Flight List",
+        "add_flight"                    => "Add Flight",
+        'edit_flight'                   => 'Edit Plane',
+
+        //fields
+        "flight_number"                 => "Flight Number",
+        "airline"                       => "Airline",
+        "plane"                         => "Plane",
+        "origin"                        => "Origin",
+        "destination"                   => "Destination",
+        "departure"                     => "Departure",
+        "arrival"                       => "Arrival",
+        "seats"                         => "Seats",
+        "remain_seats"                  => "Remain Seats",
+        "status"                        => "Status",
+        "price"                         => "Price",
     ],
 
 
