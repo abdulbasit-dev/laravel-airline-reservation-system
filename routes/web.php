@@ -22,37 +22,44 @@ use App\Http\Controllers\Admin\{
 |
 */
 
-/* ================== ADMIN ROUTES ================== */
+
 Route::group(["prefix" => 'dashboard'], function () {
     Auth::routes();
+
     Route::group(['middleware' => 'auth'], function () {
+
         Route::get('/', [HomeController::class, 'root'])->name('root');
+        
+        /* ================== USER ROUTES ================== */
 
-        //Update User Details
-        Route::post('/update-profile/{id}', [HomeController::class, 'updateProfile'])->name('updateProfile');
-        Route::post('/update-password/{id}', [HomeController::class, 'updatePassword'])->name('updatePassword');
 
-        Route::post('/store-temp-file', [HomeController::class, 'storeTempFile'])->name('storeTempFile');
-        Route::post('/delete-temp-file', [HomeController::class, 'deleteTempFile'])->name('deleteTempFile');
+        /* ================== ADMIN ROUTES ================== */
+        Route::group(['middleware' => 'admin'], function () {
+            //Update User Details
+            Route::post('/update-profile/{id}', [HomeController::class, 'updateProfile'])->name('updateProfile');
+            Route::post('/update-password/{id}', [HomeController::class, 'updatePassword'])->name('updatePassword');
 
-        //airlines;
-        Route::resource("airlines", AirlineController::class);
+            Route::post('/store-temp-file', [HomeController::class, 'storeTempFile'])->name('storeTempFile');
+            Route::post('/delete-temp-file', [HomeController::class, 'deleteTempFile'])->name('deleteTempFile');
 
-        //planes
-        Route::resource("planes", PlaneController::class);
+            //airlines;
+            Route::resource("airlines", AirlineController::class);
 
-        //airports
-        Route::resource("airports", AirportController::class);
+            //planes
+            Route::resource("planes", PlaneController::class);
 
-        //flights
-        Route::resource("flights", FlightController::class);
+            //airports
+            Route::resource("airports", AirportController::class);
 
-        //Language Translation
-        Route::get('index/{locale}', [HomeController::class, 'lang']);
+            //flights
+            Route::resource("flights", FlightController::class);
+
+            //Language Translation
+            Route::get('index/{locale}', [HomeController::class, 'lang']);
+        });
     });
 });
 
-/* ================== USER ROUTES ================== */
 Route::get('/', function () {
     return view('welcome');
 });

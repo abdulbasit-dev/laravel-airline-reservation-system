@@ -21,11 +21,16 @@
         <h1>mind & body</h1>
       </div>
       <div class="links">
-        <a href="#">Dashbaord</a>
-        <a href="#">Book a Flight</a>
-        <a href="#">My Booking</a>
-        <a href="{{ route('login') }}">Login</a>
-        <a href="{{ route('register') }}">Register</a>
+        @auth
+          <a href="{{ route('root') }}">Dashbaord</a>
+          <a href="#">Book a Flight</a>
+          <a href="#">My Booking</a>
+        @else
+          <a href="{{ route('login') }}">Login</a>
+          @if (Route::has('register'))
+            <a href="{{ route('register') }}">Register</a>
+          @endif
+        @endauth
       </div>
       <svg width="44" height="18" viewBox="0 0 44 18" fill="none" xmlns="http://www.w3.org/2000/svg">
         <line class="line" y1="1" x2="44" y2="1" stroke="white" stroke-width="2" />
