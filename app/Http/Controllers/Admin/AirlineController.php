@@ -14,14 +14,6 @@ class AirlineController extends Controller
 {
     public function index(Request $request)
     {
-        //check permission
-        // $this->authorize("airline_view");
-
-        $data = Airline::query()
-            ->get();
-
-        // return $data;
-
         if ($request->ajax()) {
             $data = Airline::query()
                 ->withCount('planes')
@@ -60,17 +52,11 @@ class AirlineController extends Controller
 
     public function create()
     {
-        //check permission
-        $this->authorize("airline_add");
-
         return view('airlines.create');
     }
 
     public function store(AirlineRequest $request)
     {
-        //check permission
-        $this->authorize("airline_add");
-
         try {
             $validated = $request->validated();
             Airline::create($validated);
@@ -89,25 +75,16 @@ class AirlineController extends Controller
 
     public function show(Airline $airline)
     {
-        //check permission
-        $this->authorize("airline_view");
-
         return view('airlines.show', compact("airline"));
     }
 
     public function edit(Airline $airline)
     {
-        //check permission
-        $this->authorize("airline_edit");
-
         return view('airlines.edit', compact("airline"));
     }
 
     public function update(AirlineRequest $request, Airline $airline)
     {
-        //check permission
-        $this->authorize("airline_edit");
-
         try {
             $validated = $request->validated();
             $airline->update($validated);
@@ -126,18 +103,12 @@ class AirlineController extends Controller
 
     public function destroy(Airline $airline)
     {
-        //check permission
-        $this->authorize("airline_delete");
-
         $airline->delete();
         return redirect()->route('airlines.index');
     }
 
     public function export()
     {
-        //check permission
-        $this->authorize("airline_export");
-
         // get the heading of your file from the table or you can created your own heading
         $table = "airlines";
         $headers = Schema::getColumnListing($table);
@@ -153,9 +124,6 @@ class AirlineController extends Controller
 
     public function import(Request $request)
     {
-        //check permission
-        $this->authorize("airline_import");
-
         //get file name from requets and find this file in the storage
         $filePath = storage_path('tmp/uploads/' . $request->file);
 

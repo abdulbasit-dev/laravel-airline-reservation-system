@@ -17,7 +17,7 @@ if (!function_exists("airportName")) {
     {
         $preFix = substr($airport, 0, -7);
         $postFix = substr($airport, -7);
-        return '<span class="fw-bold text-primary">' . $preFix . '</span>' . $postFix;
+        return '<span class="text-info">' . $preFix . '</span>' . $postFix;
     }
 }
 
@@ -50,7 +50,7 @@ if (!function_exists("getDayDiff")) {
 if (!function_exists("formatPrice")) {
     function formatPrice($price)
     {
-        return number_format($price, 0, '') . ' IQD';
+        return number_format($price, 0, '') . ' $';
     }
 }
 

@@ -35,15 +35,10 @@
               <tr>
                 <th>#</th>
                 <th> @lang('translation.flight.flight_number')</th>
-                <th> @lang('translation.flight.airline')</th>
-                <th> @lang('translation.flight.plane')</th>
                 <th> @lang('translation.flight.origin')</th>
-                <th> @lang('translation.flight.departure')</th>
-                <th> @lang('translation.flight.arrival')</th>
+                <th> @lang('translation.flight.origin')</th>
                 <th> @lang('translation.flight.seats')</th>
-                <th> @lang('translation.flight.remain_seats')</th>
                 <th> @lang('translation.flight.status')</th>
-                <th> @lang('translation.flight.price')</th>
                 <th> @lang('translation.actions')</th>
               </tr>
             </thead>
@@ -87,39 +82,27 @@
           },
         },
         ajax: "{{ route('flights.index') }}",
-
+        columnDefs: [{
+          className: "text-center",
+          targets: 5
+        }],
         columns: [{
             data: 'id'
           },
           {
-            data: 'flight_number'
-          },
-          {
-            data: 'airline.name'
-          },
-          {
-            data: 'plane.code'
+            data: 'flight_info'
           },
           {
             data: 'route'
           },
           {
-            data: 'departure'
+            data: 'time'
           },
           {
-            data: 'arrival'
-          },
-          {
-            data: 'seats'
-          },
-          {
-            data: 'remain_seats'
+            data: 'capacity'
           },
           {
             data: 'status'
-          },
-          {
-            data: 'price'
           },
           {
             data: 'action',

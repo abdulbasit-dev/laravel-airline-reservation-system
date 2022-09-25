@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Nawand'),
+    'name' => env('APP_NAME', 'Airline'),
     'company_name' => env('COMPANY_NAME', 'DevSpace'),
 
     /*
