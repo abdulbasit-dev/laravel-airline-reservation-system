@@ -30,7 +30,6 @@ class UserSeeder extends Seeder
             ]
         );
 
-
         //generate customer users
         foreach (range(1, 10) as $key => $value) {
             User::firstOrCreate(
@@ -43,7 +42,6 @@ class UserSeeder extends Seeder
                     "name" => $faker->name(),
                     "password" => bcrypt("password"),
                     "address" => $faker->address(),
-                    "phone_alt" => $faker->phoneNumber(),
                 ]
             );
         }

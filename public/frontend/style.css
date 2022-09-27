@@ -5,7 +5,7 @@
 }
 
 html {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   overflow-x: hidden;
 }
 
@@ -15,8 +15,8 @@ html {
 }
 
 @font-face {
-  font-family: "argonite";
-  src: url("./assets/stone\ orgonite.woff");
+  font-family: 'argonite';
+  src: url('./assets/stone\ orgonite.woff');
 }
 section {
   padding: 5%;
@@ -43,6 +43,7 @@ nav svg {
 }
 
 .links {
+    z-index: 9;
   position: absolute;
   background: white;
   width: 100%;
@@ -63,15 +64,25 @@ nav svg {
 .logo {
   display: flex;
   align-items: center;
+  z-index: 10000;
 }
 .logo h1 {
   margin-left: 0.5rem;
   font-size: 1rem;
-  font-family: "argonite", sans-serif;
+  font-family: 'argonite', sans-serif;
 }
 
 .logo img {
   width: 1.5rem;
+}
+
+.primary-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
 }
 
 .front-page {
@@ -80,7 +91,7 @@ nav svg {
 }
 .selling-point {
   margin-top: 25vh;
-  font-family: "argonite", sans-serif;
+  font-family: 'argonite', sans-serif;
   text-shadow: 0px 4px 12px rgba(0, 0, 0, 0.49);
   text-align: center;
 }
@@ -88,6 +99,8 @@ nav svg {
   font-family: sans-serif;
   text-shadow: 0px 4px 12px rgba(0, 0, 0, 0.49);
 }
+
+
 .ctas {
   margin-top: 2rem;
 }
@@ -112,6 +125,11 @@ nav svg {
   color: white;
 }
 
+.cta-sec a {
+  text-decoration: none;
+  color: white;
+}
+
 .hero {
   position: absolute;
   left: 0;
@@ -125,7 +143,13 @@ nav svg {
 .classes {
   color: var(--secondary-color);
   text-align: center;
-  font-family: "argonite", sans-serif;
+  font-family: 'argonite', sans-serif;
+}
+
+.videos div {
+  margin-top: 3rem;
+  width: 400px;
+  height: 400px;
 }
 .videos video {
   width: 100%;
@@ -138,6 +162,7 @@ nav svg {
   position: relative;
 }
 .videos h3 {
+  display: none;
   position: absolute;
   color: var(--main-color);
   text-shadow: 0px 2px 12px rgba(0, 0, 0, 0.408);
@@ -151,7 +176,7 @@ nav svg {
   color: var(--secondary-color);
 }
 .about h2 {
-  font-family: "argonite", sans-serif;
+  font-family: 'argonite', sans-serif;
   text-align: center;
 }
 .about p {
@@ -163,8 +188,16 @@ nav svg {
   margin-top: 2rem;
 }
 
+footer {
+  background: var(--secondary-color);
+  width: 100%;
+  text-align: center;
+  color: white;
+  padding: 1.3rem 2rem;
+}
+
 @media screen and (min-width: 768px) {
-  body {
+  .conatiner {
     padding: 0% 10%;
   }
   .videos {
@@ -181,5 +214,8 @@ nav svg {
   }
   .about h2 {
     text-align: start;
+  }
+  footer {
+    width: 100%;
   }
 }

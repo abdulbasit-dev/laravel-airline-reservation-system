@@ -191,10 +191,6 @@
         <div class="dropdown-menu dropdown-menu-end">
           <!-- item-->
           <a class="dropdown-item" href="contacts-profile"><i class="bx bx-user font-size-16 me-1 align-middle"></i> <span key="t-profile">@lang('translation.Profile')</span></a>
-          <a class="dropdown-item" href="#"><i class="bx bx-wallet font-size-16 me-1 align-middle"></i> <span key="t-my-wallet">@lang('translation.My_Wallet')</span></a>
-          <a class="dropdown-item d-block" href="#" data-bs-toggle="modal" data-bs-target=".change-password"><span class="badge bg-success float-end">11</span><i class="bx bx-wrench font-size-16 me-1 align-middle"></i> <span
-              key="t-settings">@lang('translation.Settings')</span></a>
-          <a class="dropdown-item" href="#"><i class="bx bx-lock-open font-size-16 me-1 align-middle"></i> <span key="t-lock-screen">@lang('translation.Lock_screen')</span></a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item text-danger" href="javascript:void();" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="bx bx-power-off font-size-16 me-1 text-danger align-middle"></i> <span
               key="t-logout">@lang('translation.Logout')</span></a>
@@ -202,11 +198,6 @@
             @csrf
           </form>
         </div>
-      </div>
-      <div class="dropdown d-inline-block">
-        <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
-          <i class="bx bx-cog bx-spin"></i>
-        </button>
       </div>
     </div>
   </div>
