@@ -58,6 +58,8 @@ return [
         "price"                         => "Price",
     ],
 
+    
+
 
     //common words
     'actions'                       => 'Action',

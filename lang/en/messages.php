@@ -14,6 +14,7 @@ return [
     'import'                    => 'Data has been imported successfully',
     "max_files"                 => "You can upload only one file at a time",
     "not_found"                 => "Oops! No Data Found !",
+    "internal_server_error"     => "Oops! Something went wrong!",
     "order" => [
         'accepted'              => 'Order has been accepted successfully',
         'canceled'              => 'Order has been canceled successfully',

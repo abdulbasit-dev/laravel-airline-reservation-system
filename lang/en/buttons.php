@@ -34,4 +34,5 @@ return [
     "view_visits"               => "View Visits",
     "google_map"                => "Open in google maps",
     "view_details"              => "View Details",
+    "book_flight"               => "Book Flight",
 ];

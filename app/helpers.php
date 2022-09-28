@@ -32,8 +32,12 @@ if (!function_exists("getFile")) {
 if (!function_exists("fullErrorMessage")) {
     function fullErrorMessage($e)
     {
-        // return "<p>" . $e->getMessage() . " in " . $e->getFile() . " on line " . $e->getLine() . "</p>";
-        return $e->getMessage() . "\n in file " . $e->getFile() . "\n at line " . $e->getLine();
+        // check env if its not in production, then show full message
+        if (config('app.env') != 'production') {
+            return $e->getMessage() . " in " . $e->getFile() . " at line " . $e->getLine();
+        } else {
+            return $e->getMessage();
+        }
     }
 }
 

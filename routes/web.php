@@ -9,7 +9,8 @@ use App\Http\Controllers\Admin\{
     AirportController,
     PlaneController,
     FlightController,
-    ProfileController
+    ProfileController,
+    TicketController
 };
 
 use App\Http\Controllers\SandboxController;
@@ -40,7 +41,12 @@ Route::group(["prefix" => 'dashboard'], function () {
         Route::post('/update-profile', [ProfileController::class, 'updateProfile']);
 
         //tickets
-        Route::resource('tickets', TicketController::class);
+        //book a ticket
+        // cancel a ticket
+        // view all tickets
+        // view a ticket
+        Route::get('tickets/show-flights', [TicketController::class, 'showFlights'])->name('tickets.flights');
+        Route::post('tickets/book', [TicketController::class, 'book'])->name('tickets.book');
 
 
         /* ================== ADMIN ROUTES ================== */
@@ -64,9 +70,6 @@ Route::group(["prefix" => 'dashboard'], function () {
 
             //flights
             Route::resource("flights", FlightController::class);
-
-            //Language Translation
-            Route::get('index/{locale}', [HomeController::class, 'lang']);
         });
     });
 });
@@ -74,6 +77,9 @@ Route::group(["prefix" => 'dashboard'], function () {
 Route::get('/', function () {
     return view('index');
 });
+
+//Language Translation
+Route::get('/index/{locale}', [HomeController::class, 'lang']);
 
 Route::get('/get-random-customer', [SandboxController::class, 'randomCustomer'])->name('randomCustomer');
 
