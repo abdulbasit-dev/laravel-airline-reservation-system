@@ -15,20 +15,10 @@ use App\Http\Controllers\Admin\{
 
 use App\Http\Controllers\SandboxController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
+Auth::routes();
 
 Route::group(["prefix" => 'dashboard'], function () {
-    Auth::routes();
 
     Route::group(['middleware' => 'auth'], function () {
         /* ================== USER ROUTES ================== */
@@ -41,12 +31,11 @@ Route::group(["prefix" => 'dashboard'], function () {
         Route::post('/update-profile', [ProfileController::class, 'updateProfile']);
 
         //tickets
-        //book a ticket
-        // cancel a ticket
-        // view all tickets
-        // view a ticket
         Route::get('tickets/show-flights', [TicketController::class, 'showFlights'])->name('tickets.flights');
+        Route::get('tickets/user-tickets', [TicketController::class, 'userTickets'])->name('tickets.userTickets');
         Route::post('tickets/book', [TicketController::class, 'book'])->name('tickets.book');
+        // cancel a ticket
+        // print ticket
 
 
         /* ================== ADMIN ROUTES ================== */
