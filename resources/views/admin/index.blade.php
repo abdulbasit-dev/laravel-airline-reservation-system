@@ -19,6 +19,8 @@
     @endslot
   @endcomponent
 
+  <h1>Welcome Back</h1>
+{{-- 
   <div class="row">
     <div class="col-xl-12">
       <div class="row">
@@ -107,10 +109,10 @@
       </div>
       <!-- end row -->
     </div>
-  </div>
+  </div> --}}
   <!-- end row -->
 
-  <div class="row">
+  {{-- <div class="row">
     <div class="col-xl-12">
       <div class="row">
         <div class="col-md-3">
@@ -196,7 +198,7 @@
       </div>
       <!-- end row -->
     </div>
-  </div>
+  </div> --}}
   <!-- end row -->
 
   {{-- chart1 --}}

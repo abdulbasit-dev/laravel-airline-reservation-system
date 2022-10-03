@@ -95,6 +95,92 @@ class TicketController extends Controller
         return view('admin.tickets.booking', compact('cities', 'airlines'));
     }
 
+    // show user booked flighits
+    public function userTickets(Request $request)
+    {
+
+        if ($request->ajax()) {
+            $data =  Ticket::query()
+                ->whereUserId(auth()->id())
+                ->orderByDesc('created_at')
+                ->when($request->airline, function ($query) use ($request) {
+                    return $query->whereHas('flight', function ($query) use ($request) {
+                        return $query->where('airline_id',$request->airline);
+                    });
+                })
+                ->when($request->origin, function ($query) use ($request) {
+                    return $query->whereHas('flight', function ($query) use ($request) {
+                        return $query->where('origin_id', $request->origin);
+                        
+                    });
+                })
+                ->when($request->destination, function ($query) use ($request) {
+                    return $query->whereHas('flight', function ($query) use ($request) {
+                        return $query->where('destination_id', $request->destination);
+                        
+                    });
+                })
+                ->when($request->departure, function ($query) use ($request) {
+                    return $query->whereHas('flight', function ($query) use ($request) {
+                        return $query->whereDate('departure', ">=", $request->departure); 
+                    });
+                })
+                ->when($request->arrival, function ($query) use ($request) {
+                    return $query->whereHas('flight', function ($query) use ($request) {
+                        return $query->whereDate('arrival', $request->arrival);
+                    });
+                })
+                ->get();
+            return Datatables::of($data)->addIndexColumn()
+                ->setRowClass(fn ($row) => 'align-middle')
+                ->addColumn('action', function ($row) {
+                    $td = '<td>';
+                    $td .= '<div class="d-flex justify-content-center">';
+                    $td .= '<a href="javascript:void(0)" data-id="' . $row->id . '" type="button" class="btn btn-sm btn-outline-danger waves-effect waves-light me-1 book-btn">' . __('buttons.cancel') . '</a>';
+                    $td .= "</div>";
+                    $td .= "</td>";
+                    return $td;
+                })
+                ->editColumn('flight_info', function ($row) {
+                    $td = '<td>';
+                    $td .= '<div class="">';
+                    $td .= '<p class="fw-bold">' . __('translation.flight.flight_number') . ': <span class="fw-normal">' . $row->flight->flight_number . '</span></p>';
+                    $td .= '<p class="fw-bold">' . __('translation.flight.plane_code') . ': <span class="fw-normal">' . $row->flight->plane->code . '</span></p>';
+                    $td .= '<p class="fw-bold">' . __('translation.flight.airline') . ': <span class="fw-normal">' . $row->flight->airline->name . '</span></p>';
+                    $td .= '<p class="fw-bold">' . __('translation.flight.price') . ': <span class="fw-normal">' . formatPrice($row->flight->price) . '</span></p>';
+                    $td .= "</div>";
+                    $td .= "</td>";
+                    return $td;
+                })
+                ->editColumn('route', function ($row) {
+                    $td = '<td>';
+                    $td .= '<div class="">';
+                    $td .= '<p class="fw-bold">' . __('translation.flight.origin') . ': <span class="fw-normal">' . airportName($row->flight->origin->name) . '</span></p>';
+                    $td .= '<p class="fw-bold">' . __('translation.flight.destination') . ': <span class="fw-normal">' . airportName($row->flight->destination->name) . '</span></p>';
+                    $td .= "</div>";
+                    $td .= "</td>";
+                    return $td;
+                })
+                ->editColumn('time', function ($row) {
+                    $td = '<td>';
+                    $td .= '<div class="">';
+                    $td .= '<p class="fw-bold">' . __('translation.flight.departure') . ': <span class="fw-normal">' . formatDateWithTimezone($row->flight->departure) . '</span></p>';
+                    $td .= '<p class="fw-bold">' . __('translation.flight.arrival') . ': <span class="fw-normal">' . formatDateWithTimezone($row->flight->arrival) . '</span></p>';
+                    $td .= "</div>";
+                    $td .= "</td>";
+                    return $td;
+                })
+                ->rawColumns(['flight_info', 'route', 'time', 'action'])
+                ->make(true);
+        }
+
+        $cities = City::pluck('name', 'id')->toArray();
+        $airlines = Airline::pluck('name', 'id');
+
+        return view('admin.tickets.user-tickets', compact('cities', 'airlines'));
+    }
+
+
 
     public function book(Request $request)
     {
@@ -115,7 +201,7 @@ class TicketController extends Controller
                 'user_id' => auth()->id(),
                 'seat_number' => rand(1, 100),
             ]);
-            
+
             // reduce flight seat
             $flight->decrement('remain_seats', $request->seats);
 

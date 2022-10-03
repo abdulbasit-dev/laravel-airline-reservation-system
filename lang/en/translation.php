@@ -58,6 +58,11 @@ return [
         "price"                         => "Price",
     ],
 
+    "ticket" => [
+        "ticket"                        => "Ticket",
+        "ticket_list"                   => "Ticket List",
+    ],
+
     
 
 

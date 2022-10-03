@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return formatDate($value);
     }
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class,'user_id');
+    }
 }

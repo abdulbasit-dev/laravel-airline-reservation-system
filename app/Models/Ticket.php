@@ -9,6 +9,8 @@ class Ticket extends Model
 {
     protected $guarded = [];
 
+    protected $with = ['flight'];
+
     public function flight()
     {
         return $this->belongsTo(Flight::class);
