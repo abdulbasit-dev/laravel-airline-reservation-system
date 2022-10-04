@@ -63,6 +63,33 @@ return [
         "ticket_list"                   => "Ticket List",
     ],
 
+    "user" => [
+        "user"                     => "User",
+        "user_list"                => "User List",
+        "user_info"                => "User Information",
+        "user_map"                 => "User On Map",
+        "add_user"                 => "Add User",
+        'edit_user'                => 'Edit User',
+        "profile"                  => "Profile",
+
+        //fields
+        "name"                       => "Name",
+        "phone"                      => "Phone",
+        "email"                      => "E-mail",
+        "password"                   => "Password",
+        "role"                       => "Role",
+        "phone_alt"                  => "Phone Alt",
+        "address"                    => "Address",
+        "is_working"                 => "Is Working",
+        "role"                       => "Role",
+        "image"                      => "Image",
+        "personal_info"              => "Personal Information",
+        "current_password"           => "Current Password",
+        "new_password"               => "New Password",
+        "confirm_password"           => "Confirm Password",
+        "image"                      => "Profile Image",
+    ],
+
     
 
 

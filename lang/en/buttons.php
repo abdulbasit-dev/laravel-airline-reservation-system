@@ -34,5 +34,11 @@ return [
     "view_visits"               => "View Visits",
     "google_map"                => "Open in google maps",
     "view_details"              => "View Details",
-    "book_flight"               => "Book Flight",
+    "cancel"                    => "Cancel",
+    "accept"                    => "Accept",
+    "edit_resource"             => "Edit :Resource",
+    "update"                    => "Update",
+    'add_discount'            => 'Add Discount',
+    "change_discount"         => "Change Discount",
+    "remove_discount"         => "Remove Discount",
 ];

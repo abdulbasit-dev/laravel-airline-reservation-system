@@ -19,7 +19,6 @@ use App\Http\Controllers\SandboxController;
 Auth::routes();
 
 Route::group(["prefix" => 'dashboard'], function () {
-
     Route::group(['middleware' => 'auth'], function () {
         /* ================== USER ROUTES ================== */
 
@@ -38,16 +37,17 @@ Route::group(["prefix" => 'dashboard'], function () {
         // print ticket
 
 
+        //profile
+        Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
+        Route::post('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
+        Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
+
+        Route::post('/store-temp-file', [HomeController::class, 'storeTempFile'])->name('storeTempFile');
+        Route::post('/delete-temp-file', [HomeController::class, 'deleteTempFile'])->name('deleteTempFile');
+
+
         /* ================== ADMIN ROUTES ================== */
         Route::group(['middleware' => 'admin'], function () {
-
-            //Update User Details
-            // Route::post('/update-profile/{id}', [HomeController::class, 'updateProfile'])->name('updateProfile');
-            Route::post('/update-password/{id}', [HomeController::class, 'updatePassword'])->name('updatePassword');
-
-            Route::post('/store-temp-file', [HomeController::class, 'storeTempFile'])->name('storeTempFile');
-            Route::post('/delete-temp-file', [HomeController::class, 'deleteTempFile'])->name('deleteTempFile');
-
             //airlines;
             Route::resource("airlines", AirlineController::class);
 

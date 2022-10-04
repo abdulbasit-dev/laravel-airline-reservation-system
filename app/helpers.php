@@ -29,8 +29,8 @@ if (!function_exists("getFile")) {
 }
 
 //return error message with file name and line number
-if (!function_exists("fullErrorMessage")) {
-    function fullErrorMessage($e)
+if (!function_exists("showErrorMessage")) {
+    function showErrorMessage($e)
     {
         // check env if its not in production, then show full message
         if (config('app.env') != 'production') {
@@ -38,6 +38,13 @@ if (!function_exists("fullErrorMessage")) {
         } else {
             return $e->getMessage();
         }
+    }
+}
+
+if (!function_exists("getAvatar")) {
+    function getAvatar($user)
+    {
+        return $user->getFirstMedia() ? asset($user->getFirstMedia()->getUrl()) : 'https://ui-avatars.com/api/?background=random&name=' . $user->name;
     }
 }
 

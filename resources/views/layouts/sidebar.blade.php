@@ -7,6 +7,13 @@
     <div id="sidebar-menu">
       <!-- Left Menu Start -->
       <ul class="metismenu list-unstyled" id="side-menu">
+        
+        <li>
+          <a href="{{ route('profile') }}" class="waves-effect">
+            <i class="bx bx-user-circle"></i>
+            <span key="t-contact">@lang('sidebar.my_profile')</span>
+          </a>
+        </li>
 
         @admin
           <li>
@@ -45,17 +52,6 @@
           </li>
         @else
           {{-- USER ROUTES  --}}
-
-          <li>
-            <a href="javascript: void(0);" class="has-arrow waves-effect">
-              <i class='bx bx-user-circle'></i>
-              <span key="t-ecommerce">@lang('sidebar.profile')</span>
-            </a>
-            <ul class="sub-menu" aria-expanded="false">
-              <li><a href="{{ route('profile') }}" href="ecommerce-products">@lang('sidebar.my_profile')</a></li>
-              <li><a href="{{ route('updateProfile') }}" href="ecommerce-product-detail">@lang('sidebar.update_profile')</a></li>
-            </ul>
-          </li>
 
           <li>
             <a href="{{ route('tickets.flights') }}" class="waves-effect">
