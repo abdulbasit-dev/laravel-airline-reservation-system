@@ -41,7 +41,7 @@ class TicketController extends Controller
                 ->setRowClass(fn ($row) => 'align-middle')
                 ->addColumn('action', function ($row) {
                     $td = '<td>';
-                    $td .= '<div class="d-flex">';
+                    $td .= '<div class="d-flex justify-content-center">';
                     $td .= '<a href="javascript:void(0)" data-id="' . $row->id . '" type="button" class="btn btn-primary waves-effect waves-light me-1 book-btn">' . __('buttons.book_flight') . '</a>';
                     $td .= "</div>";
                     $td .= "</td>";
@@ -105,24 +105,22 @@ class TicketController extends Controller
                 ->orderByDesc('created_at')
                 ->when($request->airline, function ($query) use ($request) {
                     return $query->whereHas('flight', function ($query) use ($request) {
-                        return $query->where('airline_id',$request->airline);
+                        return $query->where('airline_id', $request->airline);
                     });
                 })
                 ->when($request->origin, function ($query) use ($request) {
                     return $query->whereHas('flight', function ($query) use ($request) {
                         return $query->where('origin_id', $request->origin);
-                        
                     });
                 })
                 ->when($request->destination, function ($query) use ($request) {
                     return $query->whereHas('flight', function ($query) use ($request) {
                         return $query->where('destination_id', $request->destination);
-                        
                     });
                 })
                 ->when($request->departure, function ($query) use ($request) {
                     return $query->whereHas('flight', function ($query) use ($request) {
-                        return $query->whereDate('departure', ">=", $request->departure); 
+                        return $query->whereDate('departure', ">=", $request->departure);
                     });
                 })
                 ->when($request->arrival, function ($query) use ($request) {
@@ -136,7 +134,7 @@ class TicketController extends Controller
                 ->addColumn('action', function ($row) {
                     $td = '<td>';
                     $td .= '<div class="d-flex justify-content-center">';
-                    $td .= '<a href="javascript:void(0)" data-id="' . $row->id . '" type="button" class="btn btn-sm btn-outline-danger waves-effect waves-light me-1 book-btn">' . __('buttons.cancel') . '</a>';
+                    $td .= '<a href="javascript:void(0)" data-id="' . $row->id . '" type="button" class="btn btn-sm btn-outline-danger waves-effect waves-light me-1 cancel-btn">' . __('buttons.cancel_flight') . '</a>';
                     $td .= "</div>";
                     $td .= "</td>";
                     return $td;
@@ -209,16 +207,27 @@ class TicketController extends Controller
 
             return $this->josnResponse(true, __('api.booking_success'), Response::HTTP_CREATED);
         } catch (\Exception $e) {
-            return response()->json(['message' => fullErrorMessage($e)], Response::HTTP_INTERNAL_SERVER_ERROR);
+            return response()->json(['message' => showErrorMessage($e)], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-
-    public function cancel(Ticket $ticket)
+    public function cancel(Request $request)
     {
-        //check permission
-        $this->authorize("ticket_delete");
+        try {
+            $ticket = Ticket::find($request->id);
 
-        $ticket->delete();
-        return redirect()->route('tickets.index');
+            //check ticket is booked by user
+            if ($ticket->user_id != auth()->id()) {
+                return $this->josnResponse(false, __('api.not_your_ticket'), Response::HTTP_FORBIDDEN);
+            }
+
+            //  find flight and increase seat
+            $ticket->flight->increment('remain_seats', 1);
+            $ticket->delete();
+
+
+            return $this->josnResponse(true, __('messages.cancel_success'), Response::HTTP_OK);
+        } catch (\Throwable $th) {
+            return $this->josnResponse(false, __('api.internal_server_error'), Response::HTTP_INTERNAL_SERVER_ERROR, null, showErrorMessage($th));
+        }
     }
 }

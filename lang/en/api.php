@@ -13,5 +13,8 @@ return [
     "logout_success"                        => 'Logout successful.',
     "booking_success"                       => "Your booking has been successfully completed",
     "not_enough_seats"                      => "Not enough seats available",
+    "not_your_ticket"                       => "This ticket is not yours",
+    "internal_server_error"                 => "Oops! Something went wrong!",
+    
 
 ];

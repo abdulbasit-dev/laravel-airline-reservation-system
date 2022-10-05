@@ -152,7 +152,7 @@
         pageLength: 10,
         scrollX: true,
         order: [
-          [3, "desc"]
+          [0, "desc"]
         ],
         // text transalations
         language: {
@@ -219,37 +219,64 @@
     $(".select2").select2();
 
 
-    $(document).on('click', '.book-btn', function(e) {
+    $(document).on('click', '.cancel-btn', function(e) {
       e.preventDefault();
       const id = $(this).data('id');
-      // send ajax request to the server
-      $.ajax({
-        url: "{{ route('tickets.book') }}",
-        method: "POST",
-        data: {
-          _token: "{{ csrf_token() }}",
-          flight_id: id,
-          seats: 1
-        },
-        success: function(data) {
-          Swal.fire({
-            timer: "1000",
-            text: "{{ __('messages.booking_success') }}",
-            icon: "success"
-          })
-          $('#datatable').DataTable().ajax.reload();
-        },
-        error: function(data) {
-          Swal.fire({
-            timer: "5000",
-            title: `{{ __('api.internal_server_error') }}`,
-            text: data.responseJSON.message,
-            customClass: "swal-error",
-            icon: "error",
-          });
-        }
 
-      })
+      // send ajax request to the server
+      Swal.fire({
+        title: "{{ __('messages.are_you_sure') }}",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "{{ __('buttons.yes_cancel') }}",
+        cancelButtonText: "{{ __('buttons.close') }}",
+        customClass: {
+          confirmButton: 'btn btn-success mt-2',
+          cancelButton: 'btn btn-light ms-2 mt-2'
+        },
+        buttonsStyling: !1
+      }).then(function(willCancel) {
+        if (willCancel.isConfirmed) {
+          // send ajax request to cancel the ticket, pass ticket id 
+
+          $.ajax({
+            url: "{{ route('tickets.cancel') }}",
+            method: "POST",
+            data: {
+              _token: "{{ csrf_token() }}",
+              id
+            },
+            success: function(data) {
+              Swal.fire({
+                timer: "2000",
+                text: data.message,
+                icon: "success"
+              })
+              $('#datatable').DataTable().ajax.reload();
+            },
+            error: function(data) {
+              // server error
+              if (data.responseJSON.status === 500) {
+                Swal.fire({
+                  timer: "5000",
+                  title: data.responseJSON.message,
+                  text: data.responseJSON.errors,
+                  customClass: "swal-error",
+                  icon: "error",
+                });
+              }
+
+              Swal.fire({
+                timer: "4000",
+                title: data.responseJSON.message,
+                icon: "error",
+              });
+
+            }
+          })
+
+        }
+      });
     })
   </script>
 @endsection

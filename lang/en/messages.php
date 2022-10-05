@@ -15,6 +15,8 @@ return [
     "max_files"                 => "You can upload only one file at a time",
     "not_found"                 => "Oops! No Data Found !",
     "internal_server_error"     => "Oops! Something went wrong!",
+    "booking_success"           => "Booking has been done successfully",
+    "cancel_success"            => "Booking has been canceled successfully",
     "order" => [
         'accepted'              => 'Order has been accepted successfully',
         'canceled'              => 'Order has been canceled successfully',

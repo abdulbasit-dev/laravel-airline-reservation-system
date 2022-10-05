@@ -14,10 +14,10 @@
 
         <a href="{{ route('root') }}" class="logo logo-light">
           <span class="logo-sm">
-            <img src="{{ URL::asset('/assets/images/logo-dark.png') }}" alt="" height="22">
+            <img src="{{ URL::asset('/assets/images/air-plane-icon.jpg') }}" alt=""  class="rounded-circle" height="30">
           </span>
           <span class="logo-lg">
-            <img src="{{ URL::asset('/assets/images/logo-light.png') }}" alt="" height="19">
+            <img src="{{ URL::asset('/assets/images/air-plane-icon.jpg') }}" alt="" class="rounded-circle mt-3" height="60">
           </span>
         </a>
       </div>

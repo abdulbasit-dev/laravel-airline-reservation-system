@@ -38,7 +38,10 @@ return [
     "accept"                    => "Accept",
     "edit_resource"             => "Edit :Resource",
     "update"                    => "Update",
-    'add_discount'            => 'Add Discount',
-    "change_discount"         => "Change Discount",
-    "remove_discount"         => "Remove Discount",
+    'add_discount'              => 'Add Discount',
+    "change_discount"           => "Change Discount",
+    "remove_discount"           => "Remove Discount",
+    "book_flight"               => "Book Flight",
+    "cancel_flight"             => "Cancel Flight",
+    "yes_cancel"                => "Yes, Cancel",
 ];

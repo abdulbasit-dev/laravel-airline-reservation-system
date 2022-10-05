@@ -43,7 +43,7 @@
                       <a href="{{ route('root') }}">
                         <div class="avatar-md profile-user-wid mb-4">
                           <span class="avatar-title rounded-circle bg-light">
-                            <img src="{{ URL::asset('/assets/images/air-plane-icon-illustration_138676-278.jpg') }}" alt="" class="rounded-circle" height="90">
+                            <img src="{{ URL::asset('/assets/images/air-plane-icon.jpg') }}" alt="" class="rounded-circle" height="90">
                           </span>
                         </div>
                       </a>

@@ -33,7 +33,7 @@ Route::group(["prefix" => 'dashboard'], function () {
         Route::get('tickets/show-flights', [TicketController::class, 'showFlights'])->name('tickets.flights');
         Route::get('tickets/user-tickets', [TicketController::class, 'userTickets'])->name('tickets.userTickets');
         Route::post('tickets/book', [TicketController::class, 'book'])->name('tickets.book');
-        // cancel a ticket
+        Route::post('tickets/cancel-flight', [TicketController::class, 'cancel'])->name('tickets.cancel');
         // print ticket
 
 
@@ -42,10 +42,7 @@ Route::group(["prefix" => 'dashboard'], function () {
         Route::post('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
         Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
 
-        Route::post('/store-temp-file', [HomeController::class, 'storeTempFile'])->name('storeTempFile');
-        Route::post('/delete-temp-file', [HomeController::class, 'deleteTempFile'])->name('deleteTempFile');
-
-
+      
         /* ================== ADMIN ROUTES ================== */
         Route::group(['middleware' => 'admin'], function () {
             //airlines;
@@ -63,12 +60,13 @@ Route::group(["prefix" => 'dashboard'], function () {
     });
 });
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::view('/', 'index');
 
 //Language Translation
 Route::get('/index/{locale}', [HomeController::class, 'lang']);
+
+Route::post('/store-temp-file', [HomeController::class, 'storeTempFile'])->name('storeTempFile');
+Route::post('/delete-temp-file', [HomeController::class, 'deleteTempFile'])->name('deleteTempFile');
 
 Route::get('/get-random-customer', [SandboxController::class, 'randomCustomer'])->name('randomCustomer');
 
