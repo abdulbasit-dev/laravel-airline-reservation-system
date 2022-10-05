@@ -229,6 +229,7 @@ return [
     "FAQs" => "FAQs",
     "Pricing" => "Pricing",
     "Error_404" => "Error 404",
+    "Error_403" => "Error 403",
     "Error_500" => "Error 500",
     "Components" => "Components",
     "UI_Elements" => "UI Elements",

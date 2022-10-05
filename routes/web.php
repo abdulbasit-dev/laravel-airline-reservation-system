@@ -21,9 +21,7 @@ Auth::routes();
 Route::group(["prefix" => 'dashboard'], function () {
     Route::group(['middleware' => 'auth'], function () {
         /* ================== USER ROUTES ================== */
-
-        Route::get('/', [HomeController::class, 'root'])->name('root');
-
+       
         //profile 
         Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
         Route::get('/update-profile', [ProfileController::class, 'editProfile'])->name('updateProfile');
@@ -34,17 +32,16 @@ Route::group(["prefix" => 'dashboard'], function () {
         Route::get('tickets/user-tickets', [TicketController::class, 'userTickets'])->name('tickets.userTickets');
         Route::post('tickets/book', [TicketController::class, 'book'])->name('tickets.book');
         Route::post('tickets/cancel-flight', [TicketController::class, 'cancel'])->name('tickets.cancel');
-        // print ticket
-
 
         //profile
         Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
         Route::post('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
         Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
 
-      
         /* ================== ADMIN ROUTES ================== */
         Route::group(['middleware' => 'admin'], function () {
+            Route::get('/', [HomeController::class, 'root'])->name('root');
+
             //airlines;
             Route::resource("airlines", AirlineController::class);
 

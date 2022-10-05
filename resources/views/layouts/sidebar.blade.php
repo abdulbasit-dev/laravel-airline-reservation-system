@@ -7,13 +7,8 @@
     <div id="sidebar-menu">
       <!-- Left Menu Start -->
       <ul class="metismenu list-unstyled" id="side-menu">
-        
-        <li>
-          <a href="{{ route('profile') }}" class="waves-effect">
-            <i class="bx bx-user-circle"></i>
-            <span key="t-contact">@lang('sidebar.my_profile')</span>
-          </a>
-        </li>
+
+
 
         @admin
           <li>
@@ -52,6 +47,13 @@
           </li>
         @else
           {{-- USER ROUTES  --}}
+
+          <li>
+            <a href="{{ route('profile') }}" class="waves-effect">
+              <i class="bx bx-user-circle"></i>
+              <span key="t-contact">@lang('sidebar.my_profile')</span>
+            </a>
+          </li>
 
           <li>
             <a href="{{ route('tickets.flights') }}" class="waves-effect">
