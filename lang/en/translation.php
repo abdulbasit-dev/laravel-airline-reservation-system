@@ -4,9 +4,6 @@ return [
 
     "airline" => [
         "airline"                       => "Airline",
-        "airline_list"                  => "Airline List",
-        "add_airline"                   => "Add Airline",
-        'edit_airline'                  => 'Edit Airline',
 
         //fields
         "name"                          => "Name",
@@ -17,8 +14,6 @@ return [
 
     "plane" => [
         "plane"                         => "Plane",
-        "plane_list"                    => "Plane List",
-        "add_plane"                     => "Add Plane",
         'edit_plane'                    => 'Edit Plane',
 
         //fields
@@ -115,7 +110,9 @@ return [
     "paid"                          => "Paid",
     "due"                           => "Due",
     "edit_resource"                 => "Edit :Resource",
+    "add_resource"                  => "Add :Resource",
     "delete_resource"               => "Delete :Resource",
+    "resource_list"                 => ":Resource List",
     "resource_info"                 => ":Resource Inforamtion",
     "resource_id"                   => ":Resource ID",
     "resource_report"               => ":Resource Report",

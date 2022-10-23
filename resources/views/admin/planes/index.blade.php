@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-  @lang('translation.airline.airline')
+  @lang('translation.plane.plane')
 @endsection
 
 @section('css')
@@ -12,13 +12,13 @@
 @section('content')
   @component('components.breadcrumb')
     @slot('li_1')
-      @lang('translation.airline.airline')
+      @lang('translation.plane.plane')
     @endslot
     @slot('li_2')
-      {{ route('airlines.index') }}
+      {{ route('planes.index') }}
     @endslot
     @slot('title')
-      @lang('translation.airline.airline_list')
+      @lang('translation.resource_list', ['resource' => __('attributes.plane')])
     @endslot
   @endcomponent
 
@@ -27,9 +27,7 @@
       <div class="card">
         <div class="card-body">
           <div class="d-flex justify-content-end mb-4" id="action_btns">
-
-            <a href="{{ route('airlines.create') }}" class="btn btn-rounded btn-success waves-effect waves-light ms-2"><i class="bx bx-plus font-size-16 me-2 align-middle"></i>@lang('translation.airline.add_airline')</a>
-
+            <a href="{{ route('planes.create') }}" class="btn btn-rounded btn-success waves-effect waves-light ms-2"><i class="bx bx-plus font-size-16 me-2 align-middle"></i>@lang('translation.add_resource', ['resource' => __('attributes.plane')])</a>                 
           </div>
           <table id="datatable" class="table-hover table-bordered nowrap w-100 table">
             <thead class="table-light">

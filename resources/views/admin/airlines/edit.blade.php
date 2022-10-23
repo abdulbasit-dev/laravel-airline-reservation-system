@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-  @lang('translation.airline.edit_airline')
+   @lang('translation.edit_resource', ['resource' => __('attributes.airline')])
 @endsection
 
 
@@ -19,7 +19,7 @@
       {{ route('airlines.index') }}
     @endslot
     @slot('title')
-      @lang('translation.airline.edit_airline')
+       @lang('translation.edit_resource', ['resource' => __('attributes.airline')])
     @endslot
   @endcomponent
 

@@ -29,6 +29,16 @@
 @endif
 
 <script>
+  $(document).ready(function() {
+    // Select2
+    $(".select2").select2();
+  });
+
+  // Select2 while open fouces on search input
+  $(document).on('select2:open', () => {
+    document.querySelector('.select2-search__field').focus();
+  });
+
   //this function is used to delete data that come from databale by passing the destroy url of that model in the button
   $(document).on('click', '.delete-btn', function(e) {
     e.preventDefault();

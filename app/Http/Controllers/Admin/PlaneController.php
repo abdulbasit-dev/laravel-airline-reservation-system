@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Plane;
 use App\Http\Controllers\Controller;
+use App\Models\Airline;
 use Illuminate\Http\Request;
 use DataTables;
 
@@ -11,9 +12,6 @@ class PlaneController extends Controller
 {
     public function index(Request $request)
     {
-        //check permission
-        // $this->authorize("plane_view");
-
         if ($request->ajax()) {
             $data = Plane::query()
                 ->get();
@@ -22,7 +20,6 @@ class PlaneController extends Controller
                 ->addColumn('action', function ($row) {
                     $td = '<td>';
                     $td .= '<div class="d-flex">';
-                    $td .= '<a href="' . route('planes.show', $row->id) . '" type="button" class="btn btn-sm btn-rounded btn-primary waves-effect waves-light me-1">' . __('buttons.view') . '</a>';
                     $td .= '<a href="' . route('planes.edit', $row->id) . '" type="button" class="btn btn-sm btn-rounded btn-info waves-effect waves-light me-1">' . __('buttons.edit') . '</a>';
                     $td .= '<a href="javascript:void(0)" data-id="' . $row->id . '" data-url="' . route('planes.destroy', $row->id) . '"  class="btn btn-sm btn-rounded btn-danger delete-btn">' . __('buttons.delete') . '</a>';
                     $td .= "</div>";
@@ -47,17 +44,12 @@ class PlaneController extends Controller
 
     public function create()
     {
-        //check permission
-        $this->authorize("plane_add");
-
-        return view('admin.planes.create');
+        $airlines = Airline::all()->pluck('name', 'id');
+        return view('admin.planes.create', compact('airlines'));
     }
 
     public function store(PlaneRequest $request)
     {
-        //check permission
-        $this->authorize("plane_add");
-
         try {
             $validated = $request->validated();
             Plane::create($validated);
@@ -74,27 +66,13 @@ class PlaneController extends Controller
         }
     }
 
-    public function show(Plane $plane)
-    {
-        //check permission
-        $this->authorize("plane_view");
-
-        return view('admin.planes.show', compact("plane"));
-    }
-
     public function edit(Plane $plane)
     {
-        //check permission
-        $this->authorize("plane_edit");
-
         return view('admin.planes.edit', compact("plane"));
     }
 
     public function update(PlaneRequest $request, Plane $plane)
     {
-        //check permission
-        $this->authorize("plane_edit");
-
         try {
             $validated = $request->validated();
             $plane->update($validated);
@@ -113,9 +91,6 @@ class PlaneController extends Controller
 
     public function destroy(Plane $plane)
     {
-        //check permission
-        $this->authorize("plane_delete");
-
         $plane->delete();
         return redirect()->route('planes.index');
     }
