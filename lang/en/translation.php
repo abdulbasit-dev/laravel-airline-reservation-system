@@ -36,6 +36,9 @@ return [
         //fields
         "flight_number"                 => "Flight Number",
         "airline"                       => "Airline",
+        "plane"                         => "Plane",
+        'route'                         => 'Route',
+        "time"                          => "Time",
         "plane_code"                    => "Plane Code",
         "origin"                        => "Origin",
         "destination"                   => "Destination",

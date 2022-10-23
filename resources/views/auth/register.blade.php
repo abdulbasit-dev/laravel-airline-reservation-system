@@ -143,5 +143,5 @@
   @endsection
   @section('script')
     <!-- validation init -->
-    <script src="{{ URL::asset('/assets/js/pages/validation.init.js') }}"></script>
+    <script src="{{ URL::asset('/assets/js/validation.init.js') }}"></script>
   @endsection

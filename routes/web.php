@@ -52,7 +52,7 @@ Route::group(["prefix" => 'dashboard'], function () {
             Route::resource("airports", AirportController::class)->except('show');
 
             //flights
-            Route::resource("flights", FlightController::class);
+            Route::resource("flights", FlightController::class)->except('show') ;
         });
     });
 });

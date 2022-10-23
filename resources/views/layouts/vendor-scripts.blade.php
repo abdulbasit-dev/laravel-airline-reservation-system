@@ -9,7 +9,7 @@
 {{-- Select2 --}}
 <script src="{{ URL::asset('/assets/libs/select2/select2.min.js') }}"></script>
 <script src="{{ URL::asset('/assets/libs/parsleyjs/parsleyjs.min.js') }}"></script>
-<script src="{{ URL::asset('/assets/js/pages/form-validation.init.js') }}"></script>
+<script src="{{ URL::asset('/assets/js/form-validation.init.js') }}"></script>
 
 @yield('script')
 

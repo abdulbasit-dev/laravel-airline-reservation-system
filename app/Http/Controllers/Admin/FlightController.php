@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Flight;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Exports\GeneralExport;
-use Illuminate\Support\Facades\Schema;
-use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Requests\FlightRequest;
+use App\Models\Airline;
+use App\Models\Airport;
+use App\Models\Plane;
 use DataTables;
 
 class FlightController extends Controller
@@ -22,7 +23,6 @@ class FlightController extends Controller
                 ->addColumn('action', function ($row) {
                     $td = '<td>';
                     $td .= '<div class="d-flex">';
-                    $td .= '<a href="' . route('flights.show', $row->id) . '" type="button" class="btn btn-sm btn-primary waves-effect waves-light me-1">' . __('buttons.view') . '</a>';
                     $td .= '<a href="' . route('flights.edit', $row->id) . '" type="button" class="btn btn-sm btn-info waves-effect waves-light me-1">' . __('buttons.edit') . '</a>';
                     $td .= '<a href="javascript:void(0)" data-id="' . $row->id . '" data-url="' . route('flights.destroy', $row->id) . '"  class="btn btn-sm btn-danger delete-btn">' . __('buttons.delete') . '</a>';
                     $td .= "</div>";
@@ -81,14 +81,32 @@ class FlightController extends Controller
 
     public function create()
     {
-        return view('flights.create');
+        $airlines = Airline::all()->pluck('name', 'id');
+        $airports = Airport::all()->pluck('name', 'id');
+        $planes = Plane::all()->pluck('name', 'id');
+        return view('admin.flights.create', compact('airports', 'airlines', 'planes'));
     }
 
     public function store(FlightRequest $request)
     {
         try {
             $validated = $request->validated();
-            Flight::create($validated);
+            // find plane 
+            $plane = Plane::find($validated['plane_id']);
+
+            Flight::create([
+                "flight_number" => rand(1000, 9999),
+                "airline_id" => $validated['airline_id'],
+                "plane_id" => $validated['plane_id'],
+                "origin_id" => $validated['origin_id'],
+                "destination_id" => $validated['destination_id'],
+                "departure" => $validated['departure'],
+                "arrival" => $validated['arrival'],
+                "seats" => $plane->capacity,
+                "remain_seats" => $plane->capacity,
+                "status" => 1,
+                "price" => $validated['price'],
+            ]);
 
             return redirect()->route('flights.index')->with([
                 "message" =>  __('messages.success'),
@@ -102,21 +120,34 @@ class FlightController extends Controller
         }
     }
 
-    public function show(Flight $flight)
-    {
-        return view('flights.show', compact("flight"));
-    }
-
     public function edit(Flight $flight)
     {
-        return view('flights.edit', compact("flight"));
+        $airlines = Airline::all()->pluck('name', 'id');
+        $airports = Airport::all()->pluck('name', 'id');
+        $planes = Plane::all()->pluck('name', 'id');
+        return view('admin.flights.edit', compact('airports', 'airlines', 'planes', 'flight'));
     }
 
     public function update(FlightRequest $request, Flight $flight)
     {
         try {
             $validated = $request->validated();
-            $flight->update($validated);
+            // find plane 
+            $plane = Plane::find($validated['plane_id']);
+
+            $flight->update([
+                "flight_number" => rand(1000, 9999),
+                "airline_id" => $validated['airline_id'],
+                "plane_id" => $validated['plane_id'],
+                "origin_id" => $validated['origin_id'],
+                "destination_id" => $validated['destination_id'],
+                "departure" => $validated['departure'],
+                "arrival" => $validated['arrival'],
+                "seats" => $plane->capacity,
+                "remain_seats" => $plane->capacity,
+                "status" => 1,
+                "price" => $validated['price'],
+            ]);
 
             return redirect()->route('flights.index')->with([
                 "message" =>  __('messages.update'),

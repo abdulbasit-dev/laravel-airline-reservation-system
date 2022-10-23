@@ -54,6 +54,7 @@
                     </div>
                   </div>
                 </div>
+                
                 <div class="row mb-4">
                   <label for="code" class="col-sm-3 col-form-label">@lang('translation.airline.code')</label>
                   <div class="col-sm-9">

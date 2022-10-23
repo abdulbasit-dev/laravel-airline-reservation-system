@@ -13,17 +13,14 @@ class FlightRequest extends FormRequest
 
     public function rules()
     {
-        if (request()->isMethod("POST")) {
-            $checkUnique = "unique:planes,name";
-        } elseif (request()->isMethod("PUT") || request()->isMethod("PATCH")) {
-            $checkUnique = 'unique:planes,name,' . $this->plane->id;
-        }
-
         return [
-            "name"              => ['required', $checkUnique],
-            "code"              => ['required'],
-            'capacity'          => ['required'],
-            'airline_id'        => ['required', 'exists:airlines,id']
+            'airline_id'        => ['required', 'exists:airlines,id'],
+            'plane_id'        => ['required', 'exists:planes,id'],
+            'origin_id'        => ['required', 'exists:airports,id'],
+            'destination_id'        => ['required', 'exists:airports,id'],
+            'departure'        => ['required'],
+            'arrival'        => ['required'],
+            'price'        => ['required']
         ];
     }
 }
