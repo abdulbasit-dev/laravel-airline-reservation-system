@@ -4,12 +4,6 @@
   @lang('translation.user.add_user')
 @endsection
 
-@section('css')
-  {{-- select2 --}}
-  <link href="{{ URL::asset('/assets/libs/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
-@endsection
-
-
 @section('content')
   @component('components.breadcrumb')
     @slot('li_1')
@@ -155,15 +149,4 @@
       <!-- end card -->
     </div> <!-- end col -->
   </div>
-@endsection
-
-@section('script')
-  {{-- Select2 --}}
-  <script src="{{ URL::asset('/assets/libs/select2/select2.min.js') }}"></script>
-  <script>
-    $(document).ready(function() {
-      // Select2
-      $(".select2").select2();
-    });
-  </script>
 @endsection

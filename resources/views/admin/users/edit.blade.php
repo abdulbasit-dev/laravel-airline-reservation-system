@@ -7,8 +7,6 @@
 @section('css')
   <!-- DataTables -->
   <link href="{{ URL::asset('/assets/libs/datatables/datatables.min.css') }}" rel="stylesheet" type="text/css" />
-  {{-- select2 --}}
-  <link href="{{ URL::asset('/assets/libs/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 
@@ -162,13 +160,4 @@
 @section('script')
   <!-- Required datatable js -->
   <script src="{{ URL::asset('/assets/libs/datatables/datatables.min.js') }}"></script>
-  {{-- Select2 --}}
-  <script src="{{ URL::asset('/assets/libs/select2/select2.min.js') }}"></script>
-
-  <script>
-    $(document).ready(function() {
-      // Select2
-      $(".select2").select2();
-    });
-  </script>
 @endsection

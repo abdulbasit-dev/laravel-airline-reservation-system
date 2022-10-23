@@ -18,7 +18,10 @@ class Flight extends Model
 
     public function plane()
     {
-        return $this->belongsTo(Plane::class, 'plane_id');
+        return $this->belongsTo(Plane::class, 'plane_id')->withDefault([
+            'code' => 'N/A',
+            "name" => "N/A"
+        ]);
     }
 
     public function origin()

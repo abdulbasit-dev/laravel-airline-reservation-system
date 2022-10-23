@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('flight_number');
             $table->foreignId("airline_id")->constrained()->cascadeOnDelete();
-            $table->foreignId("plane_id")->nullable()->constrained()->nullOnDelete();
+            $table->foreignId("plane_id")->constrained()->cascadeOnDelete();
             $table->foreignId("origin_id")->constrained("airports")->cascadeOnDelete();
             $table->foreignId("destination_id")->constrained("airports")->cascadeOnDelete();
             $table->dateTime("departure");

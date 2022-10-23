@@ -14,7 +14,6 @@ return [
 
     "plane" => [
         "plane"                         => "Plane",
-        'edit_plane'                    => 'Edit Plane',
 
         //fields
         "name"                          => "Name",
@@ -25,9 +24,6 @@ return [
 
     "airport" => [
         "airport"                       => "Airport",
-        "airport_list"                  => "Airport List",
-        "add_airport"                   => "Add Airport",
-        'edit_airport'                  => 'Edit Plane',
 
         //fields
         "name"                          => "Name",
@@ -36,9 +32,6 @@ return [
 
     "flight" => [
         "flight"                        => "Flight",
-        "flight_list"                   => "Flight List",
-        "add_flight"                    => "Add Flight",
-        'edit_flight'                   => 'Edit Plane',
 
         //fields
         "flight_number"                 => "Flight Number",

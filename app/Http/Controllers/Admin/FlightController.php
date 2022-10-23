@@ -14,9 +14,6 @@ class FlightController extends Controller
 {
     public function index(Request $request)
     {
-        //check permission
-        // $this->authorize("flight_view");
-
         if ($request->ajax()) {
             $data = Flight::query()
                 ->get();
@@ -84,17 +81,11 @@ class FlightController extends Controller
 
     public function create()
     {
-        //check permission
-        $this->authorize("flight_add");
-
         return view('flights.create');
     }
 
     public function store(FlightRequest $request)
     {
-        //check permission
-        $this->authorize("flight_add");
-
         try {
             $validated = $request->validated();
             Flight::create($validated);
@@ -103,9 +94,9 @@ class FlightController extends Controller
                 "message" =>  __('messages.success'),
                 "icon" => "success",
             ]);
-        } catch (\Exception $e) {
+        } catch (\Throwable $th) {
             return redirect()->back()->with([
-                "message" =>  $e->getMessage(),
+                "message" =>  $th->getMessage(),
                 "icon" => "error",
             ]);
         }
@@ -113,25 +104,16 @@ class FlightController extends Controller
 
     public function show(Flight $flight)
     {
-        //check permission
-        $this->authorize("flight_view");
-
         return view('flights.show', compact("flight"));
     }
 
     public function edit(Flight $flight)
     {
-        //check permission
-        $this->authorize("flight_edit");
-
         return view('flights.edit', compact("flight"));
     }
 
     public function update(FlightRequest $request, Flight $flight)
     {
-        //check permission
-        $this->authorize("flight_edit");
-
         try {
             $validated = $request->validated();
             $flight->update($validated);
@@ -140,9 +122,9 @@ class FlightController extends Controller
                 "message" =>  __('messages.update'),
                 "icon" => "success",
             ]);
-        } catch (\Exception $e) {
+        } catch (\Throwable $th) {
             return redirect()->back()->with([
-                "message" =>  $e->getMessage(),
+                "message" =>  $th->getMessage(),
                 "icon" => "error",
             ]);
         }
@@ -150,48 +132,7 @@ class FlightController extends Controller
 
     public function destroy(Flight $flight)
     {
-        //check permission
-        $this->authorize("flight_delete");
-
         $flight->delete();
         return redirect()->route('flights.index');
-    }
-
-    public function export()
-    {
-        //check permission
-        $this->authorize("flight_export");
-
-        // get the heading of your file from the table or you can created your own heading
-        $table = "flights";
-        $headers = Schema::getColumnListing($table);
-
-        // query to get the data from the table
-        $query = Flight::all();
-
-        // create file name  
-        $fileName = "flight_export_" .  date('Y-m-d_h:i_a') . ".xlsx";
-
-        return Excel::download(new GeneralExport($query, $headers), $fileName);
-    }
-
-    public function import(Request $request)
-    {
-        //check permission
-        $this->authorize("flight_import");
-
-        //get file name from requets and find this file in the storage
-        $filePath = storage_path('tmp/uploads/' . $request->file);
-
-        // import to database
-        Excel::import(new FlightsImport, $filePath);
-
-        // delete temp file after uploading 
-        unlink($filePath);
-
-        return redirect()->route('flights.index')->with([
-            "message" =>  __('messages.import'),
-            "icon" => "success",
-        ]);
     }
 }

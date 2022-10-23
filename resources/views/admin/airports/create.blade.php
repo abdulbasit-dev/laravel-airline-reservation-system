@@ -1,20 +1,19 @@
 @extends('layouts.master')
 
 @section('title')
-  @lang('translation.supplier.add_supplier')
+  @lang('translation.add_resource', ['resource' => __('attributes.airport')])
 @endsection
-
 
 @section('content')
   @component('components.breadcrumb')
     @slot('li_1')
-      @lang('translation.supplier.supplier')
+      @lang('translation.airport.airport')
     @endslot
     @slot('li_2')
-      {{ route('suppliers.index') }}
+      {{ route('airports.index') }}
     @endslot
     @slot('title')
-      @lang('translation.supplier.add_supplier')
+      @lang('translation.add_resource', ['resource' => __('attributes.airport')])
     @endslot
   @endcomponent
 
@@ -31,72 +30,38 @@
               </ul>
             </div>
           @endif
-          <form class="needs-validation" novalidate action="{{ route('suppliers.store') }}" method="POST">
+          <form class="needs-validation" novalidate action="{{ route('airports.store') }}" method="POST">
             @csrf
             <div class="row">
               <div class="col-8">
 
                 <div class="row mb-4">
-                  <label for="name" class="col-sm-3 col-form-label">@lang('translation.supplier.name')</label>
+                  <label for="name" class="col-sm-3 col-form-label">@lang('translation.airport.name')</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
                     <div class="valid-feedback">
                       @lang('validation.good')
                     </div>
                     <div class="invalid-feedback">
-                      @lang('validation.required', ['attribute' => __('translation.supplier.name')])
+                      @lang('validation.required', ['attribute' => __('translation.airport.name')])
                     </div>
                   </div>
                 </div>
-
+                
                 <div class="row mb-4">
-                  <label for="company_name" class="col-sm-3 col-form-label">@lang('translation.supplier.company_name')</label>
+                  <label for="city" class="col-sm-3 col-form-label">@lang('translation.airport.city')</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="company_name" name="company_name" value="{{ old('company_name') }}" required>
+                    <select class="form-control select2" id="city" name="city_id" required>
+                      <option value="">@lang('translation.none')</option>
+                      @foreach ($cities as $key => $value)
+                        <option value="{{ $key }}"  @selected($key === old('city_id'))>{{ $value }}</option>
+                      @endforeach
+                    </select>
                     <div class="valid-feedback">
                       @lang('validation.good')
                     </div>
                     <div class="invalid-feedback">
-                      @lang('validation.required', ['attribute' => __('translation.supplier.company_name')])
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row mb-4">
-                  <label for="address" class="col-sm-3 col-form-label">@lang('translation.supplier.address')</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="address" name="address" value="{{ old('address') }}" required>
-                    <div class="valid-feedback">
-                      @lang('validation.good')
-                    </div>
-                    <div class="invalid-feedback">
-                      @lang('validation.required', ['attribute' => __('translation.supplier.address')])
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row mb-4">
-                  <label for="phone" class="col-sm-3 col-form-label">@lang('translation.supplier.phone')</label>
-                  <div class="col-sm-9">
-                    <input type="tel" class="form-control" id="phone" name="phone" value="{{ old('phone') }}" required>
-                    <div class="valid-feedback">
-                      @lang('validation.good')
-                    </div>
-                    <div class="invalid-feedback">
-                      @lang('validation.required', ['attribute' => __('translation.supplier.phone')])
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row mb-4">
-                  <label for="phone_alt" class="col-sm-3 col-form-label">@lang('translation.supplier.phone_alt')</label>
-                  <div class="col-sm-9">
-                    <input type="tel" class="form-control" id="phone_alt" name="phone_alt" value="{{ old('phone_alt') }}" required>
-                    <div class="valid-feedback">
-                      @lang('validation.good')
-                    </div>
-                    <div class="invalid-feedback">
-                      @lang('validation.required', ['attribute' => __('translation.supplier.phone_alt')])
+                      @lang('validation.required', ['attribute' => __('translation.user.citie')])
                     </div>
                   </div>
                 </div>
@@ -111,8 +76,6 @@
               </div>
             </div>
           </form>
-
-
         </div>
       </div>
       <!-- end card -->

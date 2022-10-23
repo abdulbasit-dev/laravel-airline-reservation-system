@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Plane;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PlaneRequest;
 use App\Models\Airline;
 use Illuminate\Http\Request;
 use DataTables;
@@ -14,6 +15,7 @@ class PlaneController extends Controller
     {
         if ($request->ajax()) {
             $data = Plane::query()
+                ->with('airline:id,name')
                 ->get();
             return Datatables::of($data)->addIndexColumn()
                 ->setRowClass(fn ($row) => 'align-middle')
@@ -30,10 +32,10 @@ class PlaneController extends Controller
                     return formatDate($row->created_at);
                 })
                 ->editColumn('code', function ($row) {
-                    return '<span class="badge badge-pill badge-soft-info font-size-13">' . $row->code . '</span>';
+                    return '<span class="badge badge-pill badge-soft-info font-size-14">' . $row->code . '</span>';
                 })
                 ->editColumn('capacity', function ($row) {
-                    return '<span class="badge badge-pill badge-soft-info font-size-13">' . $row->capacity . '</span>';
+                    return '<span class="badge badge-pill badge-soft-info font-size-14">' . $row->capacity . '</span>';
                 })
                 ->rawColumns(['action', 'code', 'capacity'])
                 ->make(true);
@@ -58,9 +60,9 @@ class PlaneController extends Controller
                 "message" =>  __('messages.success'),
                 "icon" => "success",
             ]);
-        } catch (\Exception $e) {
+        } catch (\Throwable $th) {
             return redirect()->back()->with([
-                "message" =>  $e->getMessage(),
+                "message" =>  $th->getMessage(),
                 "icon" => "error",
             ]);
         }
@@ -68,7 +70,8 @@ class PlaneController extends Controller
 
     public function edit(Plane $plane)
     {
-        return view('admin.planes.edit', compact("plane"));
+        $airlines = Airline::all()->pluck('name', 'id');
+        return view('admin.planes.edit', compact("plane", "airlines"));
     }
 
     public function update(PlaneRequest $request, Plane $plane)
@@ -81,9 +84,9 @@ class PlaneController extends Controller
                 "message" =>  __('messages.update'),
                 "icon" => "success",
             ]);
-        } catch (\Exception $e) {
+        } catch (\Throwable $th) {
             return redirect()->back()->with([
-                "message" =>  $e->getMessage(),
+                "message" =>  $th->getMessage(),
                 "icon" => "error",
             ]);
         }

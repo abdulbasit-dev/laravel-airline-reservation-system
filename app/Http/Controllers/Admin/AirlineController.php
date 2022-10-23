@@ -42,7 +42,7 @@ class AirlineController extends Controller
                     return $td;
                 })
                 ->editColumn('planes_count', function ($row) {
-                    return '<span class="badge badge-pill badge-soft-info font-size-13">' . $row->planes_count . '</span>';
+                    return '<span class="badge badge-pill badge-soft-info font-size-14">' . $row->planes_count . '</span>';
                 })
                 ->editColumn('created_at', fn ($row) => formatDate($row->created_at))
                 ->rawColumns(['action', 'image', 'planes_count'])
@@ -103,10 +103,10 @@ class AirlineController extends Controller
                     return formatDate($row->created_at);
                 })
                 ->editColumn('code', function ($row) {
-                    return '<span class="badge badge-pill badge-soft-info font-size-13">' . $row->code . '</span>';
+                    return '<span class="badge badge-pill badge-soft-info font-size-14">' . $row->code . '</span>';
                 })
                 ->editColumn('capacity', function ($row) {
-                    return '<span class="badge badge-pill badge-soft-info font-size-13">' . $row->capacity . '</span>';
+                    return '<span class="badge badge-pill badge-soft-info font-size-14">' . $row->capacity . '</span>';
                 })
                 ->rawColumns(['action', 'code', 'capacity'])
                 ->make(true);
@@ -146,9 +146,9 @@ class AirlineController extends Controller
                 "message" =>  __('messages.update'),
                 "icon" => "success",
             ]);
-        } catch (\Exception $e) {
+        } catch (\Throwable $th) {
             return redirect()->back()->with([
-                "message" =>  $e->getMessage(),
+                "message" =>  $th->getMessage(),
                 "icon" => "error",
             ]);
         }

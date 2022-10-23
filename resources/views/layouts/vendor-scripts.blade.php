@@ -6,7 +6,8 @@
 <script src="{{ URL::asset('assets/libs/node-waves/node-waves.min.js') }}"></script>
 <!-- Sweet Alerts js -->
 <script src="{{ URL::asset('/assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
-
+{{-- Select2 --}}
+<script src="{{ URL::asset('/assets/libs/select2/select2.min.js') }}"></script>
 <script src="{{ URL::asset('/assets/libs/parsleyjs/parsleyjs.min.js') }}"></script>
 <script src="{{ URL::asset('/assets/js/pages/form-validation.init.js') }}"></script>
 
@@ -19,7 +20,7 @@
 @if (Session::has('message'))
   <script>
     Swal.fire({
-      timer: "{{ Session::get('icon') === 'error' ? 20000 : 2000 }}",
+      timer: "{{ Session::get('icon') === 'error' ? 20000 : 1500 }}",
       customClass: "{{ Session::get('icon') === 'error' ? 'swal-error' : null }}",
       icon: "{{ Session::get('icon') }}",
       title: "{{ Session::get('title') }}",
@@ -32,12 +33,13 @@
   $(document).ready(function() {
     // Select2
     $(".select2").select2();
+
+    // Select2 while open fouces on search input
+    $(document).on('select2:open', () => {
+      document.querySelector('.select2-search__field').focus();
+    });
   });
 
-  // Select2 while open fouces on search input
-  $(document).on('select2:open', () => {
-    document.querySelector('.select2-search__field').focus();
-  });
 
   //this function is used to delete data that come from databale by passing the destroy url of that model in the button
   $(document).on('click', '.delete-btn', function(e) {

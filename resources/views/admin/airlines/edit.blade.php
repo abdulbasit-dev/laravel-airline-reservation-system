@@ -90,7 +90,7 @@
                 <div class="row justify-content-end">
                   <div class="col-sm-9">
                     <div>
-                      <button class="btn btn-primary" type="submit">@lang('buttons.submit')</button>
+                      <button class="btn btn-primary" type="submit">@lang('buttons.update')</button>
                     </div>
                   </div>
                 </div>

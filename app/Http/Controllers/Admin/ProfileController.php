@@ -87,7 +87,7 @@ class ProfileController extends Controller
             ]);
 
             return $this->josnResponse(true, __('messages.success'), Response::HTTP_OK, auth()->user());
-        } catch (\Exception $e) {
+        } catch (\Throwable $th) {
             return $this->josnResponse(true, __('api.internal_server_error'), Response::HTTP_INTERNAL_SERVER_ERROR, null, showErrorMessage($e));
         }
     }

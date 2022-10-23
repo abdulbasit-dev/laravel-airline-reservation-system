@@ -46,7 +46,7 @@
                       <tr>
                         <th scope="row" style="width: 400px;">@lang('translation.airline.no_of_planes')</th>
                         <td>
-                          <span class="badge badge-pill badge-soft-info font-size-13">{{ $airline->planes()->count() }}</span>
+                          <span class="badge badge-pill badge-soft-info font-size-14">{{ $airline->planes()->count() }}</span>
                         </td>
                       </tr>
 

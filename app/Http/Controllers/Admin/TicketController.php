@@ -206,7 +206,7 @@ class TicketController extends Controller
             // send notification to admin
 
             return $this->josnResponse(true, __('api.booking_success'), Response::HTTP_CREATED);
-        } catch (\Exception $e) {
+        } catch (\Throwable $th) {
             return response()->json(['message' => showErrorMessage($e)], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }

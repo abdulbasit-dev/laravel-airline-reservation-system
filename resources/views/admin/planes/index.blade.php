@@ -64,7 +64,7 @@
         pageLength: 10,
         scrollX: true,
         order: [
-          [3, "desc"]
+          [0, "desc"]
         ],
         // text transalations
         language: {
@@ -89,7 +89,7 @@
             data: 'name'
           },
           {
-            data: 'name'
+            data: 'airline.name'    
           },
           {
             data: 'code'

@@ -18,7 +18,7 @@
       {{ route('airports.index') }}
     @endslot
     @slot('title')
-      @lang('translation.airport.airport_list')
+      @lang('translation.resource_list', ['resource' => __('attributes.airport')])
     @endslot
   @endcomponent
 
@@ -28,7 +28,7 @@
         <div class="card-body">
           <div class="d-flex justify-content-end mb-4" id="action_btns">
 
-            <a href="{{ route('airports.create') }}" class="btn btn-rounded btn-success waves-effect waves-light ms-2"><i class="bx bx-plus font-size-16 me-2 align-middle"></i>@lang('translation.airport.add_airport')</a>
+            <a href="{{ route('airports.create') }}" class="btn btn-rounded btn-success waves-effect waves-light ms-2"><i class="bx bx-plus font-size-16 me-2 align-middle"></i>@lang('translation.add_resource', ['resource' => __('attributes.airport')])</a>
 
           </div>
           <table id="datatable" class="table-hover table-bordered nowrap w-100 table">
@@ -64,7 +64,7 @@
         pageLength: 10,
         scrollX: true,
         order: [
-          [3, "desc"]
+          [1, 'asc']
         ],
         // text transalations
         language: {

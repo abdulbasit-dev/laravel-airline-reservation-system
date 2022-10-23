@@ -7,8 +7,6 @@
 @section('css')
   <!-- DataTables -->
   <link href="{{ URL::asset('/assets/libs/datatables/datatables.min.css') }}" rel="stylesheet" type="text/css" />
-  {{-- select2 --}}
-  <link href="{{ URL::asset('/assets/libs/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -121,8 +119,6 @@
 @section('script')
   <!-- Required datatable js -->
   <script src="{{ URL::asset('/assets/libs/datatables/datatables.min.js') }}"></script>
-  {{-- Select2 --}}
-  <script src="{{ URL::asset('/assets/libs/select2/select2.min.js') }}"></script>
   {{-- bootstrap-datepicker --}}
   <script src="{{ URL::asset('assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
 
@@ -215,10 +211,6 @@
   </script>
 
   <script>
-    // select2 Init
-    $(".select2").select2();
-
-
     $(document).on('click', '.book-btn', function(e) {
       e.preventDefault();
       const id = $(this).data('id');

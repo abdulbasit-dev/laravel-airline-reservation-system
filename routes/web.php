@@ -21,7 +21,7 @@ Auth::routes();
 Route::group(["prefix" => 'dashboard'], function () {
     Route::group(['middleware' => 'auth'], function () {
         /* ================== USER ROUTES ================== */
-       
+
         //profile 
         Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
         Route::get('/update-profile', [ProfileController::class, 'editProfile'])->name('updateProfile');
@@ -46,10 +46,10 @@ Route::group(["prefix" => 'dashboard'], function () {
             Route::resource("airlines", AirlineController::class);
 
             //planes
-            Route::resource("planes", PlaneController::class);
+            Route::resource("planes", PlaneController::class)->except('show');
 
             //airports
-            Route::resource("airports", AirportController::class);
+            Route::resource("airports", AirportController::class)->except('show');
 
             //flights
             Route::resource("flights", FlightController::class);

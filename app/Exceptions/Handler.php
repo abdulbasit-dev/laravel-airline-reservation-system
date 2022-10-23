@@ -72,7 +72,7 @@ class Handler extends ExceptionHandler
                     'result' => false,
                     'status' => Response::HTTP_INTERNAL_SERVER_ERROR,
                     'message' => "Internal server error.",
-                    'error' => $e->getMessage()
+                    'error' => $th->getMessage()
                 ], 403);
             }
         });

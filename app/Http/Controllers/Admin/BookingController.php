@@ -62,9 +62,9 @@ class BookingController extends Controller
                 "message" =>  __('messages.success'),
                 "icon" => "success",
             ]);
-        } catch (\Exception $e) {
+        } catch (\Throwable $th) {
             return redirect()->back()->with([
-                "message" =>  $e->getMessage(),
+                "message" =>  $th->getMessage(),
                 "icon" => "error",
             ]);
         }
@@ -99,9 +99,9 @@ class BookingController extends Controller
                 "message" =>  __('messages.update'),
                 "icon" => "success",
             ]);
-        } catch (\Exception $e) {
+        } catch (\Throwable $th) {
             return redirect()->back()->with([
-                "message" =>  $e->getMessage(),
+                "message" =>  $th->getMessage(),
                 "icon" => "error",
             ]);
         }

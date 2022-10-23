@@ -42,9 +42,9 @@ if (!function_exists("showErrorMessage")) {
     {
         // check env if its not in production, then show full message
         if (config('app.env') != 'production') {
-            return $e->getMessage() . " in " . $e->getFile() . " at line " . $e->getLine();
+            return $th->getMessage() . " in " . $e->getFile() . " at line " . $e->getLine();
         } else {
-            return $e->getMessage();
+            return $th->getMessage();
         }
     }
 }
