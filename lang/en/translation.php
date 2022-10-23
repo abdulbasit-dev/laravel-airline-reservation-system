@@ -12,6 +12,7 @@ return [
         "name"                          => "Name",
         "code"                          => "Code",
         "no_of_planes"                  => "No of Planes",
+        "logo"                          => "Logo",
     ],
 
     "plane" => [
@@ -115,6 +116,7 @@ return [
     "due"                           => "Due",
     "edit_resource"                 => "Edit :Resource",
     "delete_resource"               => "Delete :Resource",
+    "resource_info"                 => ":Resource Inforamtion",
     "resource_id"                   => ":Resource ID",
     "resource_report"               => ":Resource Report",
     "yes"                           => "Yes",

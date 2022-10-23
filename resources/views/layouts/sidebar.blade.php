@@ -8,8 +8,6 @@
       <!-- Left Menu Start -->
       <ul class="metismenu list-unstyled" id="side-menu">
 
-
-
         @admin
           <li>
             <a href="{{ route('root') }}" class="waves-effect">
@@ -20,28 +18,28 @@
 
           <li>
             <a href="{{ route('airlines.index') }}" class="waves-effect">
-              <i class="bx bx-planet"></i>
+              <i class='bx bx-globe text-info'></i>
               <span key="t-contact">@lang('sidebar.airlines')</span>
             </a>
           </li>
 
           <li>
             <a href="{{ route('planes.index') }}" class="waves-effect">
-              <i class="bx bx-planet"></i>
+              <i class='bx bxs-paper-plane text-warning'></i>
               <span key="t-contact">@lang('sidebar.planes')</span>
             </a>
           </li>
 
           <li>
             <a href="{{ route('airports.index') }}" class="waves-effect">
-              <i class="bx bx-planet"></i>
+              <i class='bx bx-buildings text-success'></i>
               <span key="t-contact">@lang('sidebar.airports')</span>
             </a>
           </li>
 
           <li>
             <a href="{{ route('flights.index') }}" class="waves-effect">
-              <i class="bx bx-planet"></i>
+              <i class='bx bxs-plane-alt text-danger'></i>
               <span key="t-contact">@lang('sidebar.flights')</span>
             </a>
           </li>

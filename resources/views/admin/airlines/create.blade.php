@@ -1,20 +1,24 @@
 @extends('layouts.master')
 
 @section('title')
-  @lang('translation.supplier.add_supplier')
+  @lang('translation.airline.add_airline')
 @endsection
 
+@section('plugin-css')
+  <!-- Dropzone -->
+  <link href="{{ URL::asset('/assets/libs/dropzone/dropzone.min.css') }}" rel="stylesheet" type="text/css" />
+@endsection
 
 @section('content')
   @component('components.breadcrumb')
     @slot('li_1')
-      @lang('translation.supplier.supplier')
+      @lang('translation.airline.airline')
     @endslot
     @slot('li_2')
-      {{ route('suppliers.index') }}
+      {{ route('airlines.index') }}
     @endslot
     @slot('title')
-      @lang('translation.supplier.add_supplier')
+      @lang('translation.airline.add_airline')
     @endslot
   @endcomponent
 
@@ -31,72 +35,52 @@
               </ul>
             </div>
           @endif
-          <form class="needs-validation" novalidate action="{{ route('suppliers.store') }}" method="POST">
+          <form class="needs-validation" novalidate action="{{ route('airlines.store') }}" method="POST">
             @csrf
             <div class="row">
               <div class="col-8">
 
                 <div class="row mb-4">
-                  <label for="name" class="col-sm-3 col-form-label">@lang('translation.supplier.name')</label>
+                  <label for="name" class="col-sm-3 col-form-label">@lang('translation.airline.name')</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
                     <div class="valid-feedback">
                       @lang('validation.good')
                     </div>
                     <div class="invalid-feedback">
-                      @lang('validation.required', ['attribute' => __('translation.supplier.name')])
+                      @lang('validation.required', ['attribute' => __('translation.airline.name')])
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label for="code" class="col-sm-3 col-form-label">@lang('translation.airline.code')</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="code" name="code" value="{{ old('code') }}" required>
+                    <div class="valid-feedback">
+                      @lang('validation.good')
+                    </div>
+                    <div class="invalid-feedback">
+                      @lang('validation.required', ['attribute' => __('translation.airline.code')])
                     </div>
                   </div>
                 </div>
 
                 <div class="row mb-4">
-                  <label for="company_name" class="col-sm-3 col-form-label">@lang('translation.supplier.company_name')</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="company_name" name="company_name" value="{{ old('company_name') }}" required>
+                  <label for="logo" class="col-sm-3 col-form-label">@lang('translation.airline.logo')</label>
+                  <div class="col-sm-9" id="upload">
+                    <div id="myDropzone" class="dropzone">
+                      <div class="dz-message needsclick">
+                        <div class="mb-3">
+                          <i class="display-4 text-muted bx bxs-cloud-upload"></i>
+                        </div>
+                        <h4>@lang('translation.drop_here')</h4>
+                      </div>
+                    </div>
                     <div class="valid-feedback">
                       @lang('validation.good')
                     </div>
                     <div class="invalid-feedback">
-                      @lang('validation.required', ['attribute' => __('translation.supplier.company_name')])
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row mb-4">
-                  <label for="address" class="col-sm-3 col-form-label">@lang('translation.supplier.address')</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="address" name="address" value="{{ old('address') }}" required>
-                    <div class="valid-feedback">
-                      @lang('validation.good')
-                    </div>
-                    <div class="invalid-feedback">
-                      @lang('validation.required', ['attribute' => __('translation.supplier.address')])
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row mb-4">
-                  <label for="phone" class="col-sm-3 col-form-label">@lang('translation.supplier.phone')</label>
-                  <div class="col-sm-9">
-                    <input type="tel" class="form-control" id="phone" name="phone" value="{{ old('phone') }}" required>
-                    <div class="valid-feedback">
-                      @lang('validation.good')
-                    </div>
-                    <div class="invalid-feedback">
-                      @lang('validation.required', ['attribute' => __('translation.supplier.phone')])
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row mb-4">
-                  <label for="phone_alt" class="col-sm-3 col-form-label">@lang('translation.supplier.phone_alt')</label>
-                  <div class="col-sm-9">
-                    <input type="tel" class="form-control" id="phone_alt" name="phone_alt" value="{{ old('phone_alt') }}" required>
-                    <div class="valid-feedback">
-                      @lang('validation.good')
-                    </div>
-                    <div class="invalid-feedback">
-                      @lang('validation.required', ['attribute' => __('translation.supplier.phone_alt')])
+                      @lang('validation.required', ['attribute' => __('translation.airline.logo')])
                     </div>
                   </div>
                 </div>
@@ -118,4 +102,11 @@
       <!-- end card -->
     </div> <!-- end col -->
   </div>
+@endsection
+
+@section('script')
+  <!-- Dropzone js -->
+  <script src="{{ URL::asset('/assets/libs/dropzone/dropzone.min.js') }}"></script>
+  {{-- Dropzone Config --}}
+  <script src="{{ URL::asset('assets/js/dropzone-config.js') }}"></script>
 @endsection

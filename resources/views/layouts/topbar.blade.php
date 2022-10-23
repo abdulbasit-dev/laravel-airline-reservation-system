@@ -29,39 +29,6 @@
 
     <div class="d-flex">
 
-
-      <div class="dropdown d-inline-block">
-        <button type="button" class="btn header-item waves-effect" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          @switch(App::getLocale())
-            @case('ku')
-              <img src="{{ URL::asset('/assets/images/flags/kurdistan.jpg') }}" alt="کوردی" height="16">
-            @break
-
-            @case('ar')
-              <img src="{{ URL::asset('/assets/images/flags/iraq.png') }}" alt="العربي" height="16">
-            @break
-
-            @default
-              <img src="{{ URL::asset('/assets/images/flags/us.jpg') }}" alt="english" height="16">
-          @endswitch
-        </button>
-        <div class="dropdown-menu dropdown-menu-end">
-
-          <!-- item-->
-          <a href="{{ url('index/en') }}" class="dropdown-item notify-item language" data-lang="en">
-            <img src="{{ URL::asset('/assets/images/flags/us.jpg') }}" alt="user-image" class="me-1" height="12"> <span class="align-middle">English</span>
-          </a>
-          <!-- item-->
-          <a href="{{ url('index/ku') }}" class="dropdown-item notify-item language" data-lang="ku">
-            <img src="{{ URL::asset('/assets/images/flags/kurdistan.jpg') }}" alt="user-image" class="me-1" height="12"> <span class="align-middle">کوردی</span>
-          </a>
-          <!-- item-->
-          <a href="{{ url('index/ar') }}" class="dropdown-item notify-item language" data-lang="ar">
-            <img src="{{ URL::asset('assets/images/flags/iraq.png') }}" alt="user-image" class="me-1" height="12"> <span class="align-middle">العربي</span>
-          </a>
-        </div>
-      </div>
-
       <div class="dropdown d-none d-lg-inline-block ms-1">
         <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen" onclick="toggleScreen()">
           <i class="bx bx-fullscreen"></i>

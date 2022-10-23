@@ -264,6 +264,7 @@
                   customClass: "swal-error",
                   icon: "error",
                 });
+                return;
               }
 
               Swal.fire({

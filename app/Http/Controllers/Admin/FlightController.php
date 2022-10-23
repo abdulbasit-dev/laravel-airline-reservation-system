@@ -72,8 +72,8 @@ class FlightController extends Controller
                 })
                 ->editColumn('status', function ($row) {
                     return $row->status
-                        ? '<i class="bx bxs-plane text-success bx-sm"></i>'
-                        : '<i class="bx bxs-plane text-danger bx-sm bx-rotate-180"></i>';
+                        ? '<i class="bx bxs-plane-take-off text-success bx-sm"></i>'
+                        : '<i class="bx bxs-plane-land text-danger bx-sm"></i>';
                 })
                 ->rawColumns(['flight_info', 'route', 'time', 'capacity', 'status', 'action'])
                 ->make(true);

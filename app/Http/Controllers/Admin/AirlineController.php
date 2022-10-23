@@ -6,6 +6,8 @@ use App\Models\Airline;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Exports\GeneralExport;
+use App\Http\Requests\AirlineRequest;
+use App\Models\Plane;
 use Illuminate\Support\Facades\Schema;
 use Maatwebsite\Excel\Facades\Excel;
 use DataTables;
@@ -52,35 +54,70 @@ class AirlineController extends Controller
 
     public function create()
     {
-        return view('airlines.create');
+        return view('admin.airlines.create');
     }
 
     public function store(AirlineRequest $request)
     {
         try {
             $validated = $request->validated();
-            Airline::create($validated);
+            $airline = Airline::create($validated);
+
+            if ($request->has('file')) {
+                // get file name from requets and find this file in the storage
+                $filePath = storage_path('tmp/uploads/' . $request->file);
+                // this will move the file from its current path to the storage path
+                $airline->addMedia($filePath)->usingName($request->name)->toMediaCollection();
+            }
 
             return redirect()->route('airlines.index')->with([
                 "message" =>  __('messages.success'),
                 "icon" => "success",
             ]);
-        } catch (\Exception $e) {
+        } catch (\Throwable $th) {
             return redirect()->back()->with([
-                "message" =>  $e->getMessage(),
+                "message" => $th->getMessage(),
                 "icon" => "error",
             ]);
         }
     }
 
-    public function show(Airline $airline)
+    public function show(Request $request, Airline $airline)
     {
-        return view('airlines.show', compact("airline"));
+        $airline->load('planes');
+
+        if ($request->ajax()) {
+            return Datatables::of($airline->planes)->addIndexColumn()
+                ->setRowClass(fn ($row) => 'align-middle')
+                ->addColumn('action', function ($row) {
+                    $td = '<td>';
+                    $td .= '<div class="d-flex">';
+                    $td .= '<a href="' . route('planes.show', $row->id) . '" type="button" class="btn btn-sm btn-rounded btn-primary waves-effect waves-light me-1">' . __('buttons.view') . '</a>';
+                    $td .= '<a href="' . route('planes.edit', $row->id) . '" type="button" class="btn btn-sm btn-rounded btn-info waves-effect waves-light me-1">' . __('buttons.edit') . '</a>';
+                    $td .= '<a href="javascript:void(0)" data-id="' . $row->id . '" data-url="' . route('planes.destroy', $row->id) . '"  class="btn btn-sm btn-rounded btn-danger delete-btn">' . __('buttons.delete') . '</a>';
+                    $td .= "</div>";
+                    $td .= "</td>";
+                    return $td;
+                })
+                ->editColumn('created_at', function ($row) {
+                    return formatDate($row->created_at);
+                })
+                ->editColumn('code', function ($row) {
+                    return '<span class="badge badge-pill badge-soft-info font-size-13">' . $row->code . '</span>';
+                })
+                ->editColumn('capacity', function ($row) {
+                    return '<span class="badge badge-pill badge-soft-info font-size-13">' . $row->capacity . '</span>';
+                })
+                ->rawColumns(['action', 'code', 'capacity'])
+                ->make(true);
+        }
+
+        return view('admin.airlines.show', compact('airline'));
     }
 
     public function edit(Airline $airline)
     {
-        return view('airlines.edit', compact("airline"));
+        return view('admin.airlines.edit', compact("airline"));
     }
 
     public function update(AirlineRequest $request, Airline $airline)
@@ -88,6 +125,22 @@ class AirlineController extends Controller
         try {
             $validated = $request->validated();
             $airline->update($validated);
+
+            if ($request->has('file')) {
+                // delete old product image
+                $mediaItems = $airline->getMedia();
+                if (count($mediaItems) > 0) {
+                    $mediaItems->each(function ($item, $key) {
+                        $item->delete();
+                    });
+                }
+
+                // get file name from requets and find this file in the storage
+                $filePath = storage_path('tmp/uploads/' . $request->file);
+
+                // this will move the file from its current path to the storage path
+                $airline->addMedia($filePath)->usingName($request->name)->toMediaCollection();
+            }
 
             return redirect()->route('airlines.index')->with([
                 "message" =>  __('messages.update'),
@@ -107,35 +160,4 @@ class AirlineController extends Controller
         return redirect()->route('airlines.index');
     }
 
-    public function export()
-    {
-        // get the heading of your file from the table or you can created your own heading
-        $table = "airlines";
-        $headers = Schema::getColumnListing($table);
-
-        // query to get the data from the table
-        $query = Airline::all();
-
-        // create file name  
-        $fileName = "airline_export_" .  date('Y-m-d_h:i_a') . ".xlsx";
-
-        return Excel::download(new GeneralExport($query, $headers), $fileName);
-    }
-
-    public function import(Request $request)
-    {
-        //get file name from requets and find this file in the storage
-        $filePath = storage_path('tmp/uploads/' . $request->file);
-
-        // import to database
-        Excel::import(new AirlinesImport, $filePath);
-
-        // delete temp file after uploading 
-        unlink($filePath);
-
-        return redirect()->route('airlines.index')->with([
-            "message" =>  __('messages.import'),
-            "icon" => "success",
-        ]);
-    }
 }

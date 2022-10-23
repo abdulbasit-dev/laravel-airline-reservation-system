@@ -24,7 +24,15 @@ if (!function_exists("airportName")) {
 if (!function_exists("getFile")) {
     function getFile($model)
     {
-        return $model->getFirstMedia() ? asset($model->getFirstMedia()->getUrl()) : URL::asset('images/placeholder.png');
+        Log::info($model->getFirstMedia());
+        return $model->getFirstMedia() ? asset($model->getFirstMedia()->getUrl()) : URL::asset('assets/images/placeholder.png');
+    }
+}
+
+if (!function_exists("getAvatar")) {
+    function getAvatar($user)
+    {
+        return $user->getFirstMedia() ? asset($user->getFirstMedia()->getUrl()) : 'https://ui-avatars.com/api/?background=random&name=' . $user->name;
     }
 }
 

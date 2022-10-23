@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-       @lang('translation.user.profile')
+  @lang('translation.user.profile')
 @endsection
 
 @section('plugin-css')
@@ -41,7 +41,7 @@
                 <img id="avatar" src="{{ getAvatar(auth()->user()) }}" alt="" class="rounded-circle avatar-lg">
               </div>
               <h5 class="font-size-15 text-truncate userName ms-2">{{ Auth::user()->name }}</h5>
-              <p class="text-muted text-truncate mb-0 ms-2">{{ Auth::user()->getRoleName }}</p>
+              <p class="text-muted text-truncate ms-2 mb-0">{{ Auth::user()->getRoleName }}</p>
             </div>
 
             <div class="">
@@ -210,6 +210,8 @@
 @section('script')
   <!-- Dropzone js -->
   <script src="{{ URL::asset('/assets/libs/dropzone/dropzone.min.js') }}"></script>
+  {{-- Dropzone Config --}}
+  <script src="{{ URL::asset('assets/js/dropzone-config.js') }}"></script>
 
   <script>
     $('#update-profile').on('submit', function(event) {
@@ -239,7 +241,7 @@
           $('#phone').text(data.data.phone);
           $('#phone_alt').text(data.data.phone_alt);
           $('#address').text(data.data.address);
-        //   $('#avatar').attr('src', data.data.image);
+          //   $('#avatar').attr('src', data.data.image);
 
           // close the modal
           $('.update-profile').modal('hide');
@@ -309,57 +311,5 @@
         }
       });
     });
-
-    // Dropzone cofig
-    // if it is inside document ready function, it will not work
-    var uploadedDocumentMap = {}
-    Dropzone.options.myDropzone = {
-      url: "{{ route('storeTempFile') }}",
-      maxFilesize: 10, // MB
-      uploadMultiple: false,
-      maxFiles: 1,
-      addRemoveLinks: true,
-      acceptedFiles: ".jpeg,.jpg,.png",
-      headers: {
-        'X-CSRF-TOKEN': "{{ csrf_token() }}"
-      },
-      success: function(file, response) {
-        $('#upload').append('<input type="hidden" name="file" value="' + response.name + '">')
-        uploadedDocumentMap[file.name] = response.name
-      },
-      removedfile: function(file) {
-        file.previewElement.remove()
-        var name = ''
-        if (typeof file.file_name !== 'undefined') {
-          name = file.file_name
-        } else {
-          name = uploadedDocumentMap[file.name]
-        }
-        //send ajax request to delete file
-        $.ajax({
-          headers: {
-            'X-CSRF-TOKEN': "{{ csrf_token() }}"
-          },
-          type: 'POST',
-          url: "{{ route('deleteTempFile') }}",
-          data: {
-            fileName: name
-          },
-          success: function(data) {},
-          error: function(e) {
-            console.log(e);
-          }
-        });
-        $('#upload').find('input[name="file"][value="' + name + '"]').remove()
-      },
-      init: function() {
-        this.on("maxfilesexceeded", function(file) {
-          Swal.fire({
-            text: "{{ __('messages.max_files') }}",
-            icon: "error"
-          });
-        });
-      }
-    }
   </script>
 @endsection
