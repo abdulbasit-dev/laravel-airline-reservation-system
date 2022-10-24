@@ -53,7 +53,6 @@ return [
 
     "ticket" => [
         "ticket"                        => "Ticket",
-        "ticket_list"                   => "Ticket List",
     ],
 
     "user" => [

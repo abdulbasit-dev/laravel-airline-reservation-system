@@ -18,7 +18,7 @@
       {{ route('flights.index') }}
     @endslot
     @slot('title')
-      @lang('translation.flight.flight_list')
+       @lang('translation.resource_list', ['resource' => __('attributes.flight')])
     @endslot
   @endcomponent
 

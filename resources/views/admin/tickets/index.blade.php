@@ -18,7 +18,7 @@
       {{ route('airlines.index') }}
     @endslot
     @slot('title')
-      @lang('translation.airline.airline_list')
+       @lang('translation.resource_list', ['resource' => __('attributes.airline')])
     @endslot
   @endcomponent
 

@@ -8,4 +8,6 @@ return [
     'flight'                => 'Flight',
     'ticket'                => 'Ticket',
     'user'                  => 'User',
+    "profile"               => "Profile",
+    "password"              => "Password",
 ];
