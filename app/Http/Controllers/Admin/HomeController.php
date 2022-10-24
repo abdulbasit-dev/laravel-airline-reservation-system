@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\CarExpense;
-use App\Models\Client;
-use App\Models\Order;
-use App\Models\Product;
-use App\Models\Supplier;
+use App\Models\Airline;
+use App\Models\Airport;
+use App\Models\Flight;
+use App\Models\Plane;
+use App\Models\Ticket;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -34,163 +34,55 @@ class HomeController extends Controller
 
     public function root()
     {
-        // $totalOrder = Order::count();
-        // $totalCanceledOrder = Order::where('is_canceled', 1)->count();
-        // $totalInProgressOrder = Order::query()
-        //     ->where('is_assigned', 1)
-        //     ->orWhere('is_pickedup', 1)
-        //     ->count();
+        $totalAirline = Airline::count();
+        $totalCustomer = User::whereIsAdmin(0)->count();
+        $totalPlane = Plane::count();
+        $totalAirport = Airport::count();
+        $totalFlight = Flight::count();
+        $totalTicket = Ticket::count();
 
-        // $totalDeliveredOrder = Order::where('is_delivered', 1)->count();
+        // get last 10 flights
+        $lastFlights = Flight::orderBy('id', 'desc')->take(10)->get();
 
-        // // get last 5 orders
-        // $lastOrders = Order::query()
-        //     ->select(['id', 'is_paid', 'status', 'created_at', 'total_price', 'client_id', 'order_by'])
-        //     ->orderBy('id', 'desc')
-        //     ->limit(5)
-        //     ->get();
+        // get active ariline by number of flights
+        $activeAirlines = Airline::query()
+            ->withCount('flights')
+            ->withCount('planes')
+            ->orderBy('flights_count', 'desc')
+            ->take(6)
+            ->get();
 
-        // // get most selled product buy num_of_sale field
-        // $mostSelledProduct = Product::query()
-        //     ->with("supplier:id,name", 'category:id,name')
-        //     ->orderBy('num_of_sales', 'desc')
-        //     ->limit(10)
-        //     ->get();
-
-        // $totalDriver = User::role('driver')->count();
-        // $totalAdmin = User::role('admin')->count();
-        // $totalWarehouseManger = User::role('warehouse-manger')->count();
-        // $totalSaleRepresentvie = User::role('sale-representative')->count();
-
-
-        // // CHARTS DATA CONFIG
-        // //group by order by status, and get count of each status
-        // $orderStatusChart = DB::table('orders')
-        //     // ->whereMonth('created_at', date('m'))
-        //     ->select('status', DB::raw('count(*) as total'))
-        //     ->groupBy('status')
-        //     ->get()
-        //     ->map(function ($item) {
-        //         switch (trim($item->status)) {
-        //             case 'ordered':
-        //                 $item->color = "#ebeff2";
-        //                 break;
-        //             case 'accepted':
-        //                 $item->color = "#34c38f";
-        //                 break;
-        //             case 'canceled':
-        //                 $item->color = "#f46a6a";
-        //                 break;
-        //             case 'assigned':
-        //                 $item->color = "#50a5f1";
-        //                 break;
-        //             case 'pickedup':
-        //                 $item->color = "#f1b44c";
-        //                 break;
-        //             case 'delivered':
-        //                 $item->color = "#556ee6";
-        //                 break;
-        //         }
-        //         return (array) $item;
-        //     })->toArray();
-
-        // // get due and paid orders
-        // $orderPaymentStatusChart = DB::table('orders')
-        //     ->orderBy('is_paid', 'desc')
-        //     ->select('is_paid', DB::raw('count(*) as total'))
-        //     ->groupBy('is_paid')
-        //     ->get()
-        //     ->map(function ($item) {
-        //         switch (trim($item->is_paid)) {
-        //             case 0:
-        //                 $item->label = "Due";
-        //                 $item->color = "#ebeff2";
-        //                 break;
-        //             case 1:
-        //                 $item->label = "Paid";
-        //                 $item->color = "#556ee6";
-        //                 break;
-        //         }
-        //         return (array) $item;
-        //     })->toArray();
-
-
-
-        // // get all users in the system
-        // $syetemUserChart = [
-        //     [
-        //         "label" => "Driver",
-        //         "color" => "#34c38f",
-        //         "total" => $totalDriver
-        //     ],
-        //     [
-        //         "label" => "Admin",
-        //         "color" => "#f1b44c",
-        //         "total" => $totalAdmin
-        //     ],
-        //     [
-        //         "label" => "Sale Representvie",
-        //         "color" => "#f46a6a",
-        //         "total" => $totalSaleRepresentvie
-        //     ],
-        //     [
-        //         "label" => "Client",
-        //         "color" => "#556ee6",
-        //         "total" => Client::count()
-        //     ],
-        //     [
-        //         "label" => "Supplier",
-        //         "color" => "#ebeff2",
-        //         "total" => Supplier::count()
-        //     ],
-        // ];
-
-        // // expense & car expense chart
-        // if (CarExpense::count() > 0) {
-        //     $carExpenses = [
-        //         'chart_title'           => __('translation.dashboard.monthly_car_expenses'),
-        //         'chart_type'            => 'bar',
-        //         'report_type'           => 'group_by_date',
-        //         'model'                 => 'App\Models\CarExpense',
-        //         'group_by_field'        => 'created_at',
-        //         'group_by_period'       => 'month',
-        //         'aggregate_function'    => 'sum',
-        //         'aggregate_field'       => 'price',
-        //         "chart_color"           => '85, 110, 230',
-        //     ];
-        //     $expenses = [
-        //         'chart_title'           => __('translation.dashboard.monthly_expenses'),
-        //         'chart_type'            => 'bar',
-        //         'report_type'           => 'group_by_date',
-        //         'model'                 => 'App\Models\Expense',
-        //         'group_by_field'        => 'created_at',
-        //         'group_by_period'       => 'month',
-        //         'aggregate_function'    => 'sum',
-        //         'aggregate_field'       => 'price',
-        //         "chart_color"           => '52, 195, 143',
-        //     ];
-        //     $expenseChart = new LaravelChart($carExpenses, $expenses);
-        // } else {
-        //     $expenseChart = NULL;
-        // }
-
-
+        // CHARTS DATA CONFIG
+        // get status of flights
+        $flightStatusChart = DB::table('flights')
+            ->orderBy('status', 'desc')
+            ->select('status', DB::raw('count(*) as total'))
+            ->groupBy('status')
+            ->get()
+            ->map(function ($item) {
+                switch (trim($item->status)) {
+                    case 0:
+                        $item->label = "Landing";
+                        $item->color = "#ea868f";
+                        break;
+                    case 1:
+                        $item->label = "Take Off";
+                        $item->color = "#20c997";
+                        break;
+                }
+                return (array) $item;
+            })->toArray();
 
         $data = [
-            'totalOrder' =>12 ,
-            'totalDriver' =>12,
-            'totalSaleRepresentvie' =>12,
-            'totalWarehouseManger' =>12,
-            'totalAdmin' =>12,
-            'totalCanceledOrder' =>12,
-            'totalInProgressOrder' =>12,
-            'totalDeliveredOrder' =>12,
-            // 'lastOrders' =>12,
-            // 'mostSelledProduct' =>12,
-            // "orderStatusChart" =>12,
-            // "orderPaymentStatusChart" =>12,
-            // "expenseChart" =>12 ?? NULL,
-            // "systemUserChart" =>12,
+            'totalAirline'      => $totalAirline,
+            'totalPlane'        => $totalPlane,
+            'totalAirport'      => $totalAirport,
+            'totalFlight'       => $totalFlight,
+            'totalTicket'       => $totalTicket,
+            'totalCustomer'     => $totalCustomer,
+            'lastFlights'       => $lastFlights,
+            "activeAirlines"    => $activeAirlines,
+            "flightStatusChart" => $flightStatusChart,
         ];
         return view('admin.index', compact('data'));
     }

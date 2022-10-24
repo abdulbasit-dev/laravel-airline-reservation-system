@@ -11,7 +11,7 @@
         @admin
           <li>
             <a href="{{ route('root') }}" class="waves-effect">
-              <i class="bx bx-home-circle"></i>
+              <i class="bx bx-home-circle" style="color: #20c997"></i>
               <span key="t-contact">@lang('sidebar.dashboard')</span>
             </a>
           </li>

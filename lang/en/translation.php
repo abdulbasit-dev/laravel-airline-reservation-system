@@ -9,6 +9,7 @@ return [
         "name"                          => "Name",
         "code"                          => "Code",
         "no_of_planes"                  => "No of Planes",
+        "no_of_flights"                 => "No of Flights",
         "logo"                          => "Logo",
     ],
 
@@ -82,7 +83,22 @@ return [
         "image"                      => "Profile Image",
     ],
 
-    
+    "dashboard" => [
+        "total_airline"              => "Total Airline",
+        "total_plane"                => "Total Plane",
+        "total_airport"              => "Total Airport",
+        "total_flight"               => "Total Flight",
+        "total_ticket"               => "Total Ticket",
+        "total_customer"             => "Total Customer",
+
+        "latest_flights"             => "Latest Flights",
+        "active_airlines"            => "Active Airlines",
+        "flight_status_chart"        => "Flight Status Chart",
+        "take_off"                   => "Take Off",
+        "landing"                    => "Landing",
+    ],
+
+
 
 
     //common words

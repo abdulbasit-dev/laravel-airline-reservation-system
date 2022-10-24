@@ -19,24 +19,22 @@
     @endslot
   @endcomponent
 
-  <h1>Welcome Back</h1>
-{{-- 
   <div class="row">
     <div class="col-xl-12">
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
           <div class="card mini-stats-wid">
             <div class="card-body">
               <div class="d-flex">
                 <div class="flex-grow-1">
-                  <p class="text-muted fw-medium">@lang('translation.dashboard.total_orders')</p>
-                  <h4 class="mb-0">{{ $data['totalOrder'] }}</h4>
+                  <p class="text-muted fw-medium">@lang('translation.dashboard.total_airline')</p>
+                  <h4 class="mb-0">{{ $data['totalAirline'] }}</h4>
                 </div>
 
                 <div class="align-self-center flex-shrink-0">
                   <div class="mini-stat-icon avatar-sm rounded-circle bg-primary">
                     <span class="avatar-title">
-                      <i class="bx bx-archive-in font-size-24"></i>
+                      <i class='bx bx-globe font-size-24'></i>
                     </span>
                   </div>
                 </div>
@@ -44,19 +42,19 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           <div class="card mini-stats-wid">
             <div class="card-body">
               <div class="d-flex">
                 <div class="flex-grow-1">
-                  <p class="text-muted fw-medium">@lang('translation.dashboard.canceled_orders')</p>
-                  <h4 class="mb-0">{{ $data['totalCanceledOrder'] }}</h4>
+                  <p class="text-muted fw-medium">@lang('translation.dashboard.total_plane')</p>
+                  <h4 class="mb-0">{{ $data['totalPlane'] }}</h4>
                 </div>
 
                 <div class="align-self-center flex-shrink-0">
                   <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
                     <span class="avatar-title rounded-circle bg-primary">
-                      <i class="bx bx-archive-in font-size-24"></i>
+                      <i class="bx bxs-paper-plane font-size-24"></i>
                     </span>
                   </div>
                 </div>
@@ -64,41 +62,21 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           <div class="card mini-stats-wid">
             <div class="card-body">
               <div class="d-flex">
                 <div class="flex-grow-1">
                   <div class="flex-grow-1">
-                    <p class="text-muted fw-medium">@lang('translation.dashboard.in_progress_orders')</p>
-                    <h4 class="mb-0">{{ $data['totalInProgressOrder'] }}</h4>
+                    <p class="text-muted fw-medium">@lang('translation.dashboard.total_airport')</p>
+                    <h4 class="mb-0">{{ $data['totalAirport'] }}</h4>
                   </div>
                 </div>
 
                 <div class="align-self-center flex-shrink-0">
                   <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
                     <span class="avatar-title rounded-circle bg-primary">
-                      <i class="bx bx-archive-in font-size-24"></i>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card mini-stats-wid">
-            <div class="card-body">
-              <div class="d-flex">
-                <div class="flex-grow-1">
-                  <p class="text-muted fw-medium">@lang('translation.dashboard.delivered_orders')</p>
-                  <h4 class="mb-0">{{ $data['totalDeliveredOrder'] }}</h4>
-                </div>
-
-                <div class="align-self-center flex-shrink-0">
-                  <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
-                    <span class="avatar-title rounded-circle bg-primary">
-                      <i class="bx bx-archive-in font-size-24"></i>
+                      <i class="bx bx-buildings font-size-24"></i>
                     </span>
                   </div>
                 </div>
@@ -109,25 +87,45 @@
       </div>
       <!-- end row -->
     </div>
-  </div> --}}
+  </div>
   <!-- end row -->
 
-  {{-- <div class="row">
+  <div class="row">
     <div class="col-xl-12">
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
           <div class="card mini-stats-wid">
             <div class="card-body">
               <div class="d-flex">
                 <div class="flex-grow-1">
-                  <p class="text-muted fw-medium">@lang('translation.dashboard.sale_representvie')</p>
-                  <h4 class="mb-0">{{ $data['totalSaleRepresentvie'] }}</h4>
+                  <p class="text-muted fw-medium">@lang('translation.dashboard.total_flight')</p>
+                  <h4 class="mb-0">{{ $data['totalFlight'] }}</h4>
+                </div>
+
+                <div class="align-self-center flex-shrink-0">
+                  <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
+                    <span class="avatar-title rounded-circle bg-primary">
+                      <i class="bx bxs-plane-alt font-size-24"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mini-stats-wid">
+            <div class="card-body">
+              <div class="d-flex">
+                <div class="flex-grow-1">
+                  <p class="text-muted fw-medium">@lang('translation.dashboard.total_ticket')</p>
+                  <h4 class="mb-0">{{ $data['totalTicket'] }}</h4>
                 </div>
 
                 <div class="align-self-center flex-shrink-0">
                   <div class="mini-stat-icon avatar-sm rounded-circle bg-primary">
                     <span class="avatar-title">
-                      <i class="bx bx-user font-size-24"></i>
+                      <i class='bx bx-purchase-tag-alt font-size-24'></i>
                     </span>
                   </div>
                 </div>
@@ -135,53 +133,13 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           <div class="card mini-stats-wid">
             <div class="card-body">
               <div class="d-flex">
                 <div class="flex-grow-1">
-                  <p class="text-muted fw-medium">@lang('translation.dashboard.driver')</p>
-                  <h4 class="mb-0">{{ $data['totalDriver'] }}</h4>
-                </div>
-
-                <div class="align-self-center flex-shrink-0">
-                  <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
-                    <span class="avatar-title rounded-circle bg-primary">
-                      <i class="bx bx-user font-size-24"></i>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card mini-stats-wid">
-            <div class="card-body">
-              <div class="d-flex">
-                <div class="flex-grow-1">
-                  <p class="text-muted fw-medium">@lang('translation.dashboard.system_admin')</p>
-                  <h4 class="mb-0">{{ $data['totalAdmin'] }}</h4>
-                </div>
-
-                <div class="align-self-center flex-shrink-0">
-                  <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
-                    <span class="avatar-title rounded-circle bg-primary">
-                      <i class="bx bx-user font-size-24"></i>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card mini-stats-wid">
-            <div class="card-body">
-              <div class="d-flex">
-                <div class="flex-grow-1">
-                  <p class="text-muted fw-medium">@lang('translation.dashboard.warehouse_manager')</p>
-                  <h4 class="mb-0">{{ $data['totalWarehouseManger'] }}</h4>
+                  <p class="text-muted fw-medium">@lang('translation.dashboard.total_customer')</p>
+                  <h4 class="mb-0">{{ $data['totalCustomer'] }}</h4>
                 </div>
 
                 <div class="align-self-center flex-shrink-0">
@@ -198,28 +156,49 @@
       </div>
       <!-- end row -->
     </div>
-  </div> --}}
+  </div>
   <!-- end row -->
 
   {{-- chart1 --}}
-  {{-- <div class="row">
+  <div class="row">
     <div class="col-xl-6">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title mb-4">@lang('translation.dashboard.orders_status_chart')</h4>
-          <div class="row text-center">
-            @forelse ($data['orderStatusChart'] as $order)
-              <div class="col-2">
-                <h5 class="mb-0">{{ $order['total'] }}</h5>
-                <p class="text-muted text-truncate">{{ ucfirst($order['status']) }}</p>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title mb-4">@lang('translation.dashboard.active_airlines')</h4>
+              <div class="table-responsive">
+                <table class="table-nowrap mb-0 table align-middle">
+                  <thead class="table-light">
+                    <tr>
+                      <th class="align-middle">#</th>
+                      <th class="align-middle">@lang('translation.airline.name')</th>
+                      <th class="align-middle">@lang('translation.airline.code')</th>
+                      <th class="align-middle">@lang('translation.airline.no_of_flights')</th>
+                      <th class="align-middle">@lang('translation.airline.no_of_planes')</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @forelse ($data['activeAirlines'] as $airline)
+                      <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td class="text-info fw-bold">{{ ucfirst($airline->name) }}</td>
+                        <td>{{ ucfirst($airline->code) }}</td>
+                        <td><span class="badge badge-pill badge-soft-warning font-size-13">{{ ucfirst($airline->flights_count) }}</span></td>
+                        <td><span class="badge badge-pill badge-soft-success font-size-13">{{ ucfirst($airline->planes_count) }}</span></td>
+                      </tr>
+                    @empty
+                      <tr>
+                        <td colspan="10" class="text-center">@lang('translation.emptyTable')</td>
+                      </tr>
+                    @endforelse
+
+                  </tbody>
+                </table>
               </div>
-            @empty
-              <div class="col-2">
-                <p class="text-muted text-truncate">@lang('translation.no_data')</p>
-              </div>
-            @endforelse
+              <!-- end table-responsive -->
+            </div>
           </div>
-          <canvas id="orderStatusChart" height="260"></canvas>
         </div>
       </div>
     </div> <!-- end col -->
@@ -227,12 +206,12 @@
     <div class="col-xl-6">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title mb-4">@lang('translation.dashboard.orders_payment_status_chart')</h4>
+          <h4 class="card-title mb-4">@lang('translation.dashboard.flight_status_chart')</h4>
           <div class="row text-center">
-            @forelse ($data['orderPaymentStatusChart'] as $order)
+            @forelse ($data['flightStatusChart'] as $flight)
               <div class="col-2">
-                <h5 class="mb-0">{{ $order['total'] }}</h5>
-                <p class="text-muted text-truncate">{{ $order['is_paid'] ? __('translation.paid') : __('translation.due') }}</p>
+                <h5 class="mb-0">{{ $flight['total'] }}</h5>
+                <p class="text-muted text-truncate">{{ $flight['status'] ? __('translation.dashboard.take_off') : __('translation.dashboard.landing') }}</p>
               </div>
             @empty
               <div class="col-2">
@@ -240,48 +219,43 @@
               </div>
             @endforelse
           </div>
-          <canvas id="orderPaymentStatusChart" height="260"></canvas>
+          <canvas id="flightStatusChart" height="260"></canvas>
         </div>
       </div>
     </div> <!-- end col -->
-  </div> <!-- end row --> --}}
+  </div> <!-- end row -->
 
-  {{-- last 5 orders --}}
-  {{-- <div class="row">
+  {{-- last 10 flights --}}
+  <div class="row">
     <div class="col-lg-12">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title mb-4">@lang('translation.dashboard.latest_orders')</h4>
+          <h4 class="card-title mb-4">@lang('translation.dashboard.latest_flights')</h4>
           <div class="table-responsive">
             <table class="table-nowrap mb-0 table align-middle">
               <thead class="table-light">
                 <tr>
-                  <th class="align-middle">@lang('translation.dashboard.order_id')</th>
-                  <th class="align-middle">@lang('translation.dashboard.status')</th>
-                  <th class="align-middle">@lang('translation.dashboard.client_name')</th>
-                  <th class="align-middle">@lang('translation.dashboard.payment_status')</th>
-                  <th class="align-middle">@lang('translation.dashboard.created_at')</th>
-                  <th class="align-middle">@lang('translation.dashboard.order_by')</th>
-                  <th class="align-middle">@lang('translation.dashboard.total_price')</th>
-                  <th class="align-middle">@lang('translation.dashboard.view_details')</th>
+                  <th class="align-middle">#</th>
+                  <th class="align-middle">@lang('translation.flight.flight_number')</th>
+                  <th class="align-middle">@lang('translation.flight.airline')</th>
+                  <th class="align-middle">@lang('translation.flight.origin')</th>
+                  <th class="align-middle">@lang('translation.flight.destination')</th>
+                  <th class="align-middle">@lang('translation.flight.departure')</th>
+                  <th class="align-middle">@lang('translation.flight.arrival')</th>
+                  <th class="align-middle">@lang('translation.flight.price')</th>
                 </tr>
               </thead>
               <tbody>
-                @forelse ($data['lastOrders'] as $order)
+                @forelse ($data['lastFlights'] as $flight)
                   <tr>
-                    <td><a href="javascript: void(0);" class="text-body fw-bold">#{{ $order->id }}</a> </td>
-                    <td>{{ ucfirst($order->status) }}</td>
-                    <td>{{ ucfirst($order->client->name) }}</td>
-                    <td>{!! $order->is_paid ? '<span class="badge badge-pill badge-soft-success font-size-11">' . __('translation.paid') . '</span>' : '<span class="badge badge-pill badge-soft-danger font-size-11">' . __('translation.due') . '</span>' !!}</td>
-                    <td>{{ $order->created_at }}</td>
-                    <td><a href="{{ route('users.show', $order->user->id) }}">{{ $order->user->name }}</a></td>
-                    <td>{{ formatPrice($order->total_price) }}</td>
-                    <td>
-    
-                      <a href="{{ route('orders.show', $order->id) }}" type="button" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light">
-                        @lang('buttons.view_details')
-                      </a>
-                    </td>
+                    <td><a href="javascript: void(0);" class="text-body fw-bold">#{{ $loop->iteration }}</a> </td>
+                    <td class="text-info fw-bold">{{ ucfirst($flight->flight_number) }}</td>
+                    <td>{{ ucfirst($flight->airline->name) }}</td>
+                    <td><span class="badge badge-pill badge-soft-info font-size-13">{{ ucfirst($flight->origin->name) }}</span></td>
+                    <td><span class="badge badge-pill badge-soft-success font-size-13">{{ ucfirst($flight->destination->name) }}</span></td>
+                    <td>{{ formatDateWithTimezone($flight->departure) }}</td>
+                    <td>{{ formatDateWithTimezone($flight->arrival) }}</td>
+                    <td class="text-primary fw-bold">{{ formatPrice($flight->price) }}</td>
                   </tr>
                 @empty
                   <tr>
@@ -296,103 +270,8 @@
         </div>
       </div>
     </div>
-  </div> --}}
+  </div>
   <!-- end row -->
-
-  {{-- chart2  --}}
-  {{-- <div class="row">
-    <div class="col-xl-6">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title mb-4">@lang('translation.dashboard.monthly_expenses')</h4>
-          @if ($data['expenseChart'])
-            {!! $data['expenseChart']->renderHtml() !!}
-          @else
-            <h1>@lang('translation.no_data')</h1>
-          @endif
-        </div>
-      </div>
-    </div> <!-- end col -->
-
-    <div class="col-xl-6">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title mb-4">@lang('translation.dashboard.syetem_users_chart')</h4>
-          <div class="row text-center">
-            @forelse ($data['systemUserChart'] as $order)
-              <div class="col-2">
-                <h5 class="mb-0">{{ $order['total'] }}</h5>
-                <p class="text-muted text-truncate">{{ $order['label'] }}</p>
-              </div>
-            @empty
-              <div class="col-2">
-                <p class="text-muted text-truncate">@lang('translation.no_data')</p>
-              </div>
-            @endforelse
-          </div>
-          <canvas id="systemUserChart" height="260"></canvas>
-        </div>
-      </div>
-    </div> <!-- end col -->
-  </div> <!-- end row --> --}}
-
-
-  {{-- most 10 saled product --}}
-  {{-- <div class="row">
-    <div class="col-lg-12">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title mb-4">@lang('translation.dashboard.most_saled_products')</h4>
-          <div class="table-responsive">
-            <table class="table-nowrap mb-0 table align-middle">
-              <thead class="table-light">
-                <tr>
-                  <th class="align-middle">@lang('translation.resource_id', ['resource' => __('attributes.product')])</th>
-                  <th class="align-middle">@lang('translation.product.name')</th>
-                  <th class="align-middle">@lang('translation.product.product_image')</th>
-                  <th class="align-middle">@lang('translation.product.category')</th>
-                  <th class="align-middle">@lang('translation.product.supplier')</th>
-                  <th class="align-middle">@lang('translation.product.barcode')</th>
-                  <th class="align-middle">@lang('translation.product.num_of_sales')</th>
-                  <th class="align-middle">@lang('translation.dashboard.view_details')</th>
-                </tr>
-              </thead>
-              <tbody>
-                @forelse ($data['mostSelledProduct'] as $product)
-                  <tr>
-                    <td><a href="javascript: void(0);" class="text-body fw-bold">#{{ $product->id }}</a> </td>
-                    <td>{{ ucfirst($product->name) }}</td>
-                    <td>
-                      <a class="productImageLightBox" href="{{ getFile($product) }}">
-                        <img alt="product image" src="{{ getFile($product) }}" class="img-thumbnai avatar-md">
-                      </a>
-                    </td>
-                    <td>{{ ucfirst($product->category->name) }}</td>
-                    <td>{{ ucfirst($product->supplier->name) }}</td>
-                    <td>{{ ucfirst($product->barcode) }}</td>
-                    <td><span class="badge badge-pill badge-soft-success font-size-11">{{ $product->num_of_sales }}</span></td>
-                    <td>
-                      <a href="{{ route('products.show', $product->id) }}" type="button" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light">
-                        @lang('buttons.view_details')
-                      </a>
-                    </td>
-                  </tr>
-                @empty
-                  <tr>
-                    <td colspan="10" class="text-center">@lang('translation.emptyTable')</td>
-                  </tr>
-                @endforelse
-
-              </tbody>
-            </table>
-          </div>
-          <!-- end table-responsive -->
-        </div>
-      </div>
-    </div>
-  </div> --}}
-  <!-- end row -->
-
 @endsection
 @section('script')
   <!-- Chart JS -->
@@ -400,12 +279,12 @@
   <!-- Magnific Popup-->
   <script src="{{ URL::asset('/assets/libs/magnific-popup/magnific-popup.min.js') }}"></script>
 
-{{-- 
+  {{-- 
   @if ($data['expenseChart'])
     {!! $data['expenseChart']->renderJs() !!}
   @endif --}}
 
-  {{-- <script>
+  <script>
     // light box init
     $(".productImageLightBox").magnificPopup({
       type: "image",
@@ -422,42 +301,16 @@
       }
     });
 
-    // GET CHART DATA FROM BACKEND
-    // ----------------------------------------------------
     // order status chart
-    let orderStatusChart = @json($data['orderStatusChart']);
-    let orderStatusLabel = [];
-    let orderStatusData = [];
-    let orderStatusColor = [];
+    let flightStatusChart = @json($data['flightStatusChart']);
+    let flightStatusLabel = [];
+    let flightStatusData = [];
+    let flightStatusColor = [];
 
-    orderStatusChart.forEach(item => {
-      orderStatusLabel.push(item.status);
-      orderStatusData.push(item.total);
-      orderStatusColor.push(item.color);
-    });
-
-    // order status chart
-    let orderPaymentStatusChart = @json($data['orderPaymentStatusChart']);
-    let orderPaymentStatusLabel = [];
-    let orderPaymentStatusData = [];
-    let orderPaymentStatusColor = [];
-
-    orderPaymentStatusChart.forEach(item => {
-      orderPaymentStatusLabel.push(item.label);
-      orderPaymentStatusData.push(item.total);
-      orderPaymentStatusColor.push(item.color);
-    });
-
-    // order status chart
-    let systemUserChart = @json($data['systemUserChart']);
-    let systemUserChartLabel = [];
-    let systemUserChartData = [];
-    let systemUserChartColor = [];
-
-    systemUserChart.forEach(item => {
-      systemUserChartLabel.push(item.label);
-      systemUserChartData.push(item.total);
-      systemUserChartColor.push(item.color);
+    flightStatusChart.forEach(item => {
+      flightStatusLabel.push(item.label);
+      flightStatusData.push(item.total);
+      flightStatusColor.push(item.color);
     });
 
     ! function(l) {
@@ -512,32 +365,12 @@
         l(window).resize(i), i();
       }, r.prototype.init = function() {
         // order payment chart
-        this.respChart(l("#orderPaymentStatusChart"), "Doughnut", {
-          labels: orderPaymentStatusLabel,
+        this.respChart(l("#flightStatusChart"), "Doughnut", {
+          labels: flightStatusLabel,
           datasets: [{
-            data: orderPaymentStatusData,
-            backgroundColor: orderPaymentStatusColor,
-            hoverBackgroundColor: orderPaymentStatusColor,
-            hoverBorderColor: "#fff"
-          }]
-        });
-        // syetem user chart
-        this.respChart(l("#systemUserChart"), "Doughnut", {
-          labels: systemUserChartLabel,
-          datasets: [{
-            data: systemUserChartData,
-            backgroundColor: systemUserChartColor,
-            hoverBackgroundColor: systemUserChartColor,
-            hoverBorderColor: "#fff"
-          }]
-        });
-        // order status chart
-        this.respChart(l("#orderStatusChart"), "Pie", {
-          labels: orderStatusLabel,
-          datasets: [{
-            data: orderStatusData,
-            backgroundColor: orderStatusColor,
-            hoverBackgroundColor: orderStatusColor,
+            data: flightStatusData,
+            backgroundColor: flightStatusColor,
+            hoverBackgroundColor: flightStatusColor,
             hoverBorderColor: "#fff"
           }]
         });
@@ -548,5 +381,5 @@
 
       window.jQuery.ChartJs.init();
     }();
-  </script> --}}
+  </script>
 @endsection

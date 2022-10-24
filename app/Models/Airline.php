@@ -17,4 +17,9 @@ class Airline extends Model implements HasMedia
     {
         return $this->hasMany(Plane::class);
     }
+
+    public function flights()
+    {
+        return $this->hasMany(Flight::class);
+    }
 }
