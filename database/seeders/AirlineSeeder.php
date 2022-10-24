@@ -37,7 +37,7 @@ class AirlineSeeder extends Seeder
                 'code' => $item['code'],
             ]);
 
-            $path = "assets/images/Airline logos/" . $item['logo'];
+            $path = "/assets/images/Airline logos/" . $item['logo'];
             $airline->addMedia(public_path() . $path)->preservingOriginal()->usingName($airline->name)->toMediaCollection();
 
             // PlaneSeeder
