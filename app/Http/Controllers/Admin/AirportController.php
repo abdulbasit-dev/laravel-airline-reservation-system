@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Airport;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Exports\GeneralExport;
 use App\Http\Requests\AirportRequest;
 use App\Models\City;
 use Illuminate\Support\Facades\Schema;

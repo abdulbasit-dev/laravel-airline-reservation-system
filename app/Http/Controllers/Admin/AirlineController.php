@@ -5,11 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Airline;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Exports\GeneralExport;
 use App\Http\Requests\AirlineRequest;
-use App\Models\Plane;
-use Illuminate\Support\Facades\Schema;
-use Maatwebsite\Excel\Facades\Excel;
 use DataTables;
 
 class AirlineController extends Controller

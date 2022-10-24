@@ -5,15 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Ticket;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Exports\GeneralExport;
 use App\Models\Airline;
 use App\Models\City;
 use App\Models\Flight;
-use Illuminate\Support\Facades\Schema;
-use Maatwebsite\Excel\Facades\Excel;
 use DataTables;
 use Illuminate\Http\Response;
-use Log;
 
 class TicketController extends Controller
 {

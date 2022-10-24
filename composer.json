@@ -11,7 +11,6 @@
         "laravel/framework": "^9.0",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
-        "laraveldaily/laravel-charts": "^0.1.29",
         "psr/simple-cache": "^2.0",
         "spatie/laravel-medialibrary": "^10.0.0",
         "yajra/laravel-datatables": "^9.0"
