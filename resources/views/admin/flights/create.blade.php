@@ -57,12 +57,7 @@
                 <div class="row mb-4">
                   <label for="plane" class="col-sm-3 col-form-label">@lang('translation.flight.plane')</label>
                   <div class="col-sm-9">
-                    <select class="form-control select2" id="plane" name="plane_id" required>
-                      <option value="">@lang('translation.none')</option>
-                      @foreach ($planes as $key => $value)
-                        <option value="{{ $key }}">{{ $value }}</option>
-                      @endforeach
-                    </select>
+                    <select class="form-control select2" id="plane" name="plane_id" required></select>
                     <div class="valid-feedback">
                       @lang('validation.good')
                     </div>
@@ -172,4 +167,44 @@
 @section('script')
   {{-- bootstrap-datepicker --}}
   <script src="{{ URL::asset('assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
+
+  <script>
+    // ready document 
+    $(document).ready(function() {
+      //on chanage airline select
+      $('#airline').on('change', function() {
+        //get airline id
+        let airline_id = $(this).val();
+        //if airline id is not empty
+        if (airline_id != '') {
+          //get planes by airline id
+          // before send ajax request reset plane select
+          $('#plane').html('');
+          $.ajax({
+            url: "{{ route('flights.getPlanesByAirline') }}",
+            type: "GET",
+            data: {
+              airline_id: airline_id
+            },
+            success: function(data) {
+              //if data is not empty
+              if (data != '') {
+                //set plane select2 options
+                $('#plane').select2({
+                  data: data
+                });
+              } else {
+                $('#plane').select2({
+                  data: [{
+                    id: 1,
+                    text: "@lang('translation.flight.no_plane_found')"
+                  }]
+                });
+              }
+            }
+          });
+        }
+      });
+    });
+  </script>
 @endsection

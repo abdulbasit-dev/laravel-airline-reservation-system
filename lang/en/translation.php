@@ -49,6 +49,7 @@ return [
         "remain_seats"                  => "Remain Seats",
         "status"                        => "Status",
         "price"                         => "Price",
+        "no_plane_found"                => "No Plane Found",
     ],
 
     "ticket" => [

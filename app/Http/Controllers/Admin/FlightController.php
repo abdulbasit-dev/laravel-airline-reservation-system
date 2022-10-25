@@ -166,4 +166,19 @@ class FlightController extends Controller
         $flight->delete();
         return redirect()->route('flights.index');
     }
+
+    public function getPlanesByAirline(Request $request)
+    {
+        $planes = Plane::whereAirlineId($request->airline_id)->pluck('name', 'id');
+
+        // foreach planes push to array 
+        $planesArray = [];
+        foreach ($planes as $key => $value) {
+            $planesArray[] = [
+                "id" => $key,
+                "text" => $value,
+            ];
+        }
+        return response()->json($planesArray);
+    }
 }

@@ -42,7 +42,7 @@ Route::group(["prefix" => 'dashboard'], function () {
         Route::group(['middleware' => 'admin'], function () {
             Route::get('/', [HomeController::class, 'root'])->name('root');
 
-            //airlines;
+            //airlines
             Route::resource("airlines", AirlineController::class);
 
             //planes
@@ -52,7 +52,8 @@ Route::group(["prefix" => 'dashboard'], function () {
             Route::resource("airports", AirportController::class)->except('show');
 
             //flights
-            Route::resource("flights", FlightController::class)->except('show') ;
+            Route::get("flights/get-planes-by-airline", [FlightController::class, 'getPlanesByAirline'])->name('flights.getPlanesByAirline');
+            Route::resource("flights", FlightController::class)->except('show');
         });
     });
 });
