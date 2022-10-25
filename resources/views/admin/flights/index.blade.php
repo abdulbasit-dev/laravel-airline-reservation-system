@@ -35,8 +35,8 @@
               <tr>
                 <th>#</th>
                 <th> @lang('translation.flight.flight_number')</th>
-                <th> @lang('translation.flight.origin')</th>
-                <th> @lang('translation.flight.origin')</th>
+                <th> @lang('translation.flight.route')</th>
+                <th> @lang('translation.flight.time')</th>
                 <th> @lang('translation.flight.seats')</th>
                 <th> @lang('translation.flight.status')</th>
                 <th> @lang('translation.actions')</th>
