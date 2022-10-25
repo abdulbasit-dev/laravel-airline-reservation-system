@@ -19,6 +19,8 @@ class FlightSeeder extends Seeder
             ->with('planes');
 
         foreach ($airlines->cursor() as $airline) {
+            $departure  = $faker->dateTimeBetween('now', '+2 days');
+            $arrival    = $faker->dateTimeBetween($departure, '+2 days');
             foreach ($airline->planes as $plane) {
                 Flight::query()->create([
                     "flight_number" => $faker->unique()->numberBetween(100, 999),
@@ -26,8 +28,8 @@ class FlightSeeder extends Seeder
                     'plane_id' => $plane->id,
                     "origin_id" => City::query()->inRandomOrder()->first()->id,
                     "destination_id" => City::query()->inRandomOrder()->first()->id,
-                    "departure" => $faker->dateTimeBetween('now', '+1 week'),
-                    "arrival" => $faker->dateTimeBetween('now', '+1 week'),
+                    "departure" => $departure,
+                    "arrival" => $arrival,
                     "seats" => $plane->capacity,
                     "remain_seats" => rand(1, $plane->capacity),
                     "price" => rand(100, 1000),

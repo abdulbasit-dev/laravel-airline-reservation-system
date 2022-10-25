@@ -44,4 +44,5 @@ return [
     "book_flight"               => "Book Flight",
     "cancel_flight"             => "Cancel Flight",
     "yes_cancel"                => "Yes, Cancel",
+    "ok"                        => "Ok",
 ];

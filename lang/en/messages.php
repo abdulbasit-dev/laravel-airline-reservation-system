@@ -26,9 +26,11 @@ return [
     ],
     "safe" => [
         'has_transactions'              => 'You cant delete this Safe Because it has Transactions.',
-        'withdraw_failed_no_money'       =>"You Cant withdraw from this Safe it doesnt have Enough Money"
+        'withdraw_failed_no_money'       => "You Cant withdraw from this Safe it doesnt have Enough Money"
     ],
-    "payment"=>[
-        "has_been_collected"=>"Payment has already been collected !",
-    ]
+    "payment" => [
+        "has_been_collected" => "Payment has already been collected !",
+    ],
+    "origin_destination_same"                => "Origin and Destination can't be the same",
+
 ];

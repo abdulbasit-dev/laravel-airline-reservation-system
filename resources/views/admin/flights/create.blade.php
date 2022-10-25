@@ -171,6 +171,12 @@
   <script>
     // ready document 
     $(document).ready(function() {
+      // init datepicker
+      $('.input-daterange').datepicker({
+        autoclose: true,
+        startDate: new Date()
+      });
+
       //on chanage airline select
       $('#airline').on('change', function() {
         //get airline id
@@ -196,7 +202,7 @@
               } else {
                 $('#plane').select2({
                   data: [{
-                    id: 1,
+                    id: '',
                     text: "@lang('translation.flight.no_plane_found')"
                   }]
                 });
@@ -205,6 +211,27 @@
           });
         }
       });
+
+      // origin and destination should not be same
+      $('#destination').on('change', function() {
+        let destination = $(this).val();
+        let origin = $('#origin').val();
+        console.log(destination, origin);
+        if (origin == destination) {
+          swal.fire({
+            text: "@lang('messages.origin_destination_same')",
+            icon: "error",
+            timer: 1000,
+            showCancelButton: false,
+            confirmButtonText: "@lang('buttons.ok')",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              $('#destination').val('').trigger('change');
+            }
+          });
+        }
+      });
+
     });
   </script>
 @endsection

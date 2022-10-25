@@ -78,8 +78,8 @@
                   <label for="loan_limit" class="col-sm-3 col-form-label">@lang('translation.flight.time')</label>
                   <div class="col-sm-9">
                     <div class="input-daterange input-group" id="datepicker" data-date-format="yyyy-m-d" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker'>
-                      <input type="date" class="form-control filter-input" id="departure" name="departure" value="{{ $flight->departure }}" placeholder="@lang('translation.flight.departure')" required />
-                      <input type="date" class="form-control filter-input" id="arrival" name="arrival" value="{{ $flight->arrival }}" placeholder="@lang('translation.flight.arrival')" required />
+                      <input type="date" class="form-control filter-input" id="departure" name="departure" placeholder="@lang('translation.flight.departure')" />
+                      <input type="date" class="form-control filter-input" id="arrival" name="arrival" placeholder="@lang('translation.flight.arrival')" />
 
                       <div class="valid-feedback">
                         @lang('validation.good')
@@ -173,4 +173,69 @@
 @section('script')
   {{-- bootstrap-datepicker --}}
   <script src="{{ URL::asset('assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
+
+  <script>
+    // ready document 
+    $(document).ready(function() {
+      // init datepicker
+      $('.input-daterange').datepicker({
+        autoclose: true,
+        startDate: new Date()
+      });
+
+      //on chanage airline select
+      $('#airline').on('change', function() {
+        //get airline id
+        let airline_id = $(this).val();
+        //if airline id is not empty
+        if (airline_id != '') {
+          //get planes by airline id
+          // before send ajax request reset plane select
+          $('#plane').html('');
+          $.ajax({
+            url: "{{ route('flights.getPlanesByAirline') }}",
+            type: "GET",
+            data: {
+              airline_id: airline_id
+            },
+            success: function(data) {
+              //if data is not empty
+              if (data != '') {
+                //set plane select2 options
+                $('#plane').select2({
+                  data: data
+                });
+              } else {
+                $('#plane').select2({
+                  data: [{
+                    id: '',
+                    text: "@lang('translation.flight.no_plane_found')"
+                  }]
+                });
+              }
+            }
+          });
+        }
+      });
+
+      $('#destination').on('change', function() {
+        let destination = $(this).val();
+        let origin = $('#origin').val();
+        console.log(destination, origin);
+        if (origin == destination) {
+          swal.fire({
+            text: "@lang('messages.origin_destination_same')",
+            icon: "error",
+            timer: 1000,
+            showCancelButton: false,
+            confirmButtonText: "@lang('buttons.ok')",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              $('#destination').val('').trigger('change');
+            }
+          });
+        }
+      });
+    });
+  </script>
 @endsection
