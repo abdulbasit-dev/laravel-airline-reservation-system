@@ -4,8 +4,18 @@
 # Larevel Airline Reservation System
  - User can search for flights and book it.
  - admin in dahboard mange the flights, airlines, airports ... 
+## Demo 
+ - Dashbaord 
+ <img src="./public/assets/images/demos/dashboard.jpg" alt="dashboard">
+ - Flights 
+ <img src="./public/assets/images/demos/flights.jpg" alt="flights" >
+ - Airlins 
+ <img src="./public/assets/images/demos/airlines.jpg" alt="airlines" >
 
-## Usage
+ -   [Live Preview](http://laravel-airline.herokuapp.com/public/)
+
+
+## Installation
 
 1. clone the project `git clone https://github.com/abdulbasit-dev/laravel-airline-reservation-system.git`
 2. create a file with name .env `touch .env`
@@ -15,12 +25,6 @@
 6. generate app key `php artisan key:generate`
 7. run `php artisan migrate --seed` (note --seed will fill the database with dummy data)
 8.  your are good to go 😊
-
-## Images 
- - Dashbaord 
- <br/>
- <img src="./public/assets/images/demos/dashboard.jpg" >
-
 
 ## Usefull Commands
 
