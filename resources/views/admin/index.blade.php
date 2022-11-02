@@ -366,7 +366,8 @@
       }, r.prototype.init = function() {
         // order payment chart
         this.respChart(l("#flightStatusChart"), "Doughnut", {
-          labels: flightStatusLabel,
+        //   labels: ["Take Off", "Landing", "Canceled"],
+          labels: ["Take Off", "Landing"],
           datasets: [{
             data: flightStatusData,
             backgroundColor: flightStatusColor,
