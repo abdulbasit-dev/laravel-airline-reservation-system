@@ -19,8 +19,8 @@
       <video muted autoplay loop class="hero" src="{{ asset('frontend/assets/video.mp4') }}"></video>
       <nav>
         <div class="logo">
-          <img src="{{ asset('frontend/assets/logo.svg') }}" alt="mind & body" />
-          <h1>mind & body</h1>
+          <img src="{{ asset('frontend/assets/logo.png') }}" alt="mind & body" />
+          {{-- <h1>SULAYMANIYAH INTERNATIONAL AIRPORT</h1> --}}
         </div>
         <div class="links">
           @auth
@@ -62,7 +62,7 @@
 
     <section class="classes">
       <div class="classes-description">
-        <h2>Classes tailored for you</h2>
+        <h2>Placees waiting for you</h2>
         <h3>It's time to heal your mind and body</h3>
       </div>
       <div class="videos">
@@ -82,7 +82,7 @@
     </section>
     <section class="about">
       <div class="our-story">
-        <h2>Our story...</h2>
+        <h2>About Us</h2>
         <p>
           Always a student, Janet has immersed herself in the ancient practices
           of yoga for over thirty years. A global yoga teacher, she shares the
