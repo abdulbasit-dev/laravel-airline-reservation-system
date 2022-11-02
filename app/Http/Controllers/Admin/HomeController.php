@@ -61,7 +61,7 @@ class HomeController extends Controller
             ->map(function ($item) {
                 switch (trim($item->status)) {
                     case 0:
-                        $item->label = "Landing";
+                        $item->label = "Land";
                         $item->color = "#ea868f";
                         break;
                     case 1:
