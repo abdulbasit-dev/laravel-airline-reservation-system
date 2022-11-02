@@ -19,7 +19,7 @@
       <video muted autoplay loop class="hero" src="{{ asset('frontend/assets/video.mp4') }}"></video>
       <nav>
         <div class="logo">
-          <img src="{{ asset('frontend/assets/logo.png') }}" alt="mind & body" />
+          <img src="{{ asset('frontend/assets/logo.png') }}" alt="mind & body" style="width: 15rem" />
           {{-- <h1>SULAYMANIYAH INTERNATIONAL AIRPORT</h1> --}}
         </div>
         <div class="links">
