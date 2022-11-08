@@ -21,16 +21,9 @@ class RedirectIfAuthenticated
     public function handle(Request $request, Closure $next, ...$guards)
     {
         $guards = empty($guards) ? [null] : $guards;
-        Log::log("level", "message");
         foreach ($guards as $guard) {
-            Log::info($guard);
             if (Auth::guard($guard)->check()) {
-                if (Auth::user()->is_admin) {
-                    return route('root');
-                } else {
-                    return route('profile');
-                }
-                // return redirect(RouteServiceProvider::HOME);
+                return redirect(RouteServiceProvider::HOME);
             }
         }
 
