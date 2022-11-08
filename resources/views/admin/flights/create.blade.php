@@ -216,7 +216,6 @@
       $('#destination').on('change', function() {
         let destination = $(this).val();
         let origin = $('#origin').val();
-        console.log(destination, origin);
         if (origin == destination) {
           swal.fire({
             text: "@lang('messages.origin_destination_same')",
