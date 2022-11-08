@@ -49,10 +49,16 @@
           </h3>
           <div class="ctas">
             <button class="cta-main">
-              <a href="{{ route('tickets.flights') }}">Book A Flight</a>
+              @if (auth()->check())
+                <a href="{{ route('root') }}">Dashboard</a>
+              @else
+                <a href="{{ route('tickets.flights') }}">Book A Flight</a>
+              @endif
             </button>
             <button class="cta-sec">
-              <a href="{{ route('register') }}">Sign up</a>
+              @guest
+                <a href="{{ route('register') }}">Sign up</a>
+              @endguest
             </button>
           </div>
         </div>
