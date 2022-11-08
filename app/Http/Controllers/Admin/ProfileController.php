@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
@@ -36,7 +38,6 @@ class ProfileController extends Controller
 
             $user = auth()->user();
 
-            Log::info($user);
             // Update the user
             $user->update($validated);
 
@@ -58,11 +59,15 @@ class ProfileController extends Controller
                 $user->addMedia($filePath)->usingName($request->name)->toMediaCollection();
             }
 
-            $returnUser = $user->select('id', 'name', 'email', 'address', 'phone')->first();
+            $data  = [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'address' => $user->address,
+                'phone' => $user->phone
+            ];
 
-            Log::info('User updated his profile', $returnUser->toArray());
-
-            return $this->josnResponse(true, __('messages.success'), Response::HTTP_OK, $returnUser);
+            return $this->josnResponse(true, __('messages.success'), Response::HTTP_OK, $data);
         } catch (\Throwable $th) {
             return $this->josnResponse(true, __('api.internal_server_error'), Response::HTTP_INTERNAL_SERVER_ERROR, null, showErrorMessage($th));
         }

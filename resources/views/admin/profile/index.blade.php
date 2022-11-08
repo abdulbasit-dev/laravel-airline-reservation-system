@@ -179,7 +179,6 @@
         <div class="modal-body">
           <form method="POST" id="update-password">
             @csrf
-            <input type="hidden" value="{{ Auth::user()->id }}" id="data_id">
             <div class="mb-3">
               <label for="current_password">@lang('translation.user.current_password')</label>
               <input id="current-password" type="password" class="form-control @error('current_password') is-invalid @enderror" name="current_password" autocomplete="current_password">
@@ -216,12 +215,12 @@
   <script>
     $('#update-profile').on('submit', function(event) {
       event.preventDefault();
-      var Id = $('#data_id').val();
       let formData = new FormData(this);
       $('#emailError').text('');
       $('#nameError').text('');
       $('#dobError').text('');
       $('#avatarError').text('');
+
       $.ajax({
         url: "{{ route('profile.update') }}",
         type: "POST",

@@ -15,6 +15,6 @@ return [
     "not_enough_seats"                      => "Not enough seats available",
     "not_your_ticket"                       => "This ticket is not yours",
     "internal_server_error"                 => "Oops! Something went wrong!",
-    
+    "user_not_found"                        => "User not found",
 
 ];
