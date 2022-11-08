@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Log;
 
 class ProfileController extends Controller
 {
@@ -34,6 +35,8 @@ class ProfileController extends Controller
             $validated = $validator->validated();
 
             $user = auth()->user();
+
+            Log::info($user);
             // Update the user
             $user->update($validated);
 
@@ -56,6 +59,8 @@ class ProfileController extends Controller
             }
 
             $returnUser = $user->select('id', 'name', 'email', 'address', 'phone')->first();
+
+            Log::info('User updated his profile', $returnUser->toArray());
 
             return $this->josnResponse(true, __('messages.success'), Response::HTTP_OK, $returnUser);
         } catch (\Throwable $th) {

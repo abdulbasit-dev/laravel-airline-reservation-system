@@ -235,6 +235,8 @@
             icon: "success",
           })
 
+          console.log(data.data);
+
           // update data
           $('.userName').text(data.data.name);
           $('#email').text(data.data.email);
