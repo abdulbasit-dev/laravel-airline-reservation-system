@@ -1,6 +1,6 @@
 let uploadedDocumentMap = {};
 Dropzone.options.myDropzone = {
-  url: '/store-temp-file',
+  url: $('#storeTempFile').text(),
   maxFilesize: 10, // MB
   uploadMultiple: false,
   maxFiles: 1,
@@ -27,7 +27,7 @@ Dropzone.options.myDropzone = {
         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content'),
       },
       type: 'POST',
-      url: '/delete-temp-file',
+      url: $('#deleteTempFile').text(),
       data: {
         fileName: name,
       },
@@ -43,7 +43,7 @@ Dropzone.options.myDropzone = {
   init: function () {
     this.on('maxfilesexceeded', function (file) {
       Swal.fire({
-        text: "{{ __('messages.max_files') }}",
+        text: $('#maxFileMessage').text(),
         icon: 'error',
       });
     });
