@@ -24,9 +24,17 @@
         </div>
         <div class="links">
           @auth
-            <a href="{{ route('root') }}">Dashbaord</a>
-            <a href="#">Book a Flight</a>
-            <a href="#">My Booking</a>
+            @if (Auth::user()->is_admin)
+              <a href="{{ route('root') }}">Dashbaord</a>
+            @else
+              <a href="{{ route('root') }}">Dashbaord</a>
+              <a href="{{ route('tickets.flights') }}">Book a Flight</a>
+              <a href="{{ route('tickets.userTickets') }}">My Booking</a>
+            @endif
+            <a href="javascript:void();" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="bx bx-power-off font-size-16 me-1 text-danger align-middle"></i> @lang('translation.Logout')</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              @csrf
+            </form>
           @else
             <a href="{{ route('login') }}">Login</a>
             @if (Route::has('register'))
@@ -48,18 +56,22 @@
             The world is a book and those who do not travel read only one page.
           </h3>
           <div class="ctas">
-            <button class="cta-main">
-              @if (auth()->check())
-                <a href="{{ route('root') }}">Dashboard</a>
-              @else
+            @auth
+              <button class="cta-main">
+                @if (Auth::user()->is_admin)
+                  <a href="{{ route('root') }}">Dashboard</a>
+                @else
+                  <a href="{{ route('tickets.flights') }}">Book A Flight</a>
+                @endif
+              </button>
+            @else
+              <button class="cta-main">
                 <a href="{{ route('tickets.flights') }}">Book A Flight</a>
-              @endif
-            </button>
-            <button class="cta-sec">
-              @guest
+              </button>
+              <button class="cta-sec">
                 <a href="{{ route('register') }}">Sign up</a>
-              @endguest
-            </button>
+              </button>
+            @endauth
           </div>
         </div>
       </div>

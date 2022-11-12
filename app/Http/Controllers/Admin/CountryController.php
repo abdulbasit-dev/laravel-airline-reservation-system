@@ -17,8 +17,7 @@ class CountryController extends Controller
         $this->authorize("country_view");
 
         if ($request->ajax()) {
-            $data = Country::query()
-                ->get();
+            $data = Country::query();
             return Datatables::of($data)->addIndexColumn()
             ->addColumn('action', function ($row) {
                 $td = '<td>';

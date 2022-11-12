@@ -17,8 +17,7 @@ class BookingController extends Controller
         $this->authorize("booking_view");
 
         if ($request->ajax()) {
-            $data = Booking::query()
-                ->get();
+            $data = Booking::query();
             return Datatables::of($data)->addIndexColumn()
             ->addColumn('action', function ($row) {
                 $td = '<td>';

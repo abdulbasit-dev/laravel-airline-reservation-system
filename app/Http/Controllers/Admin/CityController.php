@@ -17,8 +17,7 @@ class CityController extends Controller
         $this->authorize("city_view");
 
         if ($request->ajax()) {
-            $data = City::query()
-                ->get();
+            $data = City::query();
             return Datatables::of($data)->addIndexColumn()
             ->addColumn('action', function ($row) {
                 $td = '<td>';

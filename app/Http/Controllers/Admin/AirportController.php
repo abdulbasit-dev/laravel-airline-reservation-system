@@ -16,8 +16,7 @@ class AirportController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Airport::query()
-                ->get();
+            $data = Airport::query();
             return Datatables::of($data)->addIndexColumn()
                 ->setRowClass(fn ($row) => 'align-middle')
                 ->addColumn('action', function ($row) {
@@ -42,7 +41,7 @@ class AirportController extends Controller
 
     public function create()
     {
-        $cities = City::all()->pluck('name','id');
+        $cities = City::all()->pluck('name', 'id');
         return view('admin.airports.create', compact('cities'));
     }
 
