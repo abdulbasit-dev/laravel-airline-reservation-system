@@ -35,12 +35,14 @@ class TicketController extends Controller
             return Datatables::of($data)->addIndexColumn()
                 ->setRowClass(fn ($row) => 'align-middle')
                 ->addColumn('action', function ($row) {
-                    $td = '<td>';
-                    $td .= '<div class="d-flex justify-content-center">';
-                    $td .= '<a href="javascript:void(0)" data-id="' . $row->id . '" type="button" class="btn btn-primary waves-effect waves-light me-1 book-btn">' . __('buttons.book_flight') . '</a>';
-                    $td .= "</div>";
-                    $td .= "</td>";
-                    return $td;
+                    // if user has already booked this flight, disable the button
+                    $booked = Ticket::where('user_id', auth()->user()->id)
+                        ->where('flight_id', $row->id)
+                        ->exists();
+                    if ($booked) {
+                        return '<button class="btn btn-success waves-effect waves-light">Booked</button>';
+                    }
+                    return '<button data-id="' . $row->id . '" type="button" class="btn btn-primary waves-effect waves-light  book-btn" >' . __('buttons.book_flight') . '</button>';;
                 })
                 ->editColumn('flight_info', function ($row) {
                     $td = '<td>';
@@ -172,13 +174,13 @@ class TicketController extends Controller
         return view('admin.tickets.user-tickets', compact('cities', 'airlines'));
     }
 
-
-
     public function book(Request $request)
     {
         try {
             //find flight
             $flight = Flight::find($request->flight_id);
+
+
 
             //check flight seat is available
             if ($flight->remain_seats < $request->seats) {
@@ -187,6 +189,16 @@ class TicketController extends Controller
                     'message' => __('api.not_enough_seats')
                 ]);
             }
+
+            // chrck user has already booked this flight
+            $ticket = Ticket::whereUserId(auth()->id())
+                ->whereFlightId($flight->id)
+                ->first();
+
+            if ($ticket) {
+                return $this->josnResponse(true, "You have already booked this flight", Response::HTTP_BAD_REQUEST);
+            }
+
             // create ticket
             Ticket::create([
                 'flight_id' => $request->flight_id,

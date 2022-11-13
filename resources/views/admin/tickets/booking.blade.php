@@ -18,7 +18,7 @@
       {{ route('flights.index') }}
     @endslot
     @slot('title')
-       @lang('translation.resource_list', ['resource' => __('attributes.flight')])
+      @lang('translation.resource_list', ['resource' => __('attributes.flight')])
     @endslot
   @endcomponent
 
@@ -232,12 +232,20 @@
           $('#datatable').DataTable().ajax.reload();
         },
         error: function(data) {
+          if (data.responseJSON.status === 500) {
+            Swal.fire({
+              timer: "20000",
+              title: data.responseJSON.message,
+              text: data.responseJSON.errors,
+              customClass: "swal-error",
+              icon: "error",
+            })
+          }
+
           Swal.fire({
-            timer: "5000",
-            title: `{{ __('api.internal_server_error') }}`,
+            timer: "2000",
             text: data.responseJSON.message,
-            customClass: "swal-error",
-            icon: "error",
+            icon: "warning",
           });
         }
 

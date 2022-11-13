@@ -45,14 +45,13 @@
           </li>
 
           <li class="{{ request()->routeIs('customers.*') ? 'mm-active' : '' }}">
-            <a href="{{ route("customers.index") }}" class="waves-effect">
-              <i class='bx bxs-plane-alt'></i>
+            <a href="{{ route('customers.index') }}" class="waves-effect">
+              <i class='bx bx-user'></i>
               <span key="t-contact">Customers</span>
             </a>
           </li>
         @else
           {{-- USER ROUTES  --}}
-
           <li>
             <a href="{{ route('profile') }}" class="waves-effect">
               <i class="bx bx-user-circle"></i>
