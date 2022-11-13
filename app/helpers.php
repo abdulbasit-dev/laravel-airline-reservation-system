@@ -36,6 +36,28 @@ if (!function_exists("getAvatar")) {
     }
 }
 
+if (!function_exists("getStatusColor")) {
+    function getStatusColor($status)
+    {
+        switch ($status) {
+            case 'pending':
+                return 'warning';
+                break;
+
+            case 'approved':
+                return 'success';
+                break;
+
+            case 'cancelled':
+                return 'danger';
+                break;
+            default:
+                return 'dark';
+                break;
+        }
+    }
+}
+
 //return error message with file name and line number
 if (!function_exists("showErrorMessage")) {
     function showErrorMessage($e)

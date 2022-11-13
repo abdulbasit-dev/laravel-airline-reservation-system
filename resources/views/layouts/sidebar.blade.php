@@ -43,6 +43,13 @@
               <span key="t-contact">@lang('sidebar.flights')</span>
             </a>
           </li>
+
+          <li class="{{ request()->routeIs('customers.*') ? 'mm-active' : '' }}">
+            <a href="{{ route("customers.index") }}" class="waves-effect">
+              <i class='bx bxs-plane-alt text-danger'></i>
+              <span key="t-contact">Customers</span>
+            </a>
+          </li>
         @else
           {{-- USER ROUTES  --}}
 
@@ -67,11 +74,6 @@
             </a>
           </li>
         @endadmin
-
-        @if (false)
-          {{-- @if (config('app.env') == 'dev') --}}
-          @include('layouts.template-sidebar')
-        @endif
 
       </ul>
     </div>

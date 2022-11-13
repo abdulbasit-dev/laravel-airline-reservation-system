@@ -9,10 +9,30 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Ticket extends Model
 {
     use SoftDeletes;
-    
+
     protected $guarded = [];
 
     protected $with = ['flight'];
+
+    public function getStatusAttribute($value)
+    {
+        switch ($value) {
+            case 0:
+                return "pending";
+                break;
+            case 1:
+                return "approved";
+                break;
+
+            case 2:
+                return "cancelled";
+                break;
+
+            default:
+                return "not defined";
+                break;
+        }
+    }
 
     public function flight()
     {

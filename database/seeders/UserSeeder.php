@@ -38,7 +38,7 @@ class UserSeeder extends Seeder
                     "phone" => $faker->phoneNumber(),
                 ],
                 [
-                    "is_admin" => $faker->boolean(),
+                    "is_admin" => 0,
                     "name" => $faker->name(),
                     "password" => bcrypt("password"),
                     "address" => $faker->address(),

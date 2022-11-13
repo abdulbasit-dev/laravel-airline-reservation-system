@@ -10,7 +10,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class User extends Authenticatable implements HasMedia
 {
-    use  Notifiable,  SoftDeletes , InteractsWithMedia;
+    use  Notifiable,  SoftDeletes, InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -43,8 +43,21 @@ class User extends Authenticatable implements HasMedia
         return formatDate($value);
     }
 
+    // Scopes
+    public function scopeCustomer($query)
+    {
+        return $query->where('is_admin', 0);
+    }
+
+    public function scopeAdmin($query)
+    {
+        return $query->where('is_admin', 1);
+    }
+
+    // Relations
+
     public function tickets()
     {
-        return $this->hasMany(Ticket::class,'user_id');
+        return $this->hasMany(Ticket::class, 'user_id');
     }
 }

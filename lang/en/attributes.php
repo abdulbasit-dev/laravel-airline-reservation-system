@@ -10,4 +10,5 @@ return [
     'user'                  => 'User',
     "profile"               => "Profile",
     "password"              => "Password",
+    "customer"              => "Customer",
 ];

@@ -95,7 +95,7 @@
                           <label for="origin" class="col-sm-3 col-form-label">@lang('translation.flight.origin')</label>
                           <select class="form-control select2" id="origin" name="origin_id" required>
                             <option value="">@lang('translation.none')</option>
-                            @foreach ($airlines as $key => $value)
+                            @foreach ($airports as $key => $value)
                               <option value="{{ $key }}">{{ $value }}</option>
                             @endforeach
                           </select>
@@ -113,7 +113,7 @@
                           <label for="destination" class="col-sm-3 col-form-label">@lang('translation.flight.destination')</label>
                           <select class="form-control select2" id="destination" name="destination_id" required>
                             <option value="">@lang('translation.none')</option>
-                            @foreach ($airlines as $key => $value)
+                            @foreach ($airports as $key => $value)
                               <option value="{{ $key }}">{{ $value }}</option>
                             @endforeach
                           </select>

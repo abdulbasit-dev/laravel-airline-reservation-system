@@ -13,6 +13,7 @@ return new class extends Migration
             $table->foreignId("user_id")->constrained()->cascadeOnDelete();
             $table->foreignId("flight_id")->constrained()->cascadeOnDelete();
             $table->string("seat_number");
+            $table->tinyInteger("status")->default(0)->comment("0: pendding, 1: accepted, 2: canceled");
             $table->timestamps();
             $table->softDeletes();
         });

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\{
     HomeController,
     AirlineController,
     AirportController,
+    CustomerController,
     PlaneController,
     FlightController,
     ProfileController,
@@ -54,6 +55,11 @@ Route::group(["prefix" => 'dashboard'], function () {
             //flights
             Route::get("flights/get-planes-by-airline", [FlightController::class, 'getPlanesByAirline'])->name('flights.getPlanesByAirline');
             Route::resource("flights", FlightController::class)->except('show');
+
+            //customers
+            // Route::get("customers/get-tickets-by-user", [CustomerController::class, 'getTicketsByUser'])->name('customers.getTicketsByUser');
+            Route::get("customers", [CustomerController::class, "index"])->name('customers.index');
+            Route::get("customers/{user}", [CustomerController::class, "show"])->name('customers.show');
         });
     });
 });

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-  @lang('translation.resource_info', ['resource' => __('attributes.airline')])
+  @lang('translation.resource_info', ['resource' => __('attributes.customer')])
 @endsection
 
 @section('css')
@@ -14,13 +14,13 @@
 @section('content')
   @component('components.breadcrumb')
     @slot('li_1')
-      @lang('translation.airline.airline')
+      Customer
     @endslot
     @slot('li_2')
-      {{ route('airlines.index') }}
+      {{ route('customers.index') }}
     @endslot
     @slot('title')
-      @lang('translation.resource_info', ['resource' => __('attributes.airline')])
+      @lang('translation.resource_info', ['resource' => __('attributes.customer')])
     @endslot
   @endcomponent
 
@@ -36,17 +36,26 @@
                   <table class="table-borderless mb-0 table">
                     <tbody>
                       <tr>
-                        <th scope="row" style="width: 400px;">@lang('translation.airline.name')</th>
-                        <td>{{ $airline->name }}</td>
+                        <th scope="row" style="width: 400px;">Name</th>
+                        <td>{{ $user->name }}</td>
                       </tr>
                       <tr>
-                        <th scope="row" style="width: 400px;">@lang('translation.car.code')</th>
-                        <td>{{ $airline->code }}</td>
+                        <th scope="row" style="width: 400px;">Email</th>
+                        <td>{{ $user->email }}</td>
                       </tr>
                       <tr>
-                        <th scope="row" style="width: 400px;">@lang('translation.airline.no_of_planes')</th>
+                        <th scope="row" style="width: 400px;">Phone</th>
+                        <td>{{ $user->phone }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row" style="width: 400px;">Address</th>
+                        <td>{{ $user->address }}</td>
+                      </tr>
+
+                      <tr>
+                        <th scope="row" style="width: 400px;">No Of Tickets</th>
                         <td>
-                          <span class="badge badge-pill badge-soft-info font-size-14">{{ $airline->planes()->count() }}</span>
+                          <span class="badge badge-pill badge-soft-info font-size-14">{{ $user->tickets()->count() }}</span>
                         </td>
                       </tr>
 
@@ -55,14 +64,6 @@
                 </div>
               </div>
             </div>
-
-            <!-- end Specifications -->
-            <div class="col-xl-6">
-              <a class="airlineImageLightBox" href="{{ getFile($airline) }}">
-                <img alt="car expense image" src="{{ getFile($airline) }}" class="img-thumbnai img-fluid d-block w-50 mx-auto">
-              </a>
-            </div>
-
           </div>
           <!-- end row -->
 
@@ -73,23 +74,22 @@
   </div>
   <!-- end row -->
 
-  {{-- show airline planes --}}
+  {{-- show  user tickets --}}
   <div class="row">
     <div class="col-12">
       <div class="card">
         <div class="card-body">
-            <h5>Airline Planes</h5>
+          <h5>User Tickets</h5>
           <div class="d-flex justify-content-end mb-4" id="action_btns">
           </div>
           <table id="datatable" class="table-hover table-bordered nowrap w-100 table">
             <thead class="table-light">
               <tr>
                 <th>#</th>
-                <th> @lang('translation.plane.name')</th>
-                <th> @lang('translation.plane.airline')</th>
-                <th> @lang('translation.plane.code')</th>
-                <th> @lang('translation.plane.capacity')</th>
-                <th> @lang('translation.created_at')</th>
+                <th> @lang('translation.flight.flight_number')</th>
+                <th> @lang('translation.flight.origin')</th>
+                <th> @lang('translation.flight.time')</th>
+                <th> Status</th>
                 <th> @lang('translation.actions')</th>
               </tr>
             </thead>
@@ -128,7 +128,7 @@
   {{-- datatable init --}}
   <script type="text/javascript">
     $(function() {
-      let table = $('#datatable').DataTable({
+      table = $('#datatable').DataTable({
         processing: true,
         serverSide: true,
         lengthChange: true,
@@ -136,7 +136,7 @@
         pageLength: 10,
         scrollX: true,
         order: [
-          [3, "desc"]
+          [0, "desc"]
         ],
         // text transalations
         language: {
@@ -152,25 +152,28 @@
             "previous": "@lang('translation.paginatePrevious')"
           },
         },
-        ajax: "{{ route('airlines.show', $airline->id) }}",
-
+        ajax: {
+          url: "{{ route('customers.show', $user->id) }}",
+          method: "GET",
+        },
+        columnDefs: [{
+          className: "text-center",
+          targets: 5
+        }],
         columns: [{
             data: 'id'
           },
           {
-            data: 'name'
+            data: 'flight_info'
           },
           {
-            data: 'name'
+            data: 'route'
           },
           {
-            data: 'code'
+            data: 'time'
           },
           {
-            data: 'capacity'
-          },
-          {
-            data: 'created_at',
+            data: 'status'
           },
           {
             data: 'action',
@@ -179,14 +182,6 @@
           },
         ],
       })
-
-      //init buttons
-      new $.fn.dataTable.Buttons(table, {
-        buttons: [{
-          extend: 'colvis',
-          text: "@lang('translation.colvisBtn')"
-        }]
-      });
 
       // select dropdown for change the page length
       $('.dataTables_length select').addClass('form-select form-select-sm');

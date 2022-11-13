@@ -80,7 +80,8 @@ class FlightController extends Controller
 
     public function create()
     {
-        $airlines = Airline::all()->pluck('name', 'id');
+        // get all airlines that have planes
+        $airlines = Airline::whereHas("planes")->pluck('name', 'id');
         $airports = Airport::all()->pluck('name', 'id');
         $planes = Plane::all()->pluck('name', 'id');
         return view('admin.flights.create', compact('airports', 'airlines', 'planes'));
