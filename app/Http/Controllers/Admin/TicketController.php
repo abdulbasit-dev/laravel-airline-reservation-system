@@ -31,8 +31,7 @@ class TicketController extends Controller
                 })
                 ->when($request->arrival, function ($query) use ($request) {
                     return $query->whereDate('arrival', $request->arrival);
-                })
-                ->get();
+                });
             return Datatables::of($data)->addIndexColumn()
                 ->setRowClass(fn ($row) => 'align-middle')
                 ->addColumn('action', function ($row) {

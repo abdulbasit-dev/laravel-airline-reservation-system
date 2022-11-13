@@ -16,8 +16,7 @@ class FlightController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Flight::query()
-                ->get();
+            $data = Flight::query();
             return Datatables::of($data)->addIndexColumn()
                 ->setRowClass(fn ($row) => 'align-middle')
                 ->addColumn('action', function ($row) {

@@ -14,8 +14,7 @@ class AirlineController extends Controller
     {
         if ($request->ajax()) {
             $data = Airline::query()
-                ->withCount('planes')
-                ->get();
+                ->withCount('planes');
             return Datatables::of($data)->addIndexColumn()
                 ->setRowClass(fn ($row) => 'align-middle')
                 ->addColumn('action', function ($row) {

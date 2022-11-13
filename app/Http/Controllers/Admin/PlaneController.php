@@ -15,8 +15,7 @@ class PlaneController extends Controller
     {
         if ($request->ajax()) {
             $data = Plane::query()
-                ->with('airline:id,name')
-                ->get();
+                ->with('airline:id,name');
             return Datatables::of($data)->addIndexColumn()
                 ->setRowClass(fn ($row) => 'align-middle')
                 ->addColumn('action', function ($row) {
