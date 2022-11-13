@@ -11,42 +11,42 @@
         @admin
           <li>
             <a href="{{ route('root') }}" class="waves-effect">
-              <i class="bx bx-home-circle" style="color: #20c997"></i>
+              <i class="bx bx-home-circle"></i>
               <span key="t-contact">@lang('sidebar.dashboard')</span>
             </a>
           </li>
 
           <li class="{{ request()->routeIs('airlines.*') ? 'mm-active' : '' }}">
             <a href="{{ route('airlines.index') }}" class="waves-effect">
-              <i class='bx bx-globe text-info'></i>
+              <i class='bx bx-globe'></i>
               <span key="t-contact">@lang('sidebar.airlines')</span>
             </a>
           </li>
 
           <li class="{{ request()->routeIs('planes.*') ? 'mm-active' : '' }}">
             <a href="{{ route('planes.index') }}" class="waves-effect">
-              <i class='bx bxs-paper-plane text-warning'></i>
+              <i class='bx bxs-paper-plane'></i>
               <span key="t-contact">@lang('sidebar.planes')</span>
             </a>
           </li>
 
           <li class="{{ request()->routeIs('airports.*') ? 'mm-active' : '' }}">
             <a href="{{ route('airports.index') }}" class="waves-effect">
-              <i class='bx bx-buildings text-success'></i>
+              <i class='bx bx-buildings'></i>
               <span key="t-contact">@lang('sidebar.airports')</span>
             </a>
           </li>
 
           <li class="{{ request()->routeIs('flights.*') ? 'mm-active' : '' }}">
             <a href="{{ route('flights.index') }}" class="waves-effect">
-              <i class='bx bxs-plane-alt text-danger'></i>
+              <i class='bx bxs-plane-alt'></i>
               <span key="t-contact">@lang('sidebar.flights')</span>
             </a>
           </li>
 
           <li class="{{ request()->routeIs('customers.*') ? 'mm-active' : '' }}">
             <a href="{{ route("customers.index") }}" class="waves-effect">
-              <i class='bx bxs-plane-alt text-danger'></i>
+              <i class='bx bxs-plane-alt'></i>
               <span key="t-contact">Customers</span>
             </a>
           </li>
