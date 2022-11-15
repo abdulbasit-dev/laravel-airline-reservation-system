@@ -18,7 +18,7 @@
       {{ route('tickets.userTickets') }}
     @endslot
     @slot('title')
-          @lang('translation.resource_list', ['resource' => __('attributes.ticket')])
+      @lang('translation.resource_list', ['resource' => __('attributes.ticket')])
     @endslot
   @endcomponent
 
@@ -101,9 +101,10 @@
               <tr>
                 <th>#</th>
                 <th> @lang('translation.flight.flight_number')</th>
-                <th> @lang('translation.flight.origin')</th>
-                <th> @lang('translation.flight.origin')</th>
-                <th> @lang('translation.flight.seats')</th>
+                <th>Route</th>
+                <th>Time</th>
+                <th>Seat Number</th>
+                <th>Status</th>
                 <th> @lang('translation.actions')</th>
               </tr>
             </thead>
@@ -177,22 +178,28 @@
         },
         columnDefs: [{
           className: "text-center",
-          targets: 5
+          targets: 4
         }],
         columns: [{
             data: 'id'
           },
           {
-            data: 'flight_info'
+            data: 'flight_info',
+            searchable: false,
           },
           {
-            data: 'route'
+            data: 'route',
+            searchable: false,
           },
           {
-            data: 'route'
+            data: 'time',
+            searchable: false,
           },
           {
-            data: 'time'
+            data: 'seat_number'
+          },
+          {
+            data: 'status'
           },
           {
             data: 'action',

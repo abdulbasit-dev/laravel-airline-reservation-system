@@ -44,6 +44,36 @@
             </a>
           </li>
 
+          {{-- tickets --}}
+          <li>
+            <a href="javascript: void(0);" class="has-arrow waves-effect {{ request()->routeIs('tickets.*') ? 'mm-active' : '' }}">
+              <i class="dripicons-ticket"></i>
+              <span key="t-ecommerce">@lang('sidebar.tickets')</span>
+            </a>
+            <ul class="{{ request()->routeIs('tickets.*') ? 'sub-menu mm-collapse mm-show' : 'sub-menu' }}" aria-expanded="false">
+              <li>
+                <a href="{{ route('tickets.index') }}">All Tickets
+                  <span class="badge rounded-pill bg-info float-end ticket-badge d-none" id="totalTickets"></span>
+                </a>
+              </li>
+              <li>
+                <a href="{{ route('tickets.index', ['status' => 'pending']) }}" class="{{ request()->get('status') == 'pending' ? 'active' : '' }}" key="t-products">Pending Tickets
+                  <span class="badge rounded-pill bg-info float-end ticket-badge d-none" id="pendingTickets"></span>
+                </a>
+              </li>
+              <li>
+                <a href="{{ route('tickets.index', ['status' => 'approved']) }}" class="{{ request()->get('status') == 'approved' ? 'active' : '' }}" key="t-products">Approved Tickets
+                  <span class="badge rounded-pill bg-info float-end ticket-badge d-none" id="approvedTickets"></span>
+                </a>
+              </li>
+              <li>
+                <a href="{{ route('tickets.index', ['status' => 'canceled']) }}" class="{{ request()->get('status') == 'canceled' ? 'active' : '' }}" key="t-products">Canceled Tickets
+                  <span class="badge rounded-pill bg-info float-end ticket-badge d-none" id="canceledTickets"></span>
+                </a>
+              </li>
+            </ul>
+          </li>
+
           <li class="{{ request()->routeIs('customers.*') ? 'mm-active' : '' }}">
             <a href="{{ route('customers.index') }}" class="waves-effect">
               <i class='bx bx-user'></i>
@@ -80,3 +110,29 @@
   </div>
 </div>
 <!-- Left Sidebar End -->
+
+@push('scripts')
+  <script>
+    $(document).ready(function() {
+      getOrderStatusCount()
+    });
+
+    const getOrderStatusCount = () => {
+      $.ajax({
+        url: "{{ route('ticketStatusCount') }}",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+          // remove d-none class from the badge
+          $('.ticket-badge').removeClass('d-none');
+
+          $("#totalTickets").html(data.totalTickets);
+          $("#pendingTickets").html(data.pendingTickets);
+          $("#approvedTickets").html(data.approvedTickets);
+          $("#canceledTickets").html(data.canceledTickets);
+        }
+      });
+    }
+
+  </script>
+@endpush
