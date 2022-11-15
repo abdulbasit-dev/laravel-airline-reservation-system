@@ -116,6 +116,7 @@
             <thead class="table-light">
               <tr>
                 <th>#</th>
+                <th>Customer Name</th>
                 <th> @lang('translation.flight.flight_number')</th>
                 <th>Route</th>
                 <th>Time</th>
@@ -234,16 +235,24 @@
             data: 'id'
           },
           {
+            data: 'user.name',
+            sortable: false,
+            searchable: false
+          },
+          {
             data: 'flight_info',
             searchable: false,
+            sortable: false,
           },
           {
             data: 'route',
             searchable: false,
+            sortable: false,
           },
           {
             data: 'time',
             searchable: false,
+            sortable: false,
           },
           {
             data: 'seat_number'

@@ -96,9 +96,7 @@ class TicketController extends Controller
                     $td .= "</td>";
                     return $td;
                 })
-                ->editColumn("status", function ($row) {
-                    return '<span class="badge badge-pill badge-soft-' . getStatusColor($row->status) . ' font-size-14 p-2">' . ucfirst($row->status) . '</span>';
-                })
+                ->editColumn("status", fn ($row) => '<span class="badge badge-pill badge-soft-' . getStatusColor($row->status) . ' font-size-14 p-2">' . ucfirst($row->status) . '</span>')
                 ->rawColumns(['flight_info', 'route', 'time', 'action', 'status'])
                 ->make(true);
         }

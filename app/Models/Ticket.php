@@ -12,7 +12,7 @@ class Ticket extends Model
 
     protected $guarded = [];
 
-    protected $with = ['flight'];
+    protected $with = ['flight', "user"];
 
     public function getStatusAttribute($value)
     {
