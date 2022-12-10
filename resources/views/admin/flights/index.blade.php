@@ -90,16 +90,20 @@
             data: 'id'
           },
           {
-            data: 'flight_info'
+            data: 'flight_info',
+            searchable: false
           },
           {
-            data: 'route'
+            data: 'route',
+            searchable: false
           },
           {
-            data: 'time'
+            data: 'time',
+            searchable: false
           },
           {
-            data: 'capacity'
+            data: 'capacity',
+            searchable: false
           },
           {
             data: 'status'

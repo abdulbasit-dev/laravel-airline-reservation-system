@@ -186,7 +186,7 @@
           {
             data: 'flight_info',
             searchable: false,
-          },
+        },
           {
             data: 'route',
             searchable: false,

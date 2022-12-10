@@ -93,7 +93,8 @@
             data: 'code'
           },
           {
-            data: 'planes_count'
+            data: 'planes_count',
+            searchable: false
           },
           {
             data: 'created_at',
