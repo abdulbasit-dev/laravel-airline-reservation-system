@@ -184,7 +184,7 @@
           },
           {
             data: 'flight_info',
-            searchable: false
+            name: "destination.name"
           },
           {
             data: 'route',
